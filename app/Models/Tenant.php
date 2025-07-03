@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Laravel\Cashier\Billable;
+
+use function Illuminate\Events\queueable;
+
+class Tenant extends Model
+{
+    use Billable;
+
+    /**
+     * The "booted" method of the model.
+     */
+    protected static function booted(): void
+    {
+        static::updated(queueable(function (Tenant $customer) {
+            if ($customer->hasStripeId()) {
+                $customer->syncStripeCustomerDetails();
+            }
+        }));
+    }
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class)->withPivot('permissions')->withTimestamps();
+    }
+
+    public function owner(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+}
