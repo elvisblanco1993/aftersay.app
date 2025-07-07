@@ -7,9 +7,7 @@ use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\Tenant;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::redirect('/', '/login')->name('home');
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['verified'])->group(function () {
