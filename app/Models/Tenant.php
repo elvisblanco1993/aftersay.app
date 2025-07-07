@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Cashier\Billable;
 
 use function Illuminate\Events\queueable;
@@ -33,5 +34,25 @@ class Tenant extends Model
     public function owner(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function clients(): HasMany
+    {
+        return $this->hasMany(Client::class);
+    }
+
+    public function platforms(): HasMany
+    {
+        return $this->hasMany(Platform::class);
+    }
+
+    public function links(): HasMany
+    {
+        return $this->HasMany(Link::class);
+    }
+
+    public function concerns(): HasMany
+    {
+        return $this->hasMany(Concern::class);
     }
 }
