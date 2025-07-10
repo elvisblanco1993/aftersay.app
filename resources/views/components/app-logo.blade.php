@@ -1,6 +1,2 @@
-<div class="flex aspect-square size-8 items-center justify-center rounded-md bg-accent-content text-accent-foreground">
-    <x-app-logo-icon class="size-5 fill-current text-white dark:text-black" />
-</div>
-<div class="ms-1 text-sm">
-    AfterSay
-</div>
+<img src="{{ asset('logo.webp') }}" alt="AfterSay" class="h-6 dark:hidden">
+<img src="{{ asset('logo-dark.webp') }}" alt="AfterSay" class="h-6 hidden dark:block">

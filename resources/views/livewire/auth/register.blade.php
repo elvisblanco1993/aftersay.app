@@ -1,5 +1,5 @@
 <div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Try Aftersay for free')" :description="__('Just need a few things to get you going...')" />
+    <x-auth-header :title="__('Try AfterSay for free')" :description="__('Just need a few things to get you going...')" />
 
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />
