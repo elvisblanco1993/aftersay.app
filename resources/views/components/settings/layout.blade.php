@@ -1,7 +1,7 @@
 <div class="flex items-start max-md:flex-col">
     <div class="me-10 w-full pb-4 md:w-[220px]">
         <flux:navlist>
-            <flux:navlist.group heading="Business Profile">
+            <flux:navlist.group heading="Your organization">
                 <flux:navlist.item :href="route('settings.tenant')" wire:navigate>{{ __('Company Info') }}</flux:navlist.item>
                 <flux:navlist.item :href="route('settings.platforms')" wire:navigate>{{ __('Review Platforms') }}</flux:navlist.item>
             </flux:navlist.group>

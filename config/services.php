@@ -35,4 +35,14 @@ return [
         ],
     ],
 
+    /**
+     * Review Platforms
+     */
+    'google' => [
+        'places_api_key' => env('GOOGLE_PLACES_API_KEY'),
+        'places_base_url' => 'https://places.googleapis.com/v1/places:searchText',
+        'places_fields_mask' => 'places.id,places.displayName,places.formattedAddress',
+        'places_review_url' => 'https://search.google.com/local/writereview?placeid=',
+    ],
+
 ];

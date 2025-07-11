@@ -12,11 +12,10 @@
             </a>
 
             <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Platform')" class="grid">
-                    <flux:navlist.item icon="layout-dashboard" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                    <flux:navlist.item icon="message-square-share" :href="route('link.index')" :current="request()->routeIs('link.*')" wire:navigate>{{ __('Links') }}</flux:navlist.item>
-                    <flux:navlist.item icon="users" :href="route('client.index')" :current="request()->routeIs('client.*')" wire:navigate>{{ __('Clients') }}</flux:navlist.item>
-                </flux:navlist.group>
+                <flux:navlist.item icon="layout-dashboard" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                <flux:navlist.item icon="message-square-share" :href="route('link.index')" :current="request()->routeIs('link.*')" wire:navigate>{{ __('Links') }}</flux:navlist.item>
+                <flux:navlist.item icon="users" :href="route('client.index')" :current="request()->routeIs('client.*')" wire:navigate>{{ __('Clients') }}</flux:navlist.item>
+                <flux:navlist.item :href="route('settings.tenant')" icon="settings-2" :current="request()->routeIs('settings.*')" wire:navigate>{{ __('Settings') }}</flux:navlist.item>
             </flux:navlist>
 
             <flux:spacer />
@@ -53,13 +52,6 @@
                                 </div>
                             </div>
                         </div>
-                    </flux:menu.radio.group>
-
-                    <flux:menu.separator />
-
-                    <flux:menu.radio.group>
-                        <flux:menu.item :href="route('settings.tenant')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
-                        <flux:menu.item href="/billing" icon="wallet">{{ __('Billing') }}</flux:menu.item>
                     </flux:menu.radio.group>
 
                     <flux:menu.separator />
@@ -109,7 +101,7 @@
                     <flux:menu.separator />
 
                     <flux:menu.radio.group>
-                        <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
+                        {{--  --}}
                     </flux:menu.radio.group>
 
                     <flux:menu.separator />

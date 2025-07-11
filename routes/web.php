@@ -5,6 +5,7 @@ use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Platforms;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\Tenant;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'website.home')->name('home');
@@ -31,7 +32,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/profile', Profile::class)->name('settings.profile');
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
+    Route::get('billing', function (Request $request) {
+        return $request->user()->currentTenant->redirectToBillingPortal(
+            returnUrl: route('settings.tenant')
+        );
+    })->name('billing-portal');
 });
 
 require __DIR__.'/auth.php';
-require __DIR__.'/billing.php';
