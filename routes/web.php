@@ -2,7 +2,6 @@
 
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
-use App\Livewire\Settings\Platforms;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\Tenant;
 use Illuminate\Http\Request;
@@ -28,7 +27,7 @@ Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
     Route::get('settings/tenant', Tenant::class)->name('settings.tenant');
-    Route::get('settings/platforms', Platforms::class)->name('settings.platforms');
+    Route::get('settings/platforms', \App\Livewire\Platform\Index::class)->name('platform.index');
     Route::get('settings/profile', Profile::class)->name('settings.profile');
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');

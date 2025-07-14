@@ -3,7 +3,7 @@
         <flux:navlist>
             <flux:navlist.group heading="Your organization">
                 <flux:navlist.item :href="route('settings.tenant')" wire:navigate>{{ __('Company Info') }}</flux:navlist.item>
-                <flux:navlist.item :href="route('settings.platforms')" wire:navigate>{{ __('Review Platforms') }}</flux:navlist.item>
+                <flux:navlist.item :href="route('platform.index')" wire:navigate>{{ __('Review Platforms') }}</flux:navlist.item>
             </flux:navlist.group>
             <flux:navlist.group heading="Personal details">
                 <flux:navlist.item :href="route('settings.profile')" wire:navigate>{{ __('Your Profile') }}</flux:navlist.item>

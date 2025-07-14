@@ -65,18 +65,13 @@ class Tenant extends Component
     {
         $this->tenant->update([
             'name' => $this->name,
-            'logo' => $this->logo,
             'website' => $this->website,
             'phone' => $this->phone,
-            'fax' => $this->fax,
             'email' => $this->email,
-            'address' => $this->address,
-            'address_ext' => $this->address_ext,
-            'city' => $this->city,
             'state' => $this->state,
-            'zip' => $this->zip,
             'country' => $this->country,
             'industry' => $this->industry,
+            'logo' => $this->logo,
         ]);
 
         $this->dispatch('tenant-updated');

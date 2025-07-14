@@ -12,7 +12,7 @@
                 </div>
             @endif
             @forelse ($platforms as $platform)
-                
+                <div>{{ $platform->name }}</div>
             @empty
                 <flux:callout color="violet" icon="information-circle" heading="No review platforms connected yet" text="Connect a platform like Google or Yelp to start collecting public reviews from your clients.">
                     <x-slot name="actions">

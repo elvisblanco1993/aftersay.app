@@ -1,23 +1,15 @@
 <?php
 
-namespace App\Livewire\Settings;
+namespace App\Livewire\Platform;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class Platforms extends Component
+class Index extends Component
 {
     public $user;
 
     public $tenant;
-
-    public ?string $provider = '';
-
-    public ?string $business_search;
-
-    public $business_results = [];
-
-    public $selected_place_id;
 
     public function mount()
     {
@@ -27,7 +19,7 @@ class Platforms extends Component
 
     public function render()
     {
-        return view('livewire.settings.platforms', [
+        return view('livewire.platform.index', [
             'platforms' => $this->tenant->platforms,
         ]);
     }

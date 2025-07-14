@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\Platform;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class PlatformPolicy
 {
@@ -29,7 +28,7 @@ class PlatformPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**

@@ -1,7 +1,7 @@
 <section class="w-full">
     @include('partials.settings-heading')
 
-    <x-settings.layout :heading="__('Tenant')" :subheading="__('Update your business contact information.')">
+    <x-settings.layout :heading="__('Company Info')" :subheading="__('This is where you manage your business contact information.')">
         <form wire:submit="updateTenantInformation" class="my-6 w-full space-y-6">
             <flux:input wire:model="name" label="Business Name" type="text" autofocus autocomplete="business_name" />
             <flux:input wire:model="website" label="Website" type="url" autocomplete="website" />
@@ -17,10 +17,6 @@
                 @endforelse
             </flux:select>
 
-            <flux:input wire:model="address" label="Address" type="text" autocomplete="address" />
-            <flux:input wire:model="address_ext" label="Address line 2" type="text" autocomplete="address_ext" />
-            <flux:input wire:model="city" label="City" type="text" autocomplete="city" />
-
             @if ($country === 'United States')
                 <flux:select wire:model="state" label="State">
                     <option value="">Select an option</option>
@@ -32,7 +28,6 @@
             @else
                 <flux:input wire:model="state" label="State/Region/Province" type="text" autocomplete="state" />
             @endif
-            <flux:input wire:model="zip" label="Zip/Postal code" type="text" autocomplete="zip" />
 
             <flux:select wire:model="industry" label="Industry">
                 <option value="">Select an option</option>
