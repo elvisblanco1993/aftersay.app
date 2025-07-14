@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Cashier\Billable;
 
 use function Illuminate\Events\queueable;
@@ -54,5 +55,10 @@ class Tenant extends Model
     public function concerns(): HasMany
     {
         return $this->hasMany(Concern::class);
+    }
+
+    public function page(): HasOne
+    {
+        return $this->hasOne(Page::class);
     }
 }

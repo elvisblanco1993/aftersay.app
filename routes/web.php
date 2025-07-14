@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'website.home')->name('home');
 
+/**
+ * Client Public Routes
+ * This is where you record the routes for public business pages.
+ */
+Route::get('/p/{slug}', \App\Livewire\Page\Show::class)->name('review-page.show');
+
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['verified'])->group(function () {
         Route::view('dashboard', 'dashboard')->name('dashboard');
