@@ -2,11 +2,14 @@
 
 namespace App\Livewire\Auth;
 
+use App\Models\Page;
 use App\Models\Tenant;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -24,6 +27,10 @@ class Register extends Component
 
     public string $password_confirmation = '';
 
+    protected $user;
+
+    protected $tenant;
+
     /**
      * Handle an incoming registration request.
      */
@@ -36,28 +43,39 @@ class Register extends Component
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => Hash::make($validated['password']),
+        DB::transaction(function () use ($validated) {
+            $this->user = User::create([
+                'name' => $this->name,
+                'email' => $this->email,
+                'password' => Hash::make($validated['password']),
+            ]);
+
+            $this->tenant = Tenant::create([
+                'user_id' => $this->user->id,
+                'name' => $this->business_name,
+            ]);
+
+            // Create public facing page
+            $slug = Page::generateUniqueSlug($this->business_name, $this->tenant->id);
+            Page::create([
+                'tenant_id' => $this->tenant->id,
+                'slug' => $slug,
+                'heading' => 'Thank you for choosing '.Str::title($this->business_name),
+                'subheading' => 'We’d love to know how your experience was!',
+            ]);
+
+            $this->user->update(['current_tenant_id' => $this->tenant->id]);
+
+            $this->tenant->createAsStripeCustomer();
+        });
+
+        $this->tenant->users()->syncWithoutDetaching([
+            $this->user->id => ['permissions' => json_encode(['*'])],
         ]);
 
-        $tenant = Tenant::create([
-            'user_id' => $user->id,
-            'name' => $this->business_name,
-        ]);
+        event(new Registered($this->user));
 
-        $user->update(['current_tenant_id' => $tenant->id]);
-
-        $tenant->createAsStripeCustomer();
-
-        $tenant->users()->syncWithoutDetaching([
-            $user->id => ['permissions' => json_encode(['*'])],
-        ]);
-
-        event(new Registered($user));
-
-        Auth::login($user);
+        Auth::login($this->user);
 
         $this->redirect(route('dashboard', absolute: false), navigate: true);
     }

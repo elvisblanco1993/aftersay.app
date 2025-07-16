@@ -2,15 +2,12 @@
     @include('partials.settings-heading')
 
     <x-settings.layout :heading="__('Platforms')" :subheading="__(' Manage the platforms where you collect client reviews.')">
+        @can('create', \App\Models\Platform::class)
+            <x-slot name="actions">
+                <livewire:platform.add />
+            </x-slot>
+        @endcan
         <div class="my-6 w-full space-y-6">
-            @if ($platforms->count() > 0)
-                <div class="flex items-center justify-between">
-                    <flux:heading>Active platforms</flux:heading>
-                    @can('create', \App\Models\Platform::class)
-                        <livewire:platform.add />
-                    @endcan
-                </div>
-            @endif
             <div class="space-y-1">
                 @forelse ($platforms as $platform)
                     @if (!$loop->first)

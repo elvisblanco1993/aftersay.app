@@ -12,9 +12,9 @@ class Link extends Model
         return $this->belongsTo(Tenant::class);
     }
 
-    public function client(): BelongsTo
+    public function contact(): BelongsTo
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Contact::class);
     }
 
     public function platform(): BelongsTo

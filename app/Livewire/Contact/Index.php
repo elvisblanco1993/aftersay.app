@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Livewire\Client;
+namespace App\Livewire\Contact;
 
-use App\Models\Client;
+use App\Models\Contact;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -14,8 +14,8 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.client.index', [
-            'clients' => Client::paginate($this->per_page),
+        return view('livewire.contact.index', [
+            'contacts' => Contact::paginate($this->per_page),
         ]);
     }
 }

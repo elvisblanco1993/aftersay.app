@@ -13,7 +13,7 @@ Route::middleware('guest')->group(function () {
     Route::get('login', Login::class)->name('login');
 
     // For now only allow new accounts in local development.
-    if (env('local')) {
+    if (config('app.env') == 'local') {
         Route::get('register', Register::class)->name('register');
     }
     Route::get('forgot-password', ForgotPassword::class)->name('password.request');

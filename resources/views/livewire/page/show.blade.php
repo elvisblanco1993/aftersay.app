@@ -7,18 +7,16 @@
             </div>
 
             <div>
-                <flux:select :label="__('How was your experience?')">
+                <flux:select wire:model.live="rating" :label="__('How was your experience?')">
                     <option value="">Select an option</option>
-                    <option value="great">Great</option>
-                    <option value="good">Good</option>
-                    <option value="okay">Okay</option>
-                    <option value="bad">Bad</option>
-                    <option value="terrible">Terrible</option>
+                    @foreach (\App\Enums\ExperienceRating::cases() as $opt)
+                        <option value="{{ $opt->value }}">{{ $opt->label() }}</option>
+                    @endforeach
                 </flux:select>
             </div>
 
-            @if (true)
-                <div class="text-left">
+            @if ($rating && $rating <=2)
+                <div class="text-left" wire:transition>
                     <flux:heading level="2" size="lg" class="text-red-600">We’re sorry to hear that.</flux:heading>
                     <flux:text class="mt-2">Your feedback helps us improve. Please tell us what went wrong, and we’ll do our best to make it right.</flux:text>
 
@@ -26,13 +24,10 @@
                         @csrf
                         <flux:textarea placeholder="What could we have done better?" />
                         <flux:input type="email" placeholder="Your email (optional)" />
-                        <flux:button class="w-full" variant="danger">Submit Feedback</flux:button>
+                        <flux:button type="submit" class="w-full" variant="danger">Submit Feedback</flux:button>
                     </form>
                 </div>
             @endif
-
         </div>
-
-
     </main>
 </div>

@@ -1,52 +1,42 @@
 <?php
 
-namespace App\Livewire\Client;
+namespace App\Livewire\Contact;
 
-use App\Models\Client;
+use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class Create extends Component
 {
-    public $business_name;
-
-    public $contact_name;
+    public $name;
 
     public $email;
 
     public $phone;
 
-    public $website;
-
-    public $industry;
-
     public function rules()
     {
         return [
-            'business_name' => ['required'],
-            'contact_name' => ['required'],
+            'name' => ['required'],
             'email' => ['required', Rule::email()->defaults()],
         ];
     }
 
     public function render()
     {
-        return view('livewire.client.create');
+        return view('livewire.contact.create');
     }
 
     public function save()
     {
         $this->validate();
         try {
-            Client::create([
+            Contact::create([
                 'tenant_id' => Auth::user()->current_tenant_id,
-                'business_name' => $this->business_name,
-                'contact_name' => $this->contact_name,
+                'name' => $this->name,
                 'email' => $this->email,
                 'phone' => $this->phone,
-                'website' => $this->website,
-                'industry' => $this->industry ?? null,
             ]);
         } catch (\Throwable $th) {
             throw $th;

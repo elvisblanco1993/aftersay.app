@@ -1,6 +1,6 @@
 <div>
     <div class="flex items-center justify-between">
-        <flux:heading size="lg" class="capitalize">{{ $platform->name }}</flux:heading>
+        <flux:heading class="capitalize">{{ $platform->name }}</flux:heading>
         
         <flux:modal.trigger name="show-platform-{{ $platform->id }}">
             <flux:button size="sm" icon-trailing="qr-code" />

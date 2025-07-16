@@ -13,7 +13,7 @@ Route::view('/', 'website.home')->name('home');
  * Client Public Routes
  * This is where you record the routes for public business pages.
  */
-Route::get('/p/{slug}', \App\Livewire\Page\Show::class)->name('review-page.show');
+Route::get('/p/{slug}/{client?}', \App\Livewire\Page\Show::class)->name('review-page.show');
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['verified'])->group(function () {
@@ -27,13 +27,14 @@ Route::middleware(['auth'])->group(function () {
         /**
          * Client management routes
          */
-        Route::get('clients', \App\Livewire\Client\Index::class)->name('client.index');
+        Route::get('conatcts', \App\Livewire\Contact\Index::class)->name('contact.index');
     });
 
     Route::redirect('settings', 'settings/profile');
 
     Route::get('settings/tenant', Tenant::class)->name('settings.tenant');
-    Route::get('settings/platforms', \App\Livewire\Platform\Index::class)->name('platform.index');
+    Route::get('settings/page', \App\Livewire\Page\Manage::class)->name('settings.page');
+    Route::get('settings/platforms', \App\Livewire\Platform\Index::class)->name('settings.platforms');
     Route::get('settings/profile', Profile::class)->name('settings.profile');
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');

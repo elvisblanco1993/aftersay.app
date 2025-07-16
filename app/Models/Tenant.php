@@ -37,9 +37,9 @@ class Tenant extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function clients(): HasMany
+    public function contacts(): HasMany
     {
-        return $this->hasMany(Client::class);
+        return $this->hasMany(Contact::class);
     }
 
     public function platforms(): HasMany

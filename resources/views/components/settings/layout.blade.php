@@ -3,7 +3,8 @@
         <flux:navlist>
             <flux:navlist.group heading="Your organization">
                 <flux:navlist.item :href="route('settings.tenant')" wire:navigate>{{ __('Company Info') }}</flux:navlist.item>
-                <flux:navlist.item :href="route('platform.index')" wire:navigate>{{ __('Review Platforms') }}</flux:navlist.item>
+                <flux:navlist.item :href="route('settings.page')" wire:navigate>{{ __('Page') }}</flux:navlist.item>
+                <flux:navlist.item :href="route('settings.platforms')" wire:navigate>{{ __('Platforms') }}</flux:navlist.item>
             </flux:navlist.group>
             <flux:navlist.group heading="Personal details">
                 <flux:navlist.item :href="route('settings.profile')" wire:navigate>{{ __('Your Profile') }}</flux:navlist.item>
@@ -16,10 +17,15 @@
     <flux:separator class="md:hidden" />
 
     <div class="flex-1 self-stretch max-md:pt-6">
-        <flux:heading>{{ $heading ?? '' }}</flux:heading>
-        <flux:subheading>{{ $subheading ?? '' }}</flux:subheading>
+        <div class="flex items-center justify-between">
+            <div>
+                <flux:heading>{{ $heading ?? '' }}</flux:heading>
+                <flux:subheading>{{ $subheading ?? '' }}</flux:subheading>
+            </div>
+            <div>{{ $actions ?? '' }}</div>
+        </div>
 
-        <div class="mt-5 w-full max-w-lg">
+        <div class="mt-5 w-full">
             {{ $slot }}
         </div>
     </div>
