@@ -13,9 +13,12 @@ class Manage extends Component
 
     public $slug;
 
+    public $url;
+
     public function mount()
     {
         $this->tenant = Auth::user()->currentTenant;
+        $this->url = route('review-page.show', ['slug' => $this->tenant->page->slug]);
     }
 
     public function render()

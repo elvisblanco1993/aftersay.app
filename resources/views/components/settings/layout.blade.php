@@ -25,7 +25,9 @@
             <div>{{ $actions ?? '' }}</div>
         </div>
 
-        <div class="mt-5 w-full">
+        <div>{{ $container ?? '' }}</div>
+
+        <div class="mt-5 w-full max-w-lg">
             {{ $slot }}
         </div>
     </div>
