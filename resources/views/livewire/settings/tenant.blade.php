@@ -17,18 +17,6 @@
                 @endforelse
             </flux:select>
 
-            @if ($country === 'United States')
-                <flux:select wire:model="state" label="State">
-                    <option value="">Select an option</option>
-                    @forelse (config('internal.states') as $opt)
-                        <option :value="$opt">{{ $opt }}</option>
-                    @empty
-                    @endforelse
-                </flux:select>
-            @else
-                <flux:input wire:model="state" label="State/Region/Province" type="text" autocomplete="state" />
-            @endif
-
             <flux:select wire:model="industry" label="Industry">
                 <option value="">Select an option</option>
                 @forelse (config('internal.industries') as $opt)

@@ -13,25 +13,11 @@ class Tenant extends Component
 
     public $name;
 
-    public $logo;
-
     public $website;
 
     public $phone;
 
-    public $fax;
-
     public $email;
-
-    public $address;
-
-    public $address_ext;
-
-    public $city;
-
-    public $state;
-
-    public $zip;
 
     public $country;
 
@@ -42,16 +28,9 @@ class Tenant extends Component
         $this->user = Auth::user();
         $this->tenant = $this->user->currentTenant;
         $this->name = $this->tenant->name;
-        $this->logo = $this->tenant->logo;
         $this->website = $this->tenant->website;
         $this->phone = $this->tenant->phone;
-        $this->fax = $this->tenant->fax;
         $this->email = $this->tenant->email;
-        $this->address = $this->tenant->address;
-        $this->address_ext = $this->tenant->address_ext;
-        $this->city = $this->tenant->city;
-        $this->state = $this->tenant->state;
-        $this->zip = $this->tenant->zip;
         $this->country = $this->tenant->country;
         $this->industry = $this->tenant->industry;
     }
@@ -68,10 +47,8 @@ class Tenant extends Component
             'website' => $this->website,
             'phone' => $this->phone,
             'email' => $this->email,
-            'state' => $this->state,
             'country' => $this->country,
             'industry' => $this->industry,
-            'logo' => $this->logo,
         ]);
 
         $this->dispatch('tenant-updated');

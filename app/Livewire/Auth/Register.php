@@ -53,6 +53,7 @@ class Register extends Component
             $this->tenant = Tenant::create([
                 'user_id' => $this->user->id,
                 'name' => $this->business_name,
+                'email' => $this->email,
             ]);
 
             // Create public facing page

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('heading')->nullable();
             $table->string('subheading')->nullable();
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }

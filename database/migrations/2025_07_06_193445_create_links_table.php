@@ -1,7 +1,6 @@
 <?php
 
-use App\Models\Client;
-use App\Models\Platform;
+use App\Models\Contact;
 use App\Models\Tenant;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -17,9 +16,18 @@ return new class extends Migration
         Schema::create('links', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Tenant::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Client::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Platform::class)->constrained()->cascadeOnDelete();
-            $table->string('code')->unique();
+            $table->foreignIdFor(Contact::class)->constrained()->cascadeOnDelete();
+
+            $table->string('code')->unique(); // Unique review page code/token
+
+            // Tracking timestamps
+            $table->timestamp('sent_at')->nullable();
+            $table->timestamp('opened_at')->nullable();
+            $table->timestamp('responded_at')->nullable();
+
+            // Flags
+            $table->boolean('bounced')->default(false); // Email is not good
+            $table->boolean('opted_out')->default(false); // Contact doesn't want to leave a review.
             $table->timestamps();
 
             $table->unique(['client_id', 'platform_id']);

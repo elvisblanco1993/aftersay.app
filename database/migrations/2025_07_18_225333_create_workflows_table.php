@@ -1,8 +1,8 @@
 <?php
 
+use App\Models\Tenant;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -12,15 +12,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tenants', function (Blueprint $table) {
+        Schema::create('workflows', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->index();
+            $table->foreignIdFor(Tenant::class)->constrained()->cascadeOnDelete();
             $table->string('name');
-            $table->string('website')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('email')->nullable();
-            $table->string('country')->nullable();
-            $table->string('industry')->nullable();
+            $table->string('trigger'); // Enum cast in model
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tenants');
+        Schema::dropIfExists('workflows');
     }
 };

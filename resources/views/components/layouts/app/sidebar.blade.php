@@ -13,8 +13,8 @@
 
             <flux:navlist variant="outline">
                 <flux:navlist.item icon="layout-dashboard" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                <flux:navlist.item icon="message-square-share" :href="route('link.index')" :current="request()->routeIs('link.*')" wire:navigate>{{ __('Links') }}</flux:navlist.item>
                 <flux:navlist.item icon="users" :href="route('contact.index')" :current="request()->routeIs('contact.*')" wire:navigate>{{ __('Contacts') }}</flux:navlist.item>
+                <flux:navlist.item icon="workflow" :href="route('workflow.index')" :current="request()->routeIs('workflow.*')" wire:navigate>{{ __('Workflows') }}</flux:navlist.item>
                 <flux:navlist.item :href="route('settings.tenant')" icon="settings-2" :current="request()->routeIs('settings.*')" wire:navigate>{{ __('Settings') }}</flux:navlist.item>
             </flux:navlist>
 

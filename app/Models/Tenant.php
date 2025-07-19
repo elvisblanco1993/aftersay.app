@@ -20,16 +20,20 @@ class Tenant extends Model
      */
     protected static function booted(): void
     {
-        static::updated(queueable(function (Tenant $customer) {
-            if ($customer->hasStripeId()) {
-                $customer->syncStripeCustomerDetails();
-            }
-        }));
+        static::updated(
+            queueable(function (Tenant $customer) {
+                if ($customer->hasStripeId()) {
+                    $customer->syncStripeCustomerDetails();
+                }
+            }),
+        );
     }
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class)->withPivot('permissions')->withTimestamps();
+        return $this->belongsToMany(User::class)
+            ->withPivot('permissions')
+            ->withTimestamps();
     }
 
     public function owner(): BelongsTo
@@ -49,7 +53,7 @@ class Tenant extends Model
 
     public function links(): HasMany
     {
-        return $this->HasMany(Link::class);
+        return $this->hasMany(Link::class);
     }
 
     public function concerns(): HasMany

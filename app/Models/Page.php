@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Page extends Model
@@ -22,6 +24,19 @@ class Page extends Model
 
         // Otherwise, return the unique base slug.
         return $slug;
+    }
+
+    public function getLogoUrlAttribute()
+    {
+        if ($this->logo) {
+            $cacheKey = "logo_url:{$this->id}";
+
+            return Cache::remember($cacheKey, now()->addMinutes(9), function () {
+                return Storage::temporaryUrl($this->logo, now()->addMinutes(10));
+            });
+        }
+
+        return '';
     }
 
     public function tenant(): BelongsTo

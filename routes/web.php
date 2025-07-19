@@ -13,7 +13,9 @@ Route::view('/', 'website.home')->name('home');
  * Client Public Routes
  * This is where you record the routes for public business pages.
  */
-Route::get('/p/{slug}/{client?}', \App\Livewire\Page\Show::class)->name('review-page.show');
+Route::get('/p/{slug}/{client?}', \App\Livewire\Page\Show::class)->name(
+    'review-page.show',
+);
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['verified'])->group(function () {
@@ -22,7 +24,8 @@ Route::middleware(['auth'])->group(function () {
         /**
          * Link management routes
          */
-        Route::get('links', \App\Livewire\Link\Index::class)->name('link.index');
+        Route::get('workflows', \App\Livewire\Workflow\Index::class)->name('workflow.index');
+        Route::get('workflows/{workflow}', \App\Livewire\Workflow\Show::class)->name('workflow.show');
 
         /**
          * Client management routes
@@ -39,9 +42,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
     Route::get('billing', function (Request $request) {
-        return $request->user()->currentTenant->redirectToBillingPortal(
-            returnUrl: route('settings.tenant')
-        );
+        return $request
+            ->user()
+            ->currentTenant->redirectToBillingPortal(
+                returnUrl: route('settings.tenant'),
+            );
     })->name('billing-portal');
 });
 

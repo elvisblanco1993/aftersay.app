@@ -36,7 +36,7 @@ class Show extends Component
     public function updatedRating()
     {
         if ($this->rating > 2) {
-            $this->links = null;
+            $this->links = optional($this->page->tenant)->platforms ?? [];
         }
     }
 }
