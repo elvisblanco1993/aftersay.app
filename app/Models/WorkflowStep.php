@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\WorkflowActionType;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class WorkflowStep extends Model
 {
@@ -17,5 +18,10 @@ class WorkflowStep extends Model
     public function workflow()
     {
         return $this->belongsTo(Workflow::class);
+    }
+
+    public function template(): BelongsTo
+    {
+        return $this->belongsTo(Template::class);
     }
 }

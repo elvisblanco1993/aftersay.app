@@ -3,31 +3,42 @@
 namespace App\Livewire\Workflow\Step;
 
 use App\Enums\DelayUnit;
-use App\Models\Workflow;
+use App\Models\WorkflowStep;
 use Livewire\Component;
 
-class Create extends Component
+class Update extends Component
 {
-    public Workflow $workflow;
+    public WorkflowStep $step;
 
     public $action;
 
-    public bool $delayed = false;
+    public bool $delayed;
 
     public $delay = 10;
 
     public $delay_unit = DelayUnit::Minutes->value;
 
-    public $content_type = 'template';
+    public $content_type;
 
     public $template_id;
 
     public $custom_message;
 
+    public function mount()
+    {
+        $this->action = $this->step->action;
+        $this->delay = $this->step->delay;
+        $this->delay_unit = $this->step->delay_unit;
+        $this->delayed = $this->delay > 0 ? true : false;
+        $this->template_id = $this->step->template_id;
+        $this->custom_message = $this->step->custom_message;
+        $this->content_type = $this->template_id ? 'template' : 'custom';
+    }
+
     public function render()
     {
-        return view('livewire.workflow.step.create', [
-            'templates' => $this->workflow->tenant->templates,
+        return view('livewire.workflow.step.update', [
+            'templates' => $this->step->workflow->tenant->templates,
         ]);
     }
 
@@ -42,11 +53,8 @@ class Create extends Component
             'custom_message.required_if' => 'Please write a message or switch to using a template.',
         ]);
 
-        $order = ($this->workflow->steps()->max('order') ?? 0) + 1;
-
-        $this->workflow->steps()->create([
+        $this->step->update([
             'action' => $this->action,
-            'order' => $order,
             'delay' => $this->delayed ? $this->delay : 0,
             'delay_unit' => $this->delayed ? $this->delay_unit : 'minutes',
             'template_id' => $this->content_type === 'template' ? $this->template_id : null,

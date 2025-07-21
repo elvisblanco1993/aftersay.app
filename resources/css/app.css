@@ -65,6 +65,9 @@ select:focus[data-flux-control] {
     @apply !w-full !h-full;
 }
 
+/* Hide scrollbars */
+@utility scrollbar-hidden {  &::-webkit-scrollbar {    display: none;  }}
+
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */

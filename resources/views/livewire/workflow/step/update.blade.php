@@ -1,9 +1,9 @@
 <div>
-    <flux:modal.trigger name="add-step">
-        <flux:button icon-trailing="plus">Add step</flux:button>
+    <flux:modal.trigger name="edit-step-{{ $step->id }}">
+        <flux:button size="xs">Edit</flux:button>
     </flux:modal.trigger>
 
-    <flux:modal name="add-step" class="md:w-lg" variant="flyout">
+    <flux:modal name="edit-step-{{ $step->id }}" class="md:w-lg" variant="flyout">
         <div class="space-y-6">
             <div>
                 <flux:heading size="lg">Add step</flux:heading>
@@ -21,7 +21,7 @@
                         @endforelse
                     </flux:select>
         
-                    @if ($workflow->steps->count() > 0)
+                    @if ($step->order > 1)
                         <flux:switch wire:model.live="delayed" label="Add a delay before this step?" align="left" />
                         @if ($delayed)
                             <div class="flex items-center gap-2">
@@ -57,7 +57,7 @@
                         <flux:textarea wire:model="custom_message" label="Write your custom message" placeholder="Type the message you want to send at this step..." />
                     @endif
         
-                    <flux:button class="w-full" type="submit" variant="primary" color="blue">Save step</flux:button>
+                    <flux:button class="w-full" type="submit" variant="primary" color="blue">Save changes</flux:button>
                 </div>
             </form>
         </div>

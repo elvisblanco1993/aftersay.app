@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Enums\WorkflowTriggerType;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Workflow extends Model
 {
@@ -13,12 +15,17 @@ class Workflow extends Model
         'trigger' => WorkflowTriggerType::class,
     ];
 
-    public function steps()
+    public function tenant(): BelongsTo
+    {
+        return $this->belongsTo(Tenant::class);
+    }
+
+    public function steps(): HasMany
     {
         return $this->hasMany(WorkflowStep::class)->orderBy('order');
     }
 
-    public function instances()
+    public function instances(): HasMany
     {
         return $this->hasMany(WorkflowInstance::class);
     }

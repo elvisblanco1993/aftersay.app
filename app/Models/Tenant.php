@@ -65,4 +65,14 @@ class Tenant extends Model
     {
         return $this->hasOne(Page::class);
     }
+
+    public function workflows(): HasMany
+    {
+        return $this->hasMany(Workflow::class);
+    }
+
+    public function templates(): HasMany
+    {
+        return $this->hasMany(Template::class);
+    }
 }
