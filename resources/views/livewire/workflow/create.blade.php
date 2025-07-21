@@ -1,6 +1,6 @@
 <div>
     <flux:modal.trigger name="create-workflow">
-        <flux:button>Create Workflow</flux:button>
+        <flux:button variant="primary">Add workflow</flux:button>
     </flux:modal.trigger>
 
     <flux:modal name="create-workflow" class="md:w-96">
@@ -11,7 +11,7 @@
                     <flux:heading size="lg">Create Workflow</flux:heading>
                 </div>
 
-                <flux:input label="Name" placeholder="Client Feedback Flow" wire:model="name" />
+                <flux:input label="Name" placeholder="Client Feedback Flow" wire:model="name" autofocus />
 
                 <div class="flex">
                     <flux:spacer />

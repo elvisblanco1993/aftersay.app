@@ -30,7 +30,8 @@ Route::middleware(['auth'])->group(function () {
         /**
          * Client management routes
          */
-        Route::get('conatcts', \App\Livewire\Contact\Index::class)->name('contact.index');
+        Route::get('contacts', \App\Livewire\Contact\Index::class)->name('contact.index');
+        Route::get('contacts/{contact}', \App\Livewire\Contact\Show::class)->name('contact.show');
     });
 
     Route::redirect('settings', 'settings/profile');

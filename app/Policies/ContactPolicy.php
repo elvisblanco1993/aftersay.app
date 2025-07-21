@@ -20,7 +20,7 @@ class ContactPolicy
      */
     public function view(User $user, Contact $contact): bool
     {
-        return false;
+        return $user->current_tenant_id === $contact->tenant_id;
     }
 
     /**
@@ -36,7 +36,7 @@ class ContactPolicy
      */
     public function update(User $user, Contact $contact): bool
     {
-        return false;
+        return $user->current_tenant_id === $contact->tenant_id;
     }
 
     /**
@@ -44,7 +44,7 @@ class ContactPolicy
      */
     public function delete(User $user, Contact $contact): bool
     {
-        return false;
+        return $user->current_tenant_id === $contact->tenant_id;
     }
 
     /**
@@ -52,7 +52,7 @@ class ContactPolicy
      */
     public function restore(User $user, Contact $contact): bool
     {
-        return false;
+        return $user->current_tenant_id === $contact->tenant_id;
     }
 
     /**
@@ -60,6 +60,6 @@ class ContactPolicy
      */
     public function forceDelete(User $user, Contact $contact): bool
     {
-        return false;
+        return $user->current_tenant_id === $contact->tenant_id;
     }
 }
