@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\WorkflowStatus;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class WorkflowInstance extends Model
 {
@@ -20,13 +21,13 @@ class WorkflowInstance extends Model
         'next_run_at' => 'datetime',
     ];
 
-    public function workflow()
+    public function workflow(): BelongsTo
     {
         return $this->belongsTo(Workflow::class);
     }
 
-    public function link()
+    public function contact(): BelongsTo
     {
-        return $this->belongsTo(Link::class);
+        return $this->belongsTo(Contact::class);
     }
 }
