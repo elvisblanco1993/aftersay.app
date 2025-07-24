@@ -13,7 +13,7 @@ Route::view('/', 'website.home')->name('home');
  * Client Public Routes
  * This is where you record the routes for public business pages.
  */
-Route::get('/p/{slug}/{client?}', \App\Livewire\Page\Show::class)->name(
+Route::get('/p/{slug}', \App\Livewire\Page\Show::class)->name(
     'review-page.show',
 );
 

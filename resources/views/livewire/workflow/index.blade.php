@@ -23,7 +23,7 @@
             <tbody>
                 @forelse ($workflows as $workflow)
                     <tr @class([
-                        "bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-600",
+                        "bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-700/50",
                         "border-b dark:border-zinc-700 border-zinc-200" => !$loop->last
                     ])>
                         <td>

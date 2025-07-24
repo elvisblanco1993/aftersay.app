@@ -10,6 +10,8 @@ class Index extends Component
 {
     use WithPagination;
 
+    public string $query = '';
+
     public int $per_page = 15;
 
     public function render()
