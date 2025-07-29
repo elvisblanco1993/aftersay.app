@@ -12,6 +12,12 @@ class Contact extends Model
 {
     use Notifiable;
 
+    // Send twilio notifications to the contact's phone number.
+    public function routeNotificationForTwilio()
+    {
+        return (string) $this->phone;
+    }
+
     public function tenant(): BelongsTo
     {
         return $this->belongsTo(Tenant::class);
