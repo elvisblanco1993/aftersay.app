@@ -30,7 +30,7 @@ return new class extends Migration
             $table->boolean('opted_out')->default(false); // Contact doesn't want to leave a review.
             $table->timestamps();
 
-            $table->unique(['client_id', 'platform_id']);
+            $table->unique(['contact_id', 'platform_id']);
         });
     }
 
