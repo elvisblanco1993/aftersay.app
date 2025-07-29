@@ -48,11 +48,16 @@
                             </a>
                         </td>
                         <td class="px-4 py-2.5 text-right">
-                            <x-button size="xs" type="button" @click="$dispatch('start-campaign', { contact_id: {{ $contact->id }} })">Send</x-button>
+                            <x-button size="xs" type="button" @click="$dispatch('start-campaign', { contact_id: {{ $contact->id }} })">
+                                @if ($contact->workflowInstance)
+                                    Reset Campaign
+                                @else
+                                    Start Campaign
+                                @endif
+                            </x-button>
                         </td>
                     </tr>
                 @empty
-                    
                 @endforelse
             </tbody>
         </table>

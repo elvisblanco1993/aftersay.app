@@ -10,6 +10,13 @@
         <livewire:workflow.update :workflow="$workflow" />
     </div>
 
+    @if ($workflow->instances()->where('status', 'running')->count() > 0)
+        <flux:callout color="yellow" icon="information-circle">
+            <flux:callout.heading>This workflow is locked</flux:callout.heading>
+            <flux:callout.text>This workflow is currently part of an active campaign and can’t be edited right now. To make changes, please wait until the campaign is complete or duplicate the workflow to create a new version.</flux:callout.text>
+        </flux:callout>
+    @endif
+
     <div class="max-w-2xl mx-auto space-y-6">
         <livewire:workflow.step.index :workflow="$workflow"/>
         <livewire:workflow.step.create :workflow="$workflow" />

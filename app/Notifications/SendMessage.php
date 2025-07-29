@@ -6,8 +6,10 @@ use App\Models\WorkflowStep;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Log;
 use NotificationChannels\Twilio\TwilioChannel;
 use NotificationChannels\Twilio\TwilioSmsMessage;
+use Twilio\Exceptions\TwilioException;
 
 class SendMessage extends Notification
 {
@@ -51,9 +53,13 @@ class SendMessage extends Notification
      */
     public function toTwilio(object $notifiable)
     {
-        $message = $this->step->template_id ? $this->step->template->body : $this->step->custom_message;
-        $sms = new TwilioSmsMessage;
+        try {
+            $message = $this->step->template_id ? $this->step->template->body : $this->step->custom_message;
+            $sms = new TwilioSmsMessage;
 
-        return $sms->content($message);
+            return $sms->content($message);
+        } catch (TwilioException $th) {
+            Log::error($th);
+        }
     }
 }
