@@ -18,7 +18,7 @@ return [
     |
     */
 
-    'driver' => env('SCOUT_DRIVER', 'typsesense'),
+    'driver' => env('SCOUT_DRIVER', 'typesense'),
 
     /*
     |--------------------------------------------------------------------------
