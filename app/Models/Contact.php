@@ -7,10 +7,23 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Scout\Searchable;
 
 class Contact extends Model
 {
     use Notifiable;
+    use Searchable;
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => (string) $this->id,
+            'name' => (string) $this->name,
+            'email' => (string) $this->email,
+            'phone' => (string) $this->phone,
+            'created_at' => $this->created_at->timestamp,
+        ];
+    }
 
     // Send twilio notifications to the contact's phone number.
     public function routeNotificationForTwilio()

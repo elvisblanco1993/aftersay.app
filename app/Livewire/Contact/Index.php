@@ -17,7 +17,7 @@ class Index extends Component
     public function render()
     {
         return view('livewire.contact.index', [
-            'contacts' => Contact::paginate($this->per_page),
+            'contacts' => Contact::search($this->query)->paginate($this->per_page),
         ]);
     }
 }
