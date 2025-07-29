@@ -29,8 +29,6 @@ return new class extends Migration
             $table->boolean('bounced')->default(false); // Email is not good
             $table->boolean('opted_out')->default(false); // Contact doesn't want to leave a review.
             $table->timestamps();
-
-            $table->unique(['contact_id', 'platform_id']);
         });
     }
 
