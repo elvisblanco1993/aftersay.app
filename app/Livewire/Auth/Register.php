@@ -9,7 +9,6 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -61,7 +60,7 @@ class Register extends Component
             Page::create([
                 'tenant_id' => $this->tenant->id,
                 'slug' => $slug,
-                'heading' => 'Thank you for choosing '.Str::title($this->business_name),
+                'heading' => 'Thank you for choosing '.$this->business_name,
                 'subheading' => 'We’d love to know how your experience was!',
             ]);
 

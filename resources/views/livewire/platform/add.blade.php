@@ -1,32 +1,38 @@
 <div>
     <flux:modal.trigger name="add-platform">
-        <flux:button size="sm" variant="primary" icon="plus" />
+        <flux:button size="sm" variant="primary" icon-trailing="plus">Add</flux:button>
     </flux:modal.trigger>
-    <flux:modal name="add-platform" class="md:w-xl" :dismissible="false">   
+    <flux:modal name="add-platform" class="md:w-xl" :dismissible="false" variant="flyout">   
         <form wire:submit="savePlatform">
             @csrf
             <div class="space-y-6">
                 <flux:heading size="lg">Add a review platform</flux:heading>
 
-                <flux:input.group>
-                    <flux:select wire:model.live="provider" class="max-w-fit">
-                        <flux:select.option selected value=''>Select platform</flux:select.option>
-                        <flux:select.option value="google">Google</flux:select.option>
-                        <flux:select.option value="yelp">Yelp</flux:select.option>
-                    </flux:select>
-                    @if ($provider === 'google')
-                        <flux:input wire:model.live.debounce.500="business_search" placeholder="Search by business name..." />
-                    @else
-                        <flux:input wire:model="url" placeholder="Paste business review URL..." />
-                    @endif
-                </flux:input.group>
-                
-                <flux:radio.group wire:model.live="selected_place_id" class="max-h-72 overflow-auto">
-                    @forelse ($business_results as $res)
-                        <flux:radio :value="$res['id']" :label="$res['name']" :description="$res['address']" wire:key="result-{{ $loop->index }}" />
-                    @empty
-                    @endforelse
-                </flux:radio.group>
+                <flux:select wire:model.live="provider" label="Select Platform">
+                    <option selected value=''>None selected</option>
+                    @foreach (config('internal.platforms') as $key => $platform)
+                        <option value="{{ $key }}">{{ $platform['name'] }}</option>
+                    @endforeach
+                </flux:select>
+
+                @if ($provider)
+                    <div class="space-y-6">
+                        <div class="space-y-2">
+                            <div class="font-medium">Instructions</div>
+                            <ol class="list-decimal text-sm px-4">
+                                @forelse (config("internal.platforms.{$provider}.instructions") as $item)
+                                    <li>{{ $item }}</li>
+                                @empty
+                                @endforelse    
+                            </ol>
+                        </div>
+                        @php
+                            $platformName = $provider ? config("internal.platforms.$provider.name") : '';
+                            $platformPlaceholder = $provider ? config("internal.platforms.$provider.example_url") : '';
+                        @endphp
+                        <flux:input wire:model="url" :label="$platformName .' Review Link'"  :placeholder="$platformPlaceholder" />
+                    </div>
+                @endif
 
                 <div class="flex">
                     <flux:spacer />

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('country')->nullable();
             $table->string('industry')->nullable();
+            $table->timestamp('onboarded_at')->nullable();
             $table->timestamps();
         });
     }

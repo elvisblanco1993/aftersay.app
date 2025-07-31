@@ -44,7 +44,7 @@ class PlatformPolicy
      */
     public function delete(User $user, Platform $platform): bool
     {
-        return false;
+        return $user->current_tenant_id === $platform->tenant_id;
     }
 
     /**

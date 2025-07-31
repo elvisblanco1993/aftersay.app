@@ -1,3 +1,3 @@
 <div>
-    {{-- The whole world belongs to you. --}}
+    <flux:button wire:click="delete" icon="trash" size="sm"></flux:button>
 </div>

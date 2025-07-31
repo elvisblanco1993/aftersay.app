@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\EnsureTenantIsSetup;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
@@ -18,20 +19,26 @@ Route::get('/p/{slug}', \App\Livewire\Page\Show::class)->name(
 );
 
 Route::middleware(['auth'])->group(function () {
-    Route::middleware(['verified'])->group(function () {
-        Route::view('dashboard', 'dashboard')->name('dashboard');
 
-        /**
-         * Link management routes
-         */
-        Route::get('workflows', \App\Livewire\Workflow\Index::class)->name('workflow.index');
-        Route::get('workflows/{workflow}', \App\Livewire\Workflow\Show::class)->name('workflow.show');
+    Route::get('onboard', \App\Livewire\Onboard\Tenant::class)->name('onboard.tenant');
+
+    Route::middleware([
+        'verified',
+        EnsureTenantIsSetup::class,
+    ])->group(function () {
+        Route::view('dashboard', 'dashboard')->name('dashboard');
 
         /**
          * Client management routes
          */
         Route::get('contacts', \App\Livewire\Contact\Index::class)->name('contact.index');
         Route::get('contacts/{contact}', \App\Livewire\Contact\Show::class)->name('contact.show');
+
+        /**
+         * Link management routes
+         */
+        Route::get('workflows', \App\Livewire\Workflow\Index::class)->name('workflow.index');
+        Route::get('workflows/{workflow}', \App\Livewire\Workflow\Show::class)->name('workflow.show');
     });
 
     Route::redirect('settings', 'settings/profile');

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('subheading')->nullable();
             $table->string('logo')->nullable();
             $table->timestamps();
+            $table->timestamp('ready_at')->nullable();
         });
     }
 

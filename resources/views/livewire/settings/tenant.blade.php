@@ -12,7 +12,7 @@
             <flux:select wire:model.live="country" label="Country">
                 <option value="">Select an option</option>
                 @forelse (config('internal.countries') as $opt)
-                    <option :value="$opt">{{ $opt }}</option>
+                    <option value="{{ $opt }}">{{ $opt }}</option>
                 @empty
                 @endforelse
             </flux:select>
@@ -20,7 +20,7 @@
             <flux:select wire:model="industry" label="Industry">
                 <option value="">Select an option</option>
                 @forelse (config('internal.industries') as $opt)
-                    <option value="">{{ $opt }}</option>
+                    <option value="{{ $opt }}">{{ $opt }}</option>
                 @empty
                 @endforelse
             </flux:select>
