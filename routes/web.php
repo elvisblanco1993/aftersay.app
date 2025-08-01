@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'website.home')->name('home');
 
+Route::get('join', \App\Livewire\Waitlist\Join::class)->name('waitlist.join');
+
 /**
  * Client Public Routes
  * This is where you record the routes for public business pages.
