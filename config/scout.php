@@ -187,6 +187,7 @@ return [
                 'collection-schema' => [
                     'fields' => [
                         ['name' => 'id', 'type' => 'string'],
+                        ['name' => 'tenant_id', 'type' => 'string'],
                         ['name' => 'name', 'type' => 'string'],
                         ['name' => 'email', 'type' => 'string'],
                         ['name' => 'phone', 'type' => 'string'],

@@ -4,6 +4,7 @@ namespace App\Livewire\Contact;
 
 use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -39,7 +40,7 @@ class Create extends Component
                 'phone' => $this->phone,
             ]);
         } catch (\Throwable $th) {
-            throw $th;
+            Log::error($th);
         }
         $this->redirect(url: url()->previous(), navigate: true);
     }

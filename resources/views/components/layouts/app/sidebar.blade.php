@@ -15,6 +15,7 @@
                 <flux:navlist.item icon="layout-dashboard" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                 <flux:navlist.item icon="users" :href="route('contact.index')" :current="request()->routeIs('contact.*')" wire:navigate>{{ __('Contacts') }}</flux:navlist.item>
                 <flux:navlist.item icon="workflow" :href="route('workflow.index')" :current="request()->routeIs('workflow.*')" wire:navigate>{{ __('Workflows') }}</flux:navlist.item>
+                <flux:navlist.item :href="route('template.index')" icon="layout-template" :current="request()->routeIs('template.*')" wire:navigate>{{ __('Templates') }}</flux:navlist.item>
                 <flux:navlist.item :href="route('settings.tenant')" icon="settings-2" :current="request()->routeIs('settings.*')" wire:navigate>{{ __('Settings') }}</flux:navlist.item>
             </flux:navlist>
 

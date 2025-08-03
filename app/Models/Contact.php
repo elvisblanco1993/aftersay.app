@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\ContactScope;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -9,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Scout\Searchable;
 
+#[ScopedBy(ContactScope::class)]
 class Contact extends Model
 {
     use Notifiable;
@@ -18,6 +21,7 @@ class Contact extends Model
     {
         return [
             'id' => (string) $this->id,
+            'tenant_id' => (string) $this->tenant_id,
             'name' => (string) $this->name,
             'email' => (string) $this->email,
             'phone' => (string) $this->phone,

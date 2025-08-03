@@ -17,7 +17,7 @@
         </flux:callout>
     @endif
 
-    <div class="max-w-2xl mx-auto space-y-6">
+    <div class="space-y-6">
         <livewire:workflow.step.index :workflow="$workflow"/>
         <livewire:workflow.step.create :workflow="$workflow" />
     </div>

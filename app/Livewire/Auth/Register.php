@@ -67,6 +67,16 @@ class Register extends Component
             $this->user->update(['current_tenant_id' => $this->tenant->id]);
 
             $this->tenant->createAsStripeCustomer();
+
+            // Populate tenant with default templates
+            foreach (config('internal.review_templates') as $template) {
+                $this->tenant->templates()->create([
+                    'type' => $template['type'],
+                    'name' => $template['name'],
+                    'subject' => $template['type'] === 'email' ? $template['subject'] : null,
+                    'body' => $template['body'],
+                ]);
+            }
         });
 
         $this->tenant->users()->syncWithoutDetaching([

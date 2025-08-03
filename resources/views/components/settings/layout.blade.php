@@ -27,7 +27,7 @@
 
         <div>{{ $container ?? '' }}</div>
 
-        <div class="mt-5 w-full max-w-lg">
+        <div class="mt-5 w-full">
             {{ $slot }}
         </div>
     </div>

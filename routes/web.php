@@ -41,6 +41,11 @@ Route::middleware(['auth'])->group(function () {
          */
         Route::get('workflows', \App\Livewire\Workflow\Index::class)->name('workflow.index');
         Route::get('workflows/{workflow}', \App\Livewire\Workflow\Show::class)->name('workflow.show');
+
+        /**
+         * Template management routes
+         */
+        Route::get('templates', \App\Livewire\Template\Index::class)->name('template.index');
     });
 
     Route::redirect('settings', 'settings/profile');

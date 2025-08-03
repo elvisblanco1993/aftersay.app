@@ -8,24 +8,26 @@
         <flux:input wire:model.live.debounce-250="query" icon="magnifying-glass" placeholder="Search..." class="max-w-xs" />
     </div>
 
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="relative overflow-x-auto border dark:border-zinc-600 sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-zinc-500 dark:text-zinc-400">
-            <thead class="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-700 dark:text-zinc-400">
-                <tr>
-                    <th scope="col" class="px-4 py-2">
-                        Name
-                    </th>
-                    <th scope="col" class="px-4 py-2">
-                        Email
-                    </th>
-                    <th scope="col" class="px-4 py-2">
-                        Phone
-                    </th>
-                    <th scope="col" class="px-4 py-2">
-                        <span class="sr-only">Edit</span>
-                    </th>
-                </tr>
-            </thead>
+            @if ($contacts->count() > 0)
+                <thead class="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-700 dark:text-zinc-400">
+                    <tr>
+                        <th scope="col" class="px-4 py-2">
+                            Name
+                        </th>
+                        <th scope="col" class="px-4 py-2">
+                            Email
+                        </th>
+                        <th scope="col" class="px-4 py-2">
+                            Phone
+                        </th>
+                        <th scope="col" class="px-4 py-2">
+                            <span class="sr-only">Edit</span>
+                        </th>
+                    </tr>
+                </thead>
+            @endif
             <tbody>
                 @forelse ($contacts as $contact)
                     <tr @class([
@@ -58,13 +60,19 @@
                         </td>
                     </tr>
                 @empty
+                    <tr colspan="4">
+                        <div class="text-center space-y-3 p-4 bg-zinc-50 dark:bg-zinc-700">
+                            <flux:icon.sparkles class="size-8 mx-auto" />
+                            <flux:heading size="xl">No contacts available</flux:heading>
+                            <flux:text size="lg">Your contact list is currently empty. New contacts will appear here once added.</flux:text>
+                        </div>
+                    </tr>
                 @endforelse
             </tbody>
         </table>
     </div>
 
     <div>{{ $contacts->links() }}</div>
-
 
     {{-- Campaign Selector --}}
     <livewire:contact.start-campaign />
