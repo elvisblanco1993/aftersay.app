@@ -14,9 +14,11 @@
                     <div>
                         <h3 class="text-zinc-800 dark:text-white font-semibold text-base">{{ $step->action->label() }}</h3>
                     </div>
-                    <div wire:sortable.handle class=" cursor-grab">
-                        <flux:icon.grip-vertical variant="mini" />
-                    </div>
+                    @unless ($readonly)
+                        <div wire:sortable.handle class=" cursor-grab">
+                            <flux:icon.grip-vertical variant="mini" />
+                        </div>
+                    @endunless
                 </div>
                 <div class="mt-2 text-sm text-zinc-700 dark:text-zinc-100">
                     @if ($step->template_id)
@@ -31,12 +33,12 @@
                         </div>
                     @endif
                 </div>
-
-                <div class="mt-3 flex items-center gap-3">
-                    <livewire:workflow.step.update :step="$step" wire:key="update-{{ $loop->index }}" />
-                    <livewire:workflow.step.delete :step="$step" wire:key="delete-{{ $loop->index }}" />
-                </div>
-
+                @unless ($readonly)
+                    <div class="mt-3 flex items-center gap-3">
+                        <livewire:workflow.step.update :step="$step" wire:key="update-{{ $loop->index }}" />
+                        <livewire:workflow.step.delete :step="$step" wire:key="delete-{{ $loop->index }}" />
+                    </div>
+                @endunless
             </div>
 
         @empty

@@ -11,6 +11,8 @@ class Index extends Component
 {
     public Workflow $workflow;
 
+    public bool $readonly;
+
     #[On('reloadSteps')]
     public function render()
     {

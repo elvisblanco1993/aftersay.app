@@ -22,6 +22,8 @@ class Show extends Component
 
     public function render()
     {
-        return view('livewire.workflow.show');
+        return view('livewire.workflow.show', [
+            'workflow_in_use' => $this->workflow->instances()->where('status', 'running')->count() > 0,
+        ]);
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Contact;
+use App\Models\Template;
+use App\Models\Workflow;
 
 return [
 
@@ -197,6 +199,36 @@ return [
                 ],
                 'search-parameters' => [
                     'query_by' => 'name, email, phone',
+                ],
+            ],
+            Template::class => [
+                'collection-schema' => [
+                    'fields' => [
+                        ['name' => 'id', 'type' => 'string'],
+                        ['name' => 'tenant_id', 'type' => 'string'],
+                        ['name' => 'name', 'type' => 'string'],
+                        ['name' => 'type', 'type' => 'string'],
+                        ['name' => 'subject', 'type' => 'string'],
+                        ['name' => 'created_at', 'type' => 'int64'],
+                    ],
+                    'default_sorting_field' => 'created_at',
+                ],
+                'search-parameters' => [
+                    'query_by' => 'name, type, subject',
+                ],
+            ],
+            Workflow::class => [
+                'collection-schema' => [
+                    'fields' => [
+                        ['name' => 'id', 'type' => 'string'],
+                        ['name' => 'tenant_id', 'type' => 'string'],
+                        ['name' => 'name', 'type' => 'string'],
+                        ['name' => 'created_at', 'type' => 'int64'],
+                    ],
+                    'default_sorting_field' => 'created_at',
+                ],
+                'search-parameters' => [
+                    'query_by' => 'name',
                 ],
             ],
             // User::class => [

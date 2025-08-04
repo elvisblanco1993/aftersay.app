@@ -14,4 +14,12 @@ enum TemplateType: string
             self::Sms => 'SMS',
         };
     }
+
+    public function color(): string
+    {
+        return match ($this) {
+            self::Email => 'blue',
+            self::Sms => 'green',
+        };
+    }
 }

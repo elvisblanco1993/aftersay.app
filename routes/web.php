@@ -46,6 +46,7 @@ Route::middleware(['auth'])->group(function () {
          * Template management routes
          */
         Route::get('templates', \App\Livewire\Template\Index::class)->name('template.index');
+        Route::get('templates/{template}/update', \App\Livewire\Template\Update::class)->name('template.update');
     });
 
     Route::redirect('settings', 'settings/profile');
