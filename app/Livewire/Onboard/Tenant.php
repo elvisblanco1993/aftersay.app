@@ -55,12 +55,7 @@ class Tenant extends Component
         $this->page_heading = $this->page->heading;
         $this->page_subheading = $this->page->subheading;
 
-        if ($this->tenant->onboarded_at && $this->page->ready_at) {
-            $this->step = 3;
-        } elseif ($this->tenant->onboarded_at) {
-            $this->step = 2;
-        }
-
+        $this->step = session('onboarding_step') ?? 1;
     }
 
     public function save()
@@ -90,9 +85,7 @@ class Tenant extends Component
         }
 
         DB::transaction(function () {
-
             if ($this->step === 1) {
-                // code...
                 $this->tenant->update([
                     'name' => $this->business_name,
                     'industry' => $this->industry,
@@ -116,12 +109,15 @@ class Tenant extends Component
                     'ready_at' => now(),
                 ]);
             }
+
+            session()->put('onboarding_step', (int) $this->step + 1);
         });
 
         if ($this->step === 3) {
             $this->redirect(url: route('dashboard'), navigate: true);
+        } else {
+            $this->redirect(url: url()->previous(), navigate: true);
         }
-
     }
 
     public function render()

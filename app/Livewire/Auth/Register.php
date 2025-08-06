@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Auth;
 
+use App\Actions\CreateDefaultWorkflow;
 use App\Models\Page;
 use App\Models\Tenant;
 use App\Models\User;
@@ -77,6 +78,8 @@ class Register extends Component
                     'body' => $template['body'],
                 ]);
             }
+
+            CreateDefaultWorkflow::class;
         });
 
         $this->tenant->users()->syncWithoutDetaching([

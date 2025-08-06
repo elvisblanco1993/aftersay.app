@@ -85,11 +85,7 @@
                 <flux:button type="submit" class="w-full" variant="primary" color="emerald" icon-trailing="rocket">Launch My Review Page</flux:button>
             @else
                 <div class="flex items-center justify-between">
-                    @if ($step > 1)
-                        <flux:button type="submit" icon="arrow-left">Back</flux:button>
-                    @else
-                        <flux:spacer />
-                    @endif
+                    <flux:spacer />
                     <flux:button type="submit" variant="primary" color="emerald" icon-trailing="arrow-right">Next</flux:button>
                 </div>
             @endif

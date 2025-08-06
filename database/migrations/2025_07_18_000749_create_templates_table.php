@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\TemplateStatus;
 use App\Models\Tenant;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -19,6 +20,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('subject')->nullable();
             $table->text('body');
+            $table->string('status')->default(TemplateStatus::Draft->value);
             $table->timestamps();
         });
     }
