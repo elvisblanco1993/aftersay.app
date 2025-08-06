@@ -28,8 +28,8 @@
             <flux:heading>{{ $contact->phone }}</flux:heading>
         </div>
         <div class="space-y-2">
-            <flux:text>Status</flux:text>
-            <flux:badge :color="\App\Enums\WorkflowStatus::tryFrom($contact?->workflowInstance?->status)?->color() ?? 'gray'">{{ \App\Enums\WorkflowStatus::tryFrom($contact?->workflowInstance?->status)?->label() ?? 'New' }}</flux:badge>
+            <flux:text>Campaign Status</flux:text>
+            <flux:badge :color="$contact?->workflowInstance?->status?->color() ?? 'gray'">{{ $contact?->workflowInstance?->status?->label() ?? 'New' }}</flux:badge>
         </div>
         <div class="space-y-2">
             <flux:text>Created</flux:text>
