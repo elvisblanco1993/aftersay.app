@@ -10,7 +10,9 @@ use Livewire\Component;
 
 class Create extends Component
 {
-    public $name;
+    public $first_name;
+
+    public $last_name;
 
     public $email;
 
@@ -19,7 +21,8 @@ class Create extends Component
     public function rules()
     {
         return [
-            'name' => ['required'],
+            'first_name' => ['required'],
+            'last_name' => ['required'],
             'email' => ['required', Rule::email()->defaults()],
         ];
     }
@@ -35,7 +38,8 @@ class Create extends Component
         try {
             Contact::create([
                 'tenant_id' => Auth::user()->current_tenant_id,
-                'name' => $this->name,
+                'first_name' => $this->first_name,
+                'last_name' => $this->last_name,
                 'email' => $this->email,
                 'phone' => $this->phone,
             ]);

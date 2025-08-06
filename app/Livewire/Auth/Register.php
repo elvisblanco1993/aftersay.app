@@ -69,6 +69,10 @@ class Register extends Component
 
             $this->tenant->createAsStripeCustomer();
 
+            $this->tenant->users()->syncWithoutDetaching([
+                $this->user->id => ['permissions' => json_encode(['*'])],
+            ]);
+
             // Populate tenant with default templates
             foreach (config('internal.review_templates') as $template) {
                 $this->tenant->templates()->create([
@@ -79,12 +83,9 @@ class Register extends Component
                 ]);
             }
 
-            CreateDefaultWorkflow::class;
+            // Create default campaign workflow
+            app(CreateDefaultWorkflow::class)($this->user);
         });
-
-        $this->tenant->users()->syncWithoutDetaching([
-            $this->user->id => ['permissions' => json_encode(['*'])],
-        ]);
 
         event(new Registered($this->user));
 

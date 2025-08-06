@@ -12,8 +12,12 @@
 
     <div class="grid grid-cols-3 gap-8">
         <div class="space-y-2">
-            <flux:text>Full Name</flux:text>
-            <flux:heading>{{ $contact->name }}</flux:heading>
+            <flux:text>First Name</flux:text>
+            <flux:heading>{{ $contact->first_name }}</flux:heading>
+        </div>
+            <div class="space-y-2">
+            <flux:text>Last Name</flux:text>
+            <flux:heading>{{ $contact->last_name }}</flux:heading>
         </div>
         <div class="space-y-2">
             <flux:text>Email address</flux:text>

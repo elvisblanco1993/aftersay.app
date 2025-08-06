@@ -11,7 +11,9 @@ class Update extends Component
 {
     public Contact $contact;
 
-    public $name;
+    public $first_name;
+
+    public $last_name;
 
     public $email;
 
@@ -19,7 +21,8 @@ class Update extends Component
 
     public function mount()
     {
-        $this->name = $this->contact->name;
+        $this->first_name = $this->contact->first_name;
+        $this->last_name = $this->contact->last_name;
         $this->email = $this->contact->email;
         $this->phone = $this->contact->phone;
     }
@@ -27,7 +30,8 @@ class Update extends Component
     public function rules()
     {
         return [
-            'name' => ['required'],
+            'first_name' => ['required'],
+            'last_name' => ['required'],
             'email' => ['required', Rule::email()->defaults()],
         ];
     }
@@ -42,7 +46,8 @@ class Update extends Component
         $this->validate();
         try {
             $this->contact->update([
-                'name' => $this->name,
+                'first_name' => $this->first_name,
+                'last_name' => $this->last_name,
                 'email' => $this->email,
                 'phone' => $this->phone,
             ]);

@@ -9,7 +9,10 @@
             <div class="space-y-6">
                 <flux:heading size="lg">New contact</flux:heading>
 
-                <flux:input wire:model="name" label="Full name" autofocus />
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <flux:input wire:model="first_name" label="First name" autofocus />
+                    <flux:input wire:model="last_name" label="Last name" />
+                </div>
                 <flux:input wire:model="email" label="Email address" type="email" />
                 <flux:input wire:model="phone" label="Phone number" type="tel" />
 

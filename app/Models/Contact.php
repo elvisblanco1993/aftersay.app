@@ -22,11 +22,16 @@ class Contact extends Model
         return [
             'id' => (string) $this->id,
             'tenant_id' => (string) $this->tenant_id,
-            'name' => (string) $this->name,
+            'name' => (string) $this->full_name,
             'email' => (string) $this->email,
             'phone' => (string) $this->phone,
             'created_at' => $this->created_at->timestamp,
         ];
+    }
+
+    public function getFullNameAttribute(): string
+    {
+        return $this->first_name.' '.$this->last_name;
     }
 
     // Send twilio notifications to the contact's phone number.

@@ -36,7 +36,7 @@
                     ])>
                         <td>
                             <a href="{{ route('contact.show', ['contact' => $contact]) }}" class="block px-4 py-2.5">
-                                {{ $contact->name }}
+                                {{ $contact->full_name }}
                             </a>
                         </td>
                         <td>
