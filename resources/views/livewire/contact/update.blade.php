@@ -1,6 +1,6 @@
 <div>
     <flux:modal.trigger name="update-contact">
-        <flux:button icon="settings" />
+        <flux:button icon="settings" size="sm" />
     </flux:modal.trigger>
 
     <flux:modal name="update-contact" class="md:w-96">

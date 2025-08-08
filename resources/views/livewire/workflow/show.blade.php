@@ -3,8 +3,8 @@
         <div>
             <flux:heading size="xl">{{ $workflow->name }}</flux:heading>
             <flux:breadcrumbs>
-                <flux:breadcrumbs.item :href="route('workflow.index')" separator="slash">Workflows</flux:breadcrumbs.item>
-                <flux:breadcrumbs.item separator="slash">{{ $workflow->name }}</flux:breadcrumbs.item>
+                <flux:breadcrumbs.item :href="route('workflow.index')">Workflows</flux:breadcrumbs.item>
+                <flux:breadcrumbs.item>{{ $workflow->name }}</flux:breadcrumbs.item>
             </flux:breadcrumbs>
         </div>
         <livewire:workflow.update :workflow="$workflow" />

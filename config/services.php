@@ -34,15 +34,8 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
-
-    /**
-     * Review Platforms
-     */
-    'google' => [
-        'places_api_key' => env('GOOGLE_PLACES_API_KEY'),
-        'places_base_url' => 'https://places.googleapis.com/v1/places:searchText',
-        'places_fields_mask' => 'places.id,places.displayName,places.formattedAddress',
-        'places_review_url' => 'https://search.google.com/local/writereview?placeid=',
+    'turnstile' => [
+        'key' => env('TURNSTILE_SITE_KEY'),
+        'secret' => env('TURNSTILE_SECRET_KEY'),
     ],
-
 ];

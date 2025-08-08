@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use RyanChandler\LaravelCloudflareTurnstile\Rules\Turnstile;
 
 #[Layout('components.layouts.auth')]
 class Register extends Component
@@ -31,12 +32,15 @@ class Register extends Component
 
     protected $tenant;
 
+    public $captcha;
+
     /**
      * Handle an incoming registration request.
      */
     public function register(): void
     {
         $validated = $this->validate([
+            'captcha' => ['required', app(Turnstile::class)],
             'name' => ['required', 'string', 'max:255'],
             'business_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],

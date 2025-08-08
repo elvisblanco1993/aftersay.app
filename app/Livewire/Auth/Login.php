@@ -9,17 +9,17 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
-use Livewire\Attributes\Validate;
 use Livewire\Component;
+use RyanChandler\LaravelCloudflareTurnstile\Rules\Turnstile;
 
 #[Layout('components.layouts.auth')]
 class Login extends Component
 {
-    #[Validate('required|string|email')]
     public string $email = '';
 
-    #[Validate('required|string')]
     public string $password = '';
+
+    public $captcha;
 
     public bool $remember = false;
 
@@ -28,7 +28,11 @@ class Login extends Component
      */
     public function login(): void
     {
-        $this->validate();
+        $this->validate([
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string'],
+            'captcha' => ['required', app(Turnstile::class)],
+        ]);
 
         $this->ensureIsNotRateLimited();
 
