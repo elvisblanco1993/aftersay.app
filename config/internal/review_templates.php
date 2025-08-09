@@ -39,28 +39,27 @@ return [
     ],
 
     // SMS templates
-    'initial_request_sms' => [
-        'name' => 'SMS: Initial Feedback Request',
-        'type' => 'sms',
-        'body' => "Hi [first_name], thanks for choosing [company_name]! We'd love to hear how we did.",
-    ],
+    // 'initial_request_sms' => [
+    //     'name' => 'SMS: Initial Feedback Request',
+    //     'type' => 'sms',
+    //     'body' => "Hi [first_name], thanks for choosing [company_name]! We'd love to hear how we did.",
+    // ],
 
-    'reminder_sms' => [
-        'name' => 'SMS: Reminder to Provide Feedback',
-        'type' => 'sms',
-        'body' => 'Hi [first_name], just a reminder from [company_name] to share your thoughts about your recent experience.',
-    ],
+    // 'reminder_sms' => [
+    //     'name' => 'SMS: Reminder to Provide Feedback',
+    //     'type' => 'sms',
+    //     'body' => 'Hi [first_name], just a reminder from [company_name] to share your thoughts about your recent experience.',
+    // ],
 
-    'social_proof_sms' => [
-        'name' => 'SMS: Social Proof Request',
-        'type' => 'sms',
-        'body' => 'Hi [first_name], your review helps others choose a [business_type] like us! If we earned your trust, we’d love your feedback.',
-    ],
+    // 'social_proof_sms' => [
+    //     'name' => 'SMS: Social Proof Request',
+    //     'type' => 'sms',
+    //     'body' => 'Hi [first_name], your review helps others choose a [business_type] like us! If we earned your trust, we’d love your feedback.',
+    // ],
 
-    'final_reminder_sms' => [
-        'name' => 'SMS: Final Feedback Reminder',
-        'type' => 'sms',
-        'body' => 'Hi [first_name], last chance to share your experience with [company_name]! It really helps us out.',
-    ],
-
+    // 'final_reminder_sms' => [
+    //     'name' => 'SMS: Final Feedback Reminder',
+    //     'type' => 'sms',
+    //     'body' => 'Hi [first_name], last chance to share your experience with [company_name]! It really helps us out.',
+    // ],
 ];

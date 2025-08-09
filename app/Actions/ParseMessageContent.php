@@ -3,11 +3,11 @@
 namespace App\Actions;
 
 use App\Models\Contact;
-use App\Models\Template;
+use App\Models\Tenant;
 
 class ParseMessageContent
 {
-    public function __invoke(Template $template, Contact $contact)
+    public function __invoke(string $content, Contact $contact, Tenant $tenant)
     {
         $shortcodes = [
             '[first_name]',
@@ -19,10 +19,10 @@ class ParseMessageContent
         $data = [
             $contact->first_name,
             $contact->last_name,
-            $template->tenant->name,
-            $template->tenant->industry,
+            $tenant->name,
+            $tenant->industry,
         ];
 
-        return str_replace($shortcodes, $data, $template->body);
+        return str_replace($shortcodes, $data, $content);
     }
 }

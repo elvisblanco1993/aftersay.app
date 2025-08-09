@@ -6,10 +6,6 @@ use App\Models\WorkflowStep;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Log;
-use NotificationChannels\Twilio\TwilioChannel;
-use NotificationChannels\Twilio\TwilioSmsMessage;
-use Twilio\Exceptions\TwilioException;
 
 class SendMessage extends Notification
 {
@@ -20,9 +16,9 @@ class SendMessage extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(public WorkflowStep $step, string $channel = 'mail')
+    public function __construct(public WorkflowStep $step, public string $content)
     {
-        $this->channel = $channel === 'twilio' ? TwilioChannel::class : 'mail';
+        $this->channel = 'mail';
     }
 
     public function via(object $notifiable): array
@@ -36,30 +32,15 @@ class SendMessage extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         $subject = $this->step->template_id ? $this->step->template->subject : 'New email from '.$this->step?->workflow?->tenant?->name;
-        $message = $this->step->template_id ? $this->step->template->body : $this->step->custom_message;
+
+        $signature = null; // Maybe we can get this from the tenant settings.
 
         return (new MailMessage)
             ->subject($subject)
             ->markdown('mail.send-message', [
-                'message' => $message,
+                'message' => $this->content,
+                'signature' => $signature,
                 'url' => route('review-page.show', ['slug' => $this->step?->workflow?->tenant?->page->slug]),
             ]);
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @return array<string, mixed>
-     */
-    public function toTwilio(object $notifiable)
-    {
-        try {
-            $message = $this->step->template_id ? $this->step->template->body : $this->step->custom_message;
-            $sms = new TwilioSmsMessage;
-
-            return $sms->content($message);
-        } catch (TwilioException $th) {
-            Log::error($th);
-        }
     }
 }

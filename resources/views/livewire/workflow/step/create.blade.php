@@ -12,15 +12,6 @@
             <form wire:submit="save">
                 @csrf
                 <div class="space-y-6 max-w-lg mx-auto">
-
-                    <flux:select wire:model="action" label="What should happen at this step?">
-                            <option value="">Select an action</option>
-                        @forelse (\App\Enums\WorkflowActionType::cases() as $case)
-                            <option value="{{ $case->value }}">{{ $case->label() }}</option>
-                        @empty
-                        @endforelse
-                    </flux:select>
-        
                     @if ($workflow->steps->count() > 0)
                         <flux:switch wire:model.live="delayed" label="Add a delay before this step?" align="left" />
                         @if ($delayed)

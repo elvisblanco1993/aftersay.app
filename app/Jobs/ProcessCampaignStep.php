@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Enums\WorkflowActionType;
+use App\Actions\ParseMessageContent;
 use App\Enums\WorkflowStatus;
 use App\Models\WorkflowInstance;
 use App\Models\WorkflowLog;
@@ -40,15 +40,22 @@ class ProcessCampaignStep implements ShouldQueue
                 $recipient = $campaign->contact;
                 $step = $workflow->steps()->where('order', $campaign->current_step)->first();
 
-                // Send Email or SMS
-                if ($step) {
-                    if ($step->action->value === WorkflowActionType::SendEmail->value) {
-                        $recipient->notify(new SendMessage($step, 'mail'));
-                    }
-                    if ($step->action->value === WorkflowActionType::SendSms->value) {
-                        $recipient->notify(new SendMessage($step, 'twilio'));
-                    }
-                }
+                // Send Email
+                $content = $step->template_id ? $step->template->body : $step->custom_message;
+
+                // Parse message shortcodes.
+                $content = (new ParseMessageContent)(
+                    content: $content,
+                    contact: $recipient,
+                    tenant: $recipient->tenant,
+                );
+
+                $recipient->notify(
+                    new SendMessage(
+                        $step,
+                        content: $content
+                    )
+                );
 
                 // TODO:
                 // Set the next current_step

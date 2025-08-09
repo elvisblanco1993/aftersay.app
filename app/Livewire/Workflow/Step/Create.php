@@ -3,6 +3,7 @@
 namespace App\Livewire\Workflow\Step;
 
 use App\Enums\DelayUnit;
+use App\Enums\WorkflowActionType;
 use App\Models\Workflow;
 use Livewire\Component;
 
@@ -10,7 +11,7 @@ class Create extends Component
 {
     public Workflow $workflow;
 
-    public $action;
+    public $action = WorkflowActionType::SendEmail->value;
 
     public bool $delayed = false;
 
