@@ -57,7 +57,7 @@
                         <flux:textarea wire:model="custom_message" label="Write your custom message" placeholder="Type the message you want to send at this step..." />
                     @endif
         
-                    <flux:button class="w-full" type="submit" variant="primary" color="blue">Save changes</flux:button>
+                    <flux:button class="w-full" type="submit" variant="primary">Save changes</flux:button>
                 </div>
             </form>
         </div>

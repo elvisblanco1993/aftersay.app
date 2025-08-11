@@ -9,7 +9,6 @@
             <flux:navlist.group heading="Personal details">
                 <flux:navlist.item :href="route('settings.profile')" wire:navigate>{{ __('Your Profile') }}</flux:navlist.item>
                 <flux:navlist.item :href="route('settings.password')" wire:navigate>{{ __('Change Password') }}</flux:navlist.item>
-                <flux:navlist.item :href="route('settings.appearance')" wire:navigate>{{ __('Appearance') }}</flux:navlist.item>
             </flux:navlist.group>
         </flux:navlist>
     </div>
