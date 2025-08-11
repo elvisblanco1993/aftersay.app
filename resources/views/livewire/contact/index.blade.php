@@ -8,7 +8,7 @@
         <flux:input wire:model.live.debounce-250="query" icon="magnifying-glass" placeholder="Search..." class="max-w-xs" />
     </div>
 
-    <div class="relative overflow-x-auto border dark:border-zinc-700 sm:rounded-lg">
+    <div class="relative overflow-x-auto border dark:border-zinc-700 rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-zinc-500 dark:text-zinc-400">
             @if ($contacts->count() > 0)
                 <thead class="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-700 dark:text-zinc-400">
