@@ -5,7 +5,7 @@
     </div>
 
     <div class="flex items-center justify-between">
-        <flux:input wire:model.live.debounce.250="query" icon="magnifying-glass" placeholder="Search..." class="max-w-xs" />
+        <flux:input wire:model.live.debounce.250="query" icon="magnifying-glass" placeholder="Search..." class="w-full sm:max-w-xs" />
     </div>
 
     <div class="relative overflow-x-auto border dark:border-zinc-700 rounded-lg">
