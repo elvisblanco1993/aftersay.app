@@ -3,13 +3,10 @@
 namespace App\Livewire\Template;
 
 use App\Models\Template;
-use Joelwmale\LivewireQuill\Traits\HasQuillEditor;
 use Livewire\Component;
 
 class Update extends Component
 {
-    use HasQuillEditor;
-
     public Template $template;
 
     public $body;

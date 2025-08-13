@@ -34,12 +34,6 @@ class Contact extends Model
         return $this->first_name.' '.$this->last_name;
     }
 
-    // Send twilio notifications to the contact's phone number.
-    public function routeNotificationForTwilio()
-    {
-        return (string) $this->phone;
-    }
-
     public function tenant(): BelongsTo
     {
         return $this->belongsTo(Tenant::class);
@@ -48,11 +42,6 @@ class Contact extends Model
     public function workflowInstance(): HasOne
     {
         return $this->hasOne(WorkflowInstance::class);
-    }
-
-    public function links(): HasMany
-    {
-        return $this->hasMany(Link::class);
     }
 
     public function concerns(): HasMany

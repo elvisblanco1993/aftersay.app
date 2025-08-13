@@ -15,10 +15,13 @@ return new class extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Tenant::class)->constrained()->cascadeOnDelete();
+            $table->ulid()->unique();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
+            $table->timestamp('opted_out_at')->nullable();
+            $table->timestamp('left_review_at')->nullable();
             $table->timestamps();
         });
     }
