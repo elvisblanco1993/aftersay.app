@@ -62,7 +62,7 @@ class Show extends Component
         }
 
         // TODO: Redirect to Thank You page.
-        
+
     }
 
     public function updatedRating()
