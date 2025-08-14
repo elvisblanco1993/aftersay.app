@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('concerns', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Tenant::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Contact::class)->constrained()->cascadeOnDelete();
-            $table->string('reviewer_name')->nullable();
-            $table->string('reviewer_email')->nullable();
+            $table->foreignIdFor(Contact::class)->nullable()->constrained()->nullOnDelete();
+            $table->string('contact_name')->nullable();
+            $table->string('contact_email')->nullable();
             $table->unsignedTinyInteger('rating')->nullable();
             $table->text('content');
             $table->enum('status', ['new', 'in_review', 'resolved'])->default('new');

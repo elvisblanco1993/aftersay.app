@@ -45,7 +45,9 @@
         <x-slot name="container">
             <div class="mt-12 space-y-6 text-center">
                 <div>
-                    <img src="{{ $page->logo_url }}" alt="{{ $page->tenant->name }} logo" class="h-12 w-auto mx-auto">
+                    @if ($page->logo_url)
+                        <img src="{{ $page->logo_url }}" alt="{{ $page->tenant->name }} logo" class="h-12 w-auto mx-auto">
+                    @endif
                 </div>
     
                 <div class="w-full min-w-xl max-w-xl mx-auto space-y-6 rounded-2xl bg-white dark:bg-zinc-700/80 p-6 drop-shadow-xl">

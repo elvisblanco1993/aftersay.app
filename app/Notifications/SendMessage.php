@@ -44,7 +44,7 @@ class SendMessage extends Notification
                 'signature' => $signature,
                 'url' => Uri::of(route('review-page.show', ['slug' => $this->step?->workflow?->tenant?->page->slug]))
                     ->withQuery([
-                        'ref' => $this->step->contact->ulid,
+                        'ref' => $this->contact->ulid,
                     ]),
             ]);
     }
