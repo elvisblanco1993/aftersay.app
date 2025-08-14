@@ -9,10 +9,13 @@ class Update extends Component
 {
     public Template $template;
 
+    public $subject;
+
     public $body;
 
     public function mount()
     {
+        $this->subject = $this->template->subject;
         $this->body = $this->template->body;
     }
 
@@ -21,15 +24,12 @@ class Update extends Component
         return view('livewire.template.update');
     }
 
-    public function contentChanged($editorId, $content)
+    public function updatedBody($value)
     {
-        // $editorId is the id use when you initiated the livewire component
-        // $content is the raw text editor content
-
-        // save to the local variable...
-        $this->body = $content;
+        $this->body = $value;
         $this->template->update([
-            'body' => $content,
+            'body' => $value,
         ]);
+        $this->dispatch('saved');
     }
 }

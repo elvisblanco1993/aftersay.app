@@ -13,7 +13,7 @@ window.setupEditor = function (content) {
                 element: element,
                 editorProps: {
                     attributes: {
-                        class: "p-2 prose dark:prose-invert border dark:border-white/10 rounded-lg prose-sm min-h-60 prose-h1:mb-0 focus:border-indigo-500 dark:focus:border-indigo-600 focus:outline-none",
+                        class: "w-full max-w-full min-h-60 prose prose dark:prose-invert border rounded-lg block dark:shadow-none appearance-none py-2 px-3 bg-white dark:bg-white/10 placeholder-zinc-400 dark:text-zinc-300 dark:placeholder-zinc-400 shadow-xs border-zinc-200 border-b-zinc-300/80 dark:border-white/10",
                     },
                 },
                 extensions: [

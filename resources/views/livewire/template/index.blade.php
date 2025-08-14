@@ -27,12 +27,12 @@
                         "border-b dark:border-zinc-700 border-zinc-200" => !$loop->last
                     ])>
                         <td>
-                            <a href="{{ route('template.update', ['template' => $template]) }}" class="block px-4 py-2.5">
+                            <a href="{{ route('template.update', ['template' => $template]) }}" wire:navigate class="block px-4 py-2.5">
                                 {{ $template->name }}
                             </a>
                         </td>
                         <td>
-                            <a href="{{ route('template.update', ['template' => $template]) }}" class="block px-4 py-2.5">
+                            <a href="{{ route('template.update', ['template' => $template]) }}" wire:navigate class="block px-4 py-2.5">
                                 <flux:badge size="sm" color="{{ \App\Enums\TemplateType::tryFrom($template->type)->color() }}">{{ \App\Enums\TemplateType::tryFrom($template->type)->label() }}</flux:badge>
                             </a>
                         </td>

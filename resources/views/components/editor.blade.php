@@ -1,6 +1,11 @@
-<div x-data="setupEditor(
-    $wire.entangle('{{ $attributes->wire('model')->value() }}')
-)" x-init="() => init($refs.editor)" wire:ignore {{ $attributes->whereDoesntStartWith('wire:model') }}>
+<div 
+    x-data="setupEditor(
+        @entangle($attributes->wire('model')->value()).live
+    )" 
+    x-init="() => init($refs.editor)" 
+    wire:ignore 
+    {{ $attributes->whereDoesntStartWith('wire:model') }}
+>
 
     {{-- Editor Controls --}}
     <flux:button.group>
@@ -14,5 +19,5 @@
     </flux:button.group>
     
     {{-- Editor --}}
-    <div x-ref="editor" class="mt-2"></div>
+    <div x-ref="editor" class="mt-3"></div>
 </div>
