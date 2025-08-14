@@ -52,7 +52,8 @@ class ProcessCampaignStep implements ShouldQueue
 
                 $recipient->notify(
                     new SendMessage(
-                        $step,
+                        step: $step,
+                        contact: $recipient,
                         content: $content
                     )
                 );

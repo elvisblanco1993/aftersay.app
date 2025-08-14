@@ -5,7 +5,7 @@
             <div class="space-y-6">
                 <div>
                     <flux:heading size="lg">Start Campaign</flux:heading>
-                    <flux:text class="mt-2">For: {{ $contact?->name ?? '' }}</flux:text>
+                    <flux:text class="mt-2">For: {{ $contact?->full_name ?? '' }}</flux:text>
                 </div>
 
                 <flux:select wire:model="workflow_id" :label="__('Select Workflow')">

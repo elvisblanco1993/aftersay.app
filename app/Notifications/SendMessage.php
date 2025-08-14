@@ -2,10 +2,12 @@
 
 namespace App\Notifications;
 
+use App\Models\Contact;
 use App\Models\WorkflowStep;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Uri;
 
 class SendMessage extends Notification
 {
@@ -16,7 +18,7 @@ class SendMessage extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(public WorkflowStep $step, public string $content)
+    public function __construct(public WorkflowStep $step, public Contact $contact, public string $content)
     {
         $this->channel = 'mail';
     }
@@ -40,7 +42,10 @@ class SendMessage extends Notification
             ->markdown('mail.send-message', [
                 'message' => $this->content,
                 'signature' => $signature,
-                'url' => route('review-page.show', ['slug' => $this->step?->workflow?->tenant?->page->slug]),
+                'url' => Uri::of(route('review-page.show', ['slug' => $this->step?->workflow?->tenant?->page->slug]))
+                    ->withQuery([
+                        'ref' => $this->step->contact->ulid,
+                    ]),
             ]);
     }
 }
