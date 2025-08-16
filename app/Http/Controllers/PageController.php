@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Contact;
+use App\Models\LinkClick;
+use App\Models\Platform;
+use Illuminate\Http\Request;
+
+class PageController extends Controller
+{
+    public function linkRedirect(Request $request)
+    {
+        // TODO: Make sure this is not a bot
+
+        $link = Platform::where('ulid', $request->ulid)->first();
+        $ref = request(key: 'ref');
+
+        $contact = $ref ? Contact::where('ulid', $ref)->first() : null;
+
+        // Record the click
+        defer(function () use ($link, $contact) {
+            LinkClick::create([
+                'tenant_id' => $link->tenant_id,
+                'platform_id' => $link->id,
+                'contact_id' => $contact?->id,
+                'created_at' => now(),
+            ]);
+        });
+
+        return redirect()->away($link->url);
+
+    }
+}

@@ -44,7 +44,7 @@
 
                     <div @class(["grid grid-cols-1 gap-4", "sm:grid-cols-2" => $links->count() > 1])>
                         @forelse ($links as $link)
-                            <a href="" target="_blank" class="block bg-white dark:bg-zinc-800 border dark:border-zinc-600/50 rounded-lg p-4 hover:shadow-md text-center">
+                            <a href="{{ route('review-page.link', ['slug' => $page->slug, 'ulid' => $link->ulid, 'ref'  => $this->contact ?? null,]) }}" target="_blank" class="block bg-white dark:bg-zinc-800 border dark:border-zinc-600/50 rounded-lg p-4 hover:shadow-md text-center">
                                 @php
                                     $svgPath = public_path('vendor/blade-simple-icons/' . $link->name . '.svg');
                                 @endphp

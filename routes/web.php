@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use App\Http\Middleware\EnsureTenantIsSetup;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
@@ -15,9 +16,8 @@ Route::get('join', \App\Livewire\Waitlist\Join::class)->name('waitlist.join');
  * Client Public Routes
  * This is where you record the routes for public business pages.
  */
-Route::get('/p/{slug}', \App\Livewire\Page\Show::class)->name(
-    'review-page.show',
-);
+Route::get('/r/{slug}/', \App\Livewire\Page\Show::class)->name('review-page.show');
+Route::get('/r/{slug}/l/{ulid}', [PageController::class, 'linkRedirect'])->name('review-page.link');
 
 Route::middleware(['auth'])->group(function () {
 
