@@ -6,11 +6,9 @@ use App\Enums\WorkflowStatus;
 use App\Models\Concern;
 use App\Models\Contact;
 use App\Models\Page;
-use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
-#[Layout('components.layouts.business-page')]
 class Show extends Component
 {
     public $page;
@@ -35,7 +33,10 @@ class Show extends Component
 
     public function render()
     {
-        return view('livewire.page.show');
+        return view('livewire.page.show')
+            ->layout('components.layouts.business-page', [
+                'title' => 'How did we do? | '.$this->page->tenant->name,
+            ]);
     }
 
     public function saveFeedback()
