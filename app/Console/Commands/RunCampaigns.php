@@ -4,12 +4,12 @@ namespace App\Console\Commands;
 
 use App\Enums\WorkflowStatus;
 use App\Jobs\ProcessCampaignStep;
-use App\Models\WorkflowInstance;
+use App\Models\Campaign;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
-class RunWorkflowInstances extends Command
+class RunCampaigns extends Command
 {
     /**
      * The name and signature of the console command.
@@ -33,7 +33,7 @@ class RunWorkflowInstances extends Command
         try {
             $now = Carbon::now()->startOfMinute();
             $nextMinute = (clone $now)->addMinute();
-            WorkflowInstance::where('status', WorkflowStatus::Running->value)
+            Campaign::where('status', WorkflowStatus::Running->value)
                 ->whereBetween('next_run_at', [$now, $nextMinute])
                 ->chunkById(10, function ($campaigns) {
                     ProcessCampaignStep::dispatch($campaigns->pluck('id')->toArray());
@@ -41,7 +41,7 @@ class RunWorkflowInstances extends Command
 
             return Command::SUCCESS;
         } catch (\Throwable $th) {
-            Log::error('Error in RunWorkflowInstances command: '.$th->getMessage(), [
+            Log::error('Error in RunCampaigns command: '.$th->getMessage(), [
                 'trace' => $th->getTraceAsString(),
             ]);
 

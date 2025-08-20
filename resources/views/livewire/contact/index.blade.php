@@ -51,7 +51,7 @@
                         </td>
                         <td class="px-4 py-2.5 text-right">
                             <x-button size="xs" type="button" @click="$dispatch('start-campaign', { contact_id: {{ $contact->id }} })">
-                                @if ($contact->workflowInstance)
+                                @if ($contact->campaign)
                                     Reset Campaign
                                 @else
                                     Start Campaign
@@ -62,9 +62,8 @@
                 @empty
                     <tr colspan="4">
                         <div class="text-center space-y-3 p-4 bg-zinc-50 dark:bg-zinc-700">
-                            <flux:icon.sparkles class="size-8 mx-auto" />
-                            <flux:heading size="xl">No contacts available</flux:heading>
-                            <flux:text size="lg">Your contact list is currently empty. New contacts will appear here once added.</flux:text>
+                            <flux:icon.sparkles class="size-6 mx-auto" />
+                            <flux:heading size="lg">No contacts available</flux:heading>
                         </div>
                     </tr>
                 @endforelse

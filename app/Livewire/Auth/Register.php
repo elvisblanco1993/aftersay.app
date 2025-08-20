@@ -71,7 +71,7 @@ class Register extends Component
 
             $this->user->update(['current_tenant_id' => $this->tenant->id]);
 
-            $this->tenant->createAsStripeCustomer();
+            $this->tenant->createOrGetStripeCustomer();
 
             $this->tenant->users()->syncWithoutDetaching([
                 $this->user->id => ['permissions' => json_encode(['*'])],

@@ -4,8 +4,8 @@ namespace App\Jobs;
 
 use App\Actions\ParseMessageContent;
 use App\Enums\WorkflowStatus;
-use App\Models\WorkflowInstance;
-use App\Models\WorkflowLog;
+use App\Models\Campaign;
+use App\Models\CampaignLog;
 use App\Notifications\SendMessage;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -23,7 +23,7 @@ class ProcessCampaignStep implements ShouldQueue
      */
     public function __construct(array $step_ids)
     {
-        $this->campaigns = WorkflowInstance::whereIn('id', $step_ids)->get();
+        $this->campaigns = Campaign::whereIn('id', $step_ids)->get();
     }
 
     /**
@@ -72,7 +72,7 @@ class ProcessCampaignStep implements ShouldQueue
                         default => $baseDate,
                     };
 
-                    // Update workflow_instance
+                    // Update campaign
                     $campaign->update([
                         'current_step' => $nextStep->id,
                         'next_run_at' => $nextRunAt,
@@ -92,8 +92,8 @@ class ProcessCampaignStep implements ShouldQueue
             }
 
             // Log the instance run
-            WorkflowLog::create([
-                'workflow_instance_id' => $campaign->id,
+            CampaignLog::create([
+                'campaign_id' => $campaign->id,
                 'workflow_step_id' => $step?->id,
                 'action' => $step->action,
                 'status' => $status,

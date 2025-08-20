@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function () {
         'verified',
         EnsureTenantIsSetup::class,
     ])->group(function () {
-        Route::view('dashboard', 'dashboard')->name('dashboard');
+        Route::get('dashboard', \App\Livewire\Dashboard\Show::class)->name('dashboard');
 
         /**
          * Client management routes

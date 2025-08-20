@@ -29,7 +29,7 @@
         </div>
         <div class="space-y-2">
             <flux:text>Campaign Status</flux:text>
-            <flux:badge :color="$contact?->workflowInstance?->status?->color() ?? 'gray'">{{ $contact?->workflowInstance?->status?->label() ?? 'New' }}</flux:badge>
+            <flux:badge :color="$contact?->campaign?->status?->color() ?? 'gray'">{{ $contact?->campaign?->status?->label() ?? 'New' }}</flux:badge>
         </div>
         <div class="space-y-2">
             <flux:text>Created</flux:text>

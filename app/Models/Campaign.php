@@ -5,10 +5,12 @@ namespace App\Models;
 use App\Enums\WorkflowStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class WorkflowInstance extends Model
+class Campaign extends Model
 {
     protected $fillable = [
+        'tenant_id',
         'workflow_id',
         'link_id',
         'current_step',
@@ -29,5 +31,10 @@ class WorkflowInstance extends Model
     public function contact(): BelongsTo
     {
         return $this->belongsTo(Contact::class);
+    }
+
+    public function logs(): HasMany
+    {
+        return $this->hasMany(CampaignLog::class);
     }
 }

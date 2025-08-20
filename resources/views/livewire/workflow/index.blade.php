@@ -10,16 +10,18 @@
 
     <div class="relative overflow-x-auto border dark:border-zinc-700 rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-zinc-500 dark:text-zinc-400">
-            <thead class="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-700 dark:text-zinc-400">
-                <tr>
-                    <th scope="col" class="px-4 py-2">
-                        Name
-                    </th>
-                    <th scope="col" class="px-4 py-2">
-                        Runs
-                    </th>
-                </tr>
-            </thead>
+            @if ($workflows->count() > 0)
+                <thead class="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-700 dark:text-zinc-400">
+                    <tr>
+                        <th scope="col" class="px-4 py-2">
+                            Name
+                        </th>
+                        <th scope="col" class="px-4 py-2">
+                            Runs
+                        </th>
+                    </tr>
+                </thead>
+            @endif
             <tbody>
                 @forelse ($workflows as $workflow)
                     <tr @class([
@@ -38,7 +40,12 @@
                         </td>
                     </tr>
                 @empty
-                    
+                    <tr colspan="4">
+                        <div class="text-center space-y-3 p-4 bg-zinc-50 dark:bg-zinc-700">
+                            <flux:icon.sparkles class="size-6 mx-auto" />
+                            <flux:heading size="lg">No workflows available</flux:heading>
+                        </div>
+                    </tr>
                 @endforelse
             </tbody>
         </table>

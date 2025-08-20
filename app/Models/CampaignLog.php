@@ -4,19 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class WorkflowLog extends Model
+class CampaignLog extends Model
 {
     protected $fillable = [
-        'workflow_instance_id',
+        'campaign_id',
         'workflow_step_id',
         'action',
         'details',
         'status',
     ];
 
-    public function instance()
+    public function campaign()
     {
-        return $this->belongsTo(WorkflowInstance::class);
+        return $this->belongsTo(Campaign::class);
     }
 
     public function step()

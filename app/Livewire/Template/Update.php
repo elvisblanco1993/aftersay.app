@@ -13,10 +13,13 @@ class Update extends Component
 
     public $body;
 
+    public $name;
+
     public function mount()
     {
         $this->subject = $this->template->subject;
         $this->body = $this->template->body;
+        $this->name = $this->template->name;
     }
 
     public function render()
@@ -24,11 +27,12 @@ class Update extends Component
         return view('livewire.template.update');
     }
 
-    public function updatedBody($value)
+    public function save()
     {
-        $this->body = $value;
         $this->template->update([
-            'body' => $value,
+            'name' => $this->name,
+            'subject' => $this->subject,
+            'body' => $this->body,
         ]);
         $this->dispatch('saved');
     }

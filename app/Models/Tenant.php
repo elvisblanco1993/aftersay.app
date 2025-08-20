@@ -51,9 +51,14 @@ class Tenant extends Model
         return $this->hasMany(Platform::class);
     }
 
-    public function links(): HasMany
+    public function campaigns(): HasMany
     {
-        return $this->hasMany(Link::class);
+        return $this->hasMany(Campaign::class);
+    }
+
+    public function linkClicks(): HasMany
+    {
+        return $this->hasMany(LinkClick::class);
     }
 
     public function concerns(): HasMany

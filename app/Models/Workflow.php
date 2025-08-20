@@ -43,6 +43,6 @@ class Workflow extends Model
 
     public function instances(): HasMany
     {
-        return $this->hasMany(WorkflowInstance::class);
+        return $this->hasMany(Campaign::class);
     }
 }

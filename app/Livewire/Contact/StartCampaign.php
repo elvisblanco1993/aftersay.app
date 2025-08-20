@@ -39,7 +39,8 @@ class StartCampaign extends Component
         ]);
 
         try {
-            $this->contact->workflowInstance()->updateOrCreate([
+            $this->contact->campaign()->updateOrCreate([
+                'tenant_id' => $this->contact->tenant_id,
                 'workflow_id' => $this->workflow_id,
             ], [
                 'contact_id' => $this->contact->id,

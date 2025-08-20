@@ -39,9 +39,9 @@ class Contact extends Model
         return $this->belongsTo(Tenant::class);
     }
 
-    public function workflowInstance(): HasOne
+    public function campaign(): HasOne
     {
-        return $this->hasOne(WorkflowInstance::class);
+        return $this->hasOne(Campaign::class);
     }
 
     public function concerns(): HasMany
