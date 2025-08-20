@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Enums\WorkflowStatus;
+use App\Enums\CampaignStatus;
 use App\Jobs\ProcessCampaignStep;
 use App\Models\Campaign;
 use Illuminate\Console\Command;
@@ -33,7 +33,7 @@ class RunCampaigns extends Command
         try {
             $now = Carbon::now()->startOfMinute();
             $nextMinute = (clone $now)->addMinute();
-            Campaign::where('status', WorkflowStatus::Running->value)
+            Campaign::where('status', CampaignStatus::Running->value)
                 ->whereBetween('next_run_at', [$now, $nextMinute])
                 ->chunkById(10, function ($campaigns) {
                     ProcessCampaignStep::dispatch($campaigns->pluck('id')->toArray());

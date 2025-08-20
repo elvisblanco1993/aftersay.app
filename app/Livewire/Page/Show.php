@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Page;
 
-use App\Enums\WorkflowStatus;
+use App\Enums\CampaignStatus;
 use App\Models\Concern;
 use App\Models\Contact;
 use App\Models\Page;
@@ -57,7 +57,7 @@ class Show extends Component
         // End campaign - No more automated emails
         if ($this->contact && $contact = Contact::where('ulid', $this->contact)->first()) {
             $contact->campaign->update([
-                'status' => WorkflowStatus::Completed->value,
+                'status' => CampaignStatus::Completed->value,
                 'next_run_at' => null,
             ]);
         }

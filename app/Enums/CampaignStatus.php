@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum WorkflowStatus: string
+enum CampaignStatus: string
 {
     case Running = 'running';
     case Paused = 'paused';

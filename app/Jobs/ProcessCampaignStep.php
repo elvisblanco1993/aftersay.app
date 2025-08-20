@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Actions\ParseMessageContent;
-use App\Enums\WorkflowStatus;
+use App\Enums\CampaignStatus;
 use App\Models\Campaign;
 use App\Models\CampaignLog;
 use App\Notifications\SendMessage;
@@ -76,11 +76,11 @@ class ProcessCampaignStep implements ShouldQueue
                     $campaign->update([
                         'current_step' => $nextStep->id,
                         'next_run_at' => $nextRunAt,
-                        'status' => WorkflowStatus::Running->value,
+                        'status' => CampaignStatus::Running->value,
                     ]);
                 } else {
                     $campaign->update([
-                        'status' => WorkflowStatus::Completed->value,
+                        'status' => CampaignStatus::Completed->value,
                     ]);
                 }
 

@@ -50,13 +50,15 @@
                             </a>
                         </td>
                         <td class="px-4 py-2.5 text-right">
-                            <x-button size="xs" type="button" @click="$dispatch('start-campaign', { contact_id: {{ $contact->id }} })">
-                                @if ($contact->campaign)
-                                    Reset Campaign
-                                @else
-                                    Start Campaign
-                                @endif
-                            </x-button>
+                            @if (!$contact->campaign || ($contact->campaign && $contact->campaign->status !== \App\Enums\CampaignStatus::Completed))
+                                <x-button size="sm" type="button" @click="$dispatch('start-campaign', { contact_id: {{ $contact->id }} })">
+                                    @if ($contact->campaign)
+                                        Reset Campaign
+                                    @else
+                                        Start Campaign
+                                    @endif
+                                </x-button>
+                            @endif
                         </td>
                     </tr>
                 @empty

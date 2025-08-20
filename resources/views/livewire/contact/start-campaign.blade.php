@@ -1,5 +1,5 @@
 <div>
-    <flux:modal name="start-campaign" class="md:w-96">
+    <flux:modal name="start-campaign" class="md:w-96" variant="flyout">
         <form wire:submit="save">
             @csrf
             <div class="space-y-6">

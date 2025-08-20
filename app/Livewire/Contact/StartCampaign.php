@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Contact;
 
-use App\Enums\WorkflowStatus;
+use App\Enums\CampaignStatus;
 use App\Models\Contact;
 use App\Models\Workflow;
 use Flux\Flux;
@@ -45,7 +45,7 @@ class StartCampaign extends Component
             ], [
                 'contact_id' => $this->contact->id,
                 'current_step' => 1,
-                'status' => WorkflowStatus::Running->value,
+                'status' => CampaignStatus::Running->value,
                 'next_run_at' => now()->ceilMinute(5),
             ]);
             session()->flash('flash.banner', $this->contact->name.' messages will start processing soon.');
