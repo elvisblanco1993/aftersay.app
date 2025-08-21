@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
@@ -15,7 +14,7 @@ class ContactController extends Controller
             'email' => 'required|email',
         ]);
 
-        $contact = Auth::user()->currentTenant->contacts()->create($validated);
+        $contact = $request->user()->currentTenant->contacts()->create($validated);
 
         return response()->json([
             'message' => 'Contact created successfully.',
