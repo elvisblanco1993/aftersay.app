@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PageController;
 use App\Http\Middleware\EnsureTenantIsSetup;
+use App\Livewire\Settings\ApiTokens;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\Tenant;
@@ -22,11 +23,13 @@ Route::get('/r/{slug}/l/{ulid}', [PageController::class, 'linkRedirect'])->name(
 Route::middleware(['auth'])->group(function () {
 
     Route::get('onboard', \App\Livewire\Onboard\Tenant::class)->name('onboard.tenant');
+    Route::redirect('settings', 'settings/profile');
 
     Route::middleware([
         'verified',
         EnsureTenantIsSetup::class,
     ])->group(function () {
+
         Route::get('dashboard', \App\Livewire\Dashboard\Show::class)->name('dashboard');
 
         /**
@@ -46,22 +49,29 @@ Route::middleware(['auth'])->group(function () {
          */
         Route::get('templates', \App\Livewire\Template\Index::class)->name('template.index');
         Route::get('templates/{template}/update', \App\Livewire\Template\Update::class)->name('template.update');
+
+        /**
+         * Billing Portal
+         */
+        Route::get('billing', function (Request $request) {
+            return $request
+                ->user()
+                ->currentTenant->redirectToBillingPortal(
+                    returnUrl: route('settings.tenant'),
+                );
+        })->name('billing-portal');
+
+        /**
+         * Settings
+         */
+        Route::get('settings/tenant', Tenant::class)->name('settings.tenant');
+        Route::get('settings/page', \App\Livewire\Page\Manage::class)->name('settings.page');
+        Route::get('settings/platforms', \App\Livewire\Platform\Index::class)->name('settings.platforms');
+        Route::get('settings/profile', Profile::class)->name('settings.profile');
+        Route::get('settings/password', Password::class)->name('settings.password');
+        Route::get('settings/api-tokens', ApiTokens::class)->name('settings.api-tokens');
+
     });
-
-    Route::redirect('settings', 'settings/profile');
-
-    Route::get('settings/tenant', Tenant::class)->name('settings.tenant');
-    Route::get('settings/page', \App\Livewire\Page\Manage::class)->name('settings.page');
-    Route::get('settings/platforms', \App\Livewire\Platform\Index::class)->name('settings.platforms');
-    Route::get('settings/profile', Profile::class)->name('settings.profile');
-    Route::get('settings/password', Password::class)->name('settings.password');
-    Route::get('billing', function (Request $request) {
-        return $request
-            ->user()
-            ->currentTenant->redirectToBillingPortal(
-                returnUrl: route('settings.tenant'),
-            );
-    })->name('billing-portal');
 });
 
 require __DIR__.'/auth.php';

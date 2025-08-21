@@ -5,6 +5,7 @@
                 <flux:navlist.item :href="route('settings.tenant')" wire:navigate>{{ __('Company Info') }}</flux:navlist.item>
                 <flux:navlist.item :href="route('settings.page')" wire:navigate>{{ __('Page') }}</flux:navlist.item>
                 <flux:navlist.item :href="route('settings.platforms')" wire:navigate>{{ __('Platforms') }}</flux:navlist.item>
+                <flux:navlist.item :href="route('settings.api-tokens')" wire:navigate>{{ __('Api Tokens') }}</flux:navlist.item>
             </flux:navlist.group>
             <flux:navlist.group heading="Personal details">
                 <flux:navlist.item :href="route('settings.profile')" wire:navigate>{{ __('Your Profile') }}</flux:navlist.item>
