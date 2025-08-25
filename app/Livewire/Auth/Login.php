@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-use RyanChandler\LaravelCloudflareTurnstile\Rules\Turnstile;
 
 #[Layout('components.layouts.auth')]
 class Login extends Component
@@ -19,7 +19,7 @@ class Login extends Component
 
     public string $password = '';
 
-    public $captcha;
+    public string $captcha = '';
 
     public bool $remember = false;
 
@@ -31,7 +31,7 @@ class Login extends Component
         $this->validate([
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
-            'captcha' => ['required', app(Turnstile::class)],
+            'captcha' => ['required', Rule::turnstile()],
         ]);
 
         $this->ensureIsNotRateLimited();

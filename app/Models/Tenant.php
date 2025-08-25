@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\PlanManager;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -15,6 +16,10 @@ class Tenant extends Model
 {
     use Billable;
 
+    protected $casts = [
+        'trial_ends_at' => 'datetime',
+    ];
+
     /**
      * The "booted" method of the model.
      */
@@ -27,6 +32,34 @@ class Tenant extends Model
                 }
             }),
         );
+    }
+
+    public function currentPlanKey(): ?string
+    {
+        // If trial, assume they are trialing on the plan they signed up for
+        if ($this->onTrial()) {
+            return 'starter';
+        }
+
+        // Fallback to active subscription
+        if ($this->subscribed('default')) {
+            $priceId = $this->subscription('default')->stripe_price;
+
+            foreach (config('internal.plans') as $key => $plan) {
+                if ($plan['stripe_monthly_price_id'] === $priceId || $plan['stripe_annual_price_id'] === $priceId) {
+                    return $key;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public function planConfig(): array
+    {
+        $plan_key = $this->currentPlanKey() ?? 'starter';
+
+        return PlanManager::getPlanConfig($plan_key);
     }
 
     public function users(): BelongsToMany

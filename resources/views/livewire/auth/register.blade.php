@@ -57,8 +57,9 @@
             :placeholder="__('Confirm password')"
             viewable
         />
-
-        <x-turnstile wire:model="captcha" />
+        <div wire:ignore>
+            <x-turnstile wire:model="captcha" data-action="register" />
+        </div>
 
         <div class="flex items-center justify-end">
             <flux:button type="submit" variant="primary" class="w-full">

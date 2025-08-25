@@ -1,6 +1,6 @@
 <div>
     <flux:modal.trigger name="create-workflow">
-        <flux:button variant="primary">Add workflow</flux:button>
+            <flux:button variant="primary" icon-trailing="plus">New</flux:button>
     </flux:modal.trigger>
 
     <flux:modal name="create-workflow" class="md:w-96">

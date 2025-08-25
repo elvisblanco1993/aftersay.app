@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff9d25eceb9757eb3499b80cd11b0923",
+    "content-hash": "18f498f6b257c1db04c29e2c2080c55d",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1305,86 +1305,6 @@
             "time": "2025-02-03T10:55:03+00:00"
         },
         {
-            "name": "laravel-notification-channels/twilio",
-            "version": "4.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel-notification-channels/twilio.git",
-                "reference": "ee3fff9daf91d11f5e0f120c2752f3b51c9dec6d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel-notification-channels/twilio/zipball/ee3fff9daf91d11f5e0f120c2752f3b51c9dec6d",
-                "reference": "ee3fff9daf91d11f5e0f120c2752f3b51c9dec6d",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/events": "^11.0 || ^12.0",
-                "illuminate/notifications": "^11.0 || ^12.0",
-                "illuminate/queue": "^11.0 || ^12.0",
-                "illuminate/support": "^11.0 || ^12.0",
-                "php": "^8.2",
-                "twilio/sdk": "^7.16 || ^8.3"
-            },
-            "require-dev": {
-                "laravel/pint": "^1.21",
-                "mockery/mockery": "^1.0",
-                "orchestra/testbench": "^9.0 || ^10.0",
-                "phpunit/phpunit": "^10.5 || ^11.5.10"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "NotificationChannels\\Twilio\\TwilioProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "NotificationChannels\\Twilio\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Philip Iezzi",
-                    "email": "pipo@onlime.ch",
-                    "homepage": "https://github.com/onlime",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Gregorio Hernández Caso",
-                    "email": "gregoriohc@gmail.com",
-                    "homepage": "https://github.com/gregoriohc",
-                    "role": "Developer"
-                },
-                {
-                    "name": "atymic",
-                    "email": "atymicq@gmail.com",
-                    "homepage": "https://atymic.dev",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Provides Twilio notification channel for Laravel",
-            "keywords": [
-                "call",
-                "laravel",
-                "mms",
-                "notification",
-                "sms",
-                "twilio"
-            ],
-            "support": {
-                "issues": "https://github.com/laravel-notification-channels/twilio/issues",
-                "source": "https://github.com/laravel-notification-channels/twilio"
-            },
-            "time": "2025-07-07T10:26:10+00:00"
-        },
-        {
             "name": "laravel/cashier",
             "version": "v15.7.1",
             "source": {
@@ -2653,16 +2573,16 @@
         },
         {
             "name": "livewire/flux",
-            "version": "v2.2.4",
+            "version": "v2.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/flux.git",
-                "reference": "af81b5fd34c6490d5b5e05ed0f8140c0250e5069"
+                "reference": "2295f14766f86006d889f37ee208bcf347a0d013"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/flux/zipball/af81b5fd34c6490d5b5e05ed0f8140c0250e5069",
-                "reference": "af81b5fd34c6490d5b5e05ed0f8140c0250e5069",
+                "url": "https://api.github.com/repos/livewire/flux/zipball/2295f14766f86006d889f37ee208bcf347a0d013",
+                "reference": "2295f14766f86006d889f37ee208bcf347a0d013",
                 "shasum": ""
             },
             "require": {
@@ -2710,9 +2630,9 @@
             ],
             "support": {
                 "issues": "https://github.com/livewire/flux/issues",
-                "source": "https://github.com/livewire/flux/tree/v2.2.4"
+                "source": "https://github.com/livewire/flux/tree/v2.2.5"
             },
-            "time": "2025-08-09T01:46:51+00:00"
+            "time": "2025-08-19T22:41:54+00:00"
         },
         {
             "name": "livewire/livewire",
@@ -3862,16 +3782,16 @@
         },
         {
             "name": "phpoption/phpoption",
-            "version": "1.9.3",
+            "version": "1.9.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/php-option.git",
-                "reference": "e3fac8b24f56113f7cb96af14958c0dd16330f54"
+                "reference": "638a154f8d4ee6a5cfa96d6a34dfbe0cffa9566d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/e3fac8b24f56113f7cb96af14958c0dd16330f54",
-                "reference": "e3fac8b24f56113f7cb96af14958c0dd16330f54",
+                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/638a154f8d4ee6a5cfa96d6a34dfbe0cffa9566d",
+                "reference": "638a154f8d4ee6a5cfa96d6a34dfbe0cffa9566d",
                 "shasum": ""
             },
             "require": {
@@ -3879,7 +3799,7 @@
             },
             "require-dev": {
                 "bamarni/composer-bin-plugin": "^1.8.2",
-                "phpunit/phpunit": "^8.5.39 || ^9.6.20 || ^10.5.28"
+                "phpunit/phpunit": "^8.5.44 || ^9.6.25 || ^10.5.53 || ^11.5.34"
             },
             "type": "library",
             "extra": {
@@ -3921,7 +3841,7 @@
             ],
             "support": {
                 "issues": "https://github.com/schmittjoh/php-option/issues",
-                "source": "https://github.com/schmittjoh/php-option/tree/1.9.3"
+                "source": "https://github.com/schmittjoh/php-option/tree/1.9.4"
             },
             "funding": [
                 {
@@ -3933,7 +3853,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-07-20T21:41:07+00:00"
+            "time": "2025-08-21T11:53:16+00:00"
         },
         {
             "name": "psr/clock",
@@ -7502,56 +7422,6 @@
             "time": "2024-12-21T16:25:41+00:00"
         },
         {
-            "name": "twilio/sdk",
-            "version": "8.7.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twilio/twilio-php",
-                "reference": "fa2c08f15c6f212de0ec007c175edf5eff7c7d7b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/fa2c08f15c6f212de0ec007c175edf5eff7c7d7b",
-                "reference": "fa2c08f15c6f212de0ec007c175edf5eff7c7d7b",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3.0",
-                "guzzlehttp/guzzle": "^6.3 || ^7.0",
-                "phpunit/phpunit": ">=7.0 < 10"
-            },
-            "suggest": {
-                "guzzlehttp/guzzle": "An HTTP client to execute the API requests"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Twilio\\": "src/Twilio/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Twilio API Team",
-                    "email": "api@twilio.com"
-                }
-            ],
-            "description": "A PHP wrapper for Twilio's API",
-            "homepage": "https://github.com/twilio/twilio-php",
-            "keywords": [
-                "api",
-                "sms",
-                "twilio"
-            ],
-            "time": "2025-08-18T09:05:26+00:00"
-        },
-        {
             "name": "typesense/typesense-php",
             "version": "v5.1.0",
             "source": {
@@ -8807,20 +8677,20 @@
         },
         {
             "name": "pestphp/pest",
-            "version": "v3.8.3",
+            "version": "v3.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pestphp/pest.git",
-                "reference": "165c879fe6e66926235d562123db206861aa6cc1"
+                "reference": "72cf695554420e21858cda831d5db193db102574"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest/zipball/165c879fe6e66926235d562123db206861aa6cc1",
-                "reference": "165c879fe6e66926235d562123db206861aa6cc1",
+                "url": "https://api.github.com/repos/pestphp/pest/zipball/72cf695554420e21858cda831d5db193db102574",
+                "reference": "72cf695554420e21858cda831d5db193db102574",
                 "shasum": ""
             },
             "require": {
-                "brianium/paratest": "^7.8.3",
+                "brianium/paratest": "^7.8.4",
                 "nunomaduro/collision": "^8.8.2",
                 "nunomaduro/termwind": "^2.3.1",
                 "pestphp/pest-plugin": "^3.0.0",
@@ -8903,7 +8773,7 @@
             ],
             "support": {
                 "issues": "https://github.com/pestphp/pest/issues",
-                "source": "https://github.com/pestphp/pest/tree/v3.8.3"
+                "source": "https://github.com/pestphp/pest/tree/v3.8.4"
             },
             "funding": [
                 {
@@ -8915,7 +8785,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-08-19T10:11:21+00:00"
+            "time": "2025-08-20T19:12:42+00:00"
         },
         {
             "name": "pestphp/pest-plugin",

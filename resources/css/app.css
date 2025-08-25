@@ -48,6 +48,14 @@
     }
 }
 
+.minicard {
+    @apply bg-white dark:bg-zinc-700/50 px-3 py-2.5 rounded-xl border dark:border-zinc-700;
+}
+
+.card {
+    @apply bg-white dark:bg-zinc-700/50 px-4 py-6 rounded-xl border dark:border-zinc-700;
+}
+
 [data-flux-field]:not(ui-radio, ui-checkbox) {
     @apply grid gap-2;
 }

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class EnsureTenantIsSetup
+class EnsureTenantIsSubscribed
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,8 @@ class EnsureTenantIsSetup
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $tenant = $request->user()->currentTenant;
-
-        if (! $tenant->onboarded_at || ! $tenant->page->ready_at) {
-            return redirect(to: route('onboard.tenant'));
+        if ($request->user() && $request->user()->currentTenant && ! $request->user()->currentTenant->onTrial() && ! $request->user()->currentTenant->subscribed('default')) {
+            return redirect(route('billing.plans'));
         }
 
         return $next($request);

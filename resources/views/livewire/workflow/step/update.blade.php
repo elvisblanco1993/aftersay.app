@@ -3,7 +3,7 @@
         <flux:button size="xs">Edit</flux:button>
     </flux:modal.trigger>
 
-    <flux:modal name="edit-step-{{ $step->id }}" class="md:w-lg" variant="flyout">
+    <flux:modal :closable="false" name="edit-step-{{ $step->id }}" class="md:w-lg" variant="flyout">
         <div class="space-y-6">
             <div>
                 <flux:heading size="lg">Add step</flux:heading>

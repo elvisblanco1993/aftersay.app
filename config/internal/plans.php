@@ -1,44 +1,33 @@
 <?php
 
 return [
-
-    'plans' => [
-        'starter' => [
-            'name' => 'Starter',
-            'price' => 19,
-            'stripe_product_id' => env('STRIPE_PRODUCT_STARTER'),
-            'stripe_price_id' => env('STRIPE_PRICE_STARTER'),
+    'starter' => [
+        'name' => 'Starter',
+        'price_monthly' => 19,
+        'price_annual' => 190,
+        'stripe_product_id' => env('STRIPE_PRODUCT_STARTER'),
+        'stripe_monthly_price_id' => env('STRIPE_MONTHLY_PRICE_STARTER'),
+        'stripe_annual_price_id' => env('STRIPE_ANNUAL_PRICE_STARTER'),
+        'features' => [
             'max_contacts' => 200,
-            'max_links_per_contact' => 3,
             'max_review_platforms' => 3,
             'internal_reviews' => true,
             'custom_branding' => true,
-            'analytics' => false,
-            'show_powered_by' => false,
-        ],
-
-        'growth' => [
-            'name' => 'Growth',
-            'price' => 39,
-            'stripe_product_id' => env('STRIPE_PRODUCT_GROWTH'),
-            'stripe_price_id' => env('STRIPE_PRICE_GROWTH'),
-            'max_contacts' => 500,
-            'max_links_per_contact' => -1,
-            'max_review_platforms' => -1,
-            'internal_reviews' => true,
-            'custom_branding' => true,
             'analytics' => true,
-            'show_powered_by' => false,
+            'show_powered_by' => true,
         ],
+    ],
 
-        'business' => [
-            'name' => 'Business',
-            'price' => 99,
-            'stripe_product_id' => env('STRIPE_PRODUCT_BUSINESS'),
-            'stripe_price_id' => env('STRIPE_PRICE_BUSINESS'),
-            'max_contacts' => 2500,
-            'max_links_per_contact' => -1,
-            'max_review_platforms' => -1,
+    'growth' => [
+        'name' => 'Growth',
+        'price_monthly' => 39,
+        'price_annual' => 390,
+        'stripe_product_id' => env('STRIPE_PRODUCT_GROWTH'),
+        'stripe_monthly_price_id' => env('STRIPE_MONTHLY_PRICE_GROWTH'),
+        'stripe_annual_price_id' => env('STRIPE_ANNUAL_PRICE_GROWTH'),
+        'features' => [
+            'max_contacts' => 500,
+            'max_review_platforms' => 10,
             'internal_reviews' => true,
             'custom_branding' => true,
             'analytics' => true,
@@ -46,4 +35,20 @@ return [
         ],
     ],
 
+    'business' => [
+        'name' => 'Business',
+        'price_monthly' => 99,
+        'price_annual' => 990,
+        'stripe_product_id' => env('STRIPE_PRODUCT_BUSINESS'),
+        'stripe_monthly_price_id' => env('STRIPE_MONTHLY_PRICE_BUSINESS'),
+        'stripe_annual_price_id' => env('STRIPE_ANNUAL_PRICE_BUSINESS'),
+        'features' => [
+            'max_contacts' => 2500,
+            'max_review_platforms' => -1,
+            'internal_reviews' => true,
+            'custom_branding' => true,
+            'analytics' => true,
+            'show_powered_by' => false,
+        ],
+    ],
 ];

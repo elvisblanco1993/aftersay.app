@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\TemplateStatus;
+use App\Enums\TemplateType;
 use App\Models\Scopes\TemplateScope;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Model;
@@ -14,13 +16,18 @@ class Template extends Model
 {
     use Searchable;
 
+    protected $casts = [
+        'type' => TemplateType::class,
+        'status' => TemplateStatus::class,
+    ];
+
     public function toSearchableArray()
     {
         return [
             'id' => (string) $this->id,
             'tenant_id' => (string) $this->tenant_id,
             'name' => (string) $this->name,
-            'type' => (string) $this->type,
+            'type' => (string) $this->type?->value,
             'subject' => (string) $this->subject,
             'created_at' => $this->created_at->timestamp,
         ];

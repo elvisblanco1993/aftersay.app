@@ -39,7 +39,15 @@
         <flux:checkbox wire:model="remember" :label="__('Remember me')" />
 
         {{-- Captcha --}}
-        <x-turnstile wire:model="captcha" />
+        <div wire:ignore>
+            <x-turnstile wire:model="captcha" data-action="login" />
+        </div>
+
+        @error('captcha')
+            <div class="text-sm text-red-500">
+                {{ $message }}
+            </div>
+        @enderror
 
         <div class="flex items-center justify-end">
             <flux:button variant="primary" type="submit" class="w-full">{{ __('Log in') }}</flux:button>

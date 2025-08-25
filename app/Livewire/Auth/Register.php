@@ -3,6 +3,7 @@
 namespace App\Livewire\Auth;
 
 use App\Actions\CreateDefaultWorkflow;
+use App\Enums\TemplateStatus;
 use App\Models\Page;
 use App\Models\Tenant;
 use App\Models\User;
@@ -10,10 +11,10 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-use RyanChandler\LaravelCloudflareTurnstile\Rules\Turnstile;
 
 #[Layout('components.layouts.auth')]
 class Register extends Component
@@ -32,7 +33,7 @@ class Register extends Component
 
     protected $tenant;
 
-    public $captcha;
+    public string $captcha = '';
 
     /**
      * Handle an incoming registration request.
@@ -40,7 +41,7 @@ class Register extends Component
     public function register(): void
     {
         $validated = $this->validate([
-            'captcha' => ['required', app(Turnstile::class)],
+            'captcha' => ['required', Rule::turnstile()],
             'name' => ['required', 'string', 'max:255'],
             'business_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
@@ -58,6 +59,7 @@ class Register extends Component
                 'user_id' => $this->user->id,
                 'name' => $this->business_name,
                 'email' => $this->email,
+                'trial_ends_at' => now()->addDays(30)->endOfDay(),
             ]);
 
             // Create public facing page
@@ -84,6 +86,7 @@ class Register extends Component
                     'name' => $template['name'],
                     'subject' => $template['type'] === 'email' ? $template['subject'] : null,
                     'body' => $template['body'],
+                    'status' => TemplateStatus::Published,
                 ]);
             }
 

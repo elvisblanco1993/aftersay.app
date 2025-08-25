@@ -24,10 +24,33 @@
             <div class="space-y-2">
                 <flux:heading>Placeholders</flux:heading>
                 <flux:text>Use these placeholders to dinamically insert content into your template.</flux:text>
+
+                <ul class="border dark:border-white/20 rounded-lg text-sm">
+                    <li class="grid grid-cols-2 gap-8 px-4 py-2">
+                        <span>[first_name]</span>
+                        <span>The contact's First Name</span>
+                    </li>
+                    <flux:separator />
+                    <li class="grid grid-cols-2 gap-8 px-4 py-2">
+                        <span>[last_name]</span>
+                        <span>The contact's Last Name</span>
+                    </li>
+                    <flux:separator />
+                    <li class="grid grid-cols-2 gap-8 px-4 py-2">
+                        <span>[email]</span>
+                        <span>The contact's Email Address</span>
+                    </li>
+                    <flux:separator />
+                    <li class="grid grid-cols-2 gap-8 px-4 py-2">
+                        <span>[phone]</span>
+                        <span>The contact's Phone Number</span>
+                    </li>
+                </ul>
             </div>
 
-            <flux:separator />
+            <flux:separator text="Template Settings" />
             <flux:input wire:model="name" label="Template name" description="Used internally to help you easily locate the template." />
+            <flux:switch align="left" label="Enabled" wire:model.live="is_enabled" />
         </div>
     </form>
 </div>

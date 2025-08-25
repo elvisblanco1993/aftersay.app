@@ -22,6 +22,20 @@
             <flux:spacer />
 
             <flux:navlist variant="outline">
+                @if (Auth::user()->currentTenant->onTrial())
+                    <div class="mb-6 space-y-3 px-3 py-3 border dark:border-zinc-700 rounded-lg">
+                        <div class="w-full flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <flux:icon.crown variant="micro" class="stroke-pink-600" />
+                                <span class="text-sm font-medium leading-none text-zinc-700 dark:text-white">Free Trial</span>
+                            </div>
+                            <span class="text-xs font-light tracking-wider">{{ ceil(now()->diffInDays(auth()->user()->currentTenant->trialEndsAt())) }} days left</span>
+                        </div>
+
+                        <flux:button href="{{ route('billing.plans') }}" size="sm" variant="primary" color="pink" class="w-full">Upgrade Plan</flux:button>
+                    </div>
+                @endif
+
                 <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
                 {{ __('Documentation') }}
                 </flux:navlist.item>

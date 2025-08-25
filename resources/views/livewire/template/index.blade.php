@@ -1,7 +1,7 @@
 <div class="space-y-6">
     <div class="flex items-center justify-between">
         <flux:heading size="xl">Templates</flux:heading>
-        {{-- <livewire:contact.create /> --}}
+        <livewire:template.create />
     </div>
 
     <div class="flex items-center justify-between">
@@ -18,6 +18,9 @@
                     <th scope="col" class="px-4 py-2">
                         Type
                     </th>
+                    <th scope="col" class="px-4 py-2">
+                        Status
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -33,7 +36,12 @@
                         </td>
                         <td>
                             <a href="{{ route('template.update', ['template' => $template]) }}" wire:navigate class="block px-4 py-2.5">
-                                <flux:badge size="sm" color="{{ \App\Enums\TemplateType::tryFrom($template->type)->color() }}">{{ \App\Enums\TemplateType::tryFrom($template->type)->label() }}</flux:badge>
+                                <flux:badge size="sm" color="{{ $template->type->color() }}">{{ $template->type->label() }}</flux:badge>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ route('template.update', ['template' => $template]) }}" wire:navigate class="block px-4 py-2.5">
+                                <flux:badge size="sm" color="{{ $template->status->color() }}">{{ $template->status->label() }}</flux:badge>
                             </a>
                         </td>
                     </tr>

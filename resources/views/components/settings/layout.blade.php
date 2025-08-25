@@ -1,33 +1,21 @@
-<div class="flex items-start max-md:flex-col">
-    <div class="me-10 w-full pb-4 md:w-[220px]">
-        <flux:navlist>
-            <flux:navlist.group heading="Your organization">
-                <flux:navlist.item :href="route('settings.tenant')" wire:navigate>{{ __('Company Info') }}</flux:navlist.item>
-                <flux:navlist.item :href="route('settings.page')" wire:navigate>{{ __('Page') }}</flux:navlist.item>
-                <flux:navlist.item :href="route('settings.platforms')" wire:navigate>{{ __('Platforms') }}</flux:navlist.item>
-                <flux:navlist.item :href="route('settings.api-tokens')" wire:navigate>{{ __('Api Tokens') }}</flux:navlist.item>
-            </flux:navlist.group>
-            <flux:navlist.group heading="Personal details">
-                <flux:navlist.item :href="route('settings.profile')" wire:navigate>{{ __('Your Profile') }}</flux:navlist.item>
-                <flux:navlist.item :href="route('settings.password')" wire:navigate>{{ __('Change Password') }}</flux:navlist.item>
-            </flux:navlist.group>
-        </flux:navlist>
-    </div>
+<div class="space-y-6">
 
-    <flux:separator class="md:hidden" />
+    <flux:navbar :scrollable="true">
+        <flux:navbar.item :href="route('settings.tenant')" wire:navigate>{{ __('Company') }}</flux:navbar.item>
+        <flux:navbar.item :href="route('settings.page')" wire:navigate>{{ __('Page') }}</flux:navbar.item>
+        <flux:navbar.item :href="route('settings.platforms')" wire:navigate>{{ __('Links') }}</flux:navbar.item>
+        <flux:navbar.item :href="route('settings.api-tokens')" wire:navigate>{{ __('Api Tokens') }}</flux:navbar.item>
+        <flux:navbar.item :href="route('billing.dashboard')" wire:navigate>{{ __('Billing') }}</flux:navbar.item>
+        <flux:navbar.item :href="route('settings.profile')" wire:navigate>{{ __('Profile') }}</flux:navbar.item>
+        <flux:navbar.item :href="route('settings.password')" wire:navigate>{{ __('Change Password') }}</flux:navbar.item>
+    </flux:navbar>
 
-    <div class="flex-1 self-stretch max-md:pt-6">
-        <div class="flex items-center justify-between">
-            <div>
-                <flux:heading>{{ $heading ?? '' }}</flux:heading>
-                <flux:subheading>{{ $subheading ?? '' }}</flux:subheading>
-            </div>
-            <div>{{ $actions ?? '' }}</div>
+    <div class="grid grid-cols-6 gap-4">
+        <div class="col-span-6 md:col-span-2">
+            <flux:heading size="lg">{{ $heading ?? '' }}</flux:heading>
+            <flux:subheading>{{ $subheading ?? '' }}</flux:subheading>
         </div>
-
-        <div>{{ $container ?? '' }}</div>
-
-        <div class="mt-5 w-full">
+        <div class="col-span-6 md:col-span-4">
             {{ $slot }}
         </div>
     </div>

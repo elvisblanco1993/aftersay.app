@@ -3,6 +3,7 @@
 namespace App\Livewire\Workflow\Step;
 
 use App\Enums\DelayUnit;
+use App\Enums\TemplateStatus;
 use App\Enums\WorkflowActionType;
 use App\Models\Workflow;
 use Livewire\Component;
@@ -28,7 +29,7 @@ class Create extends Component
     public function render()
     {
         return view('livewire.workflow.step.create', [
-            'templates' => $this->workflow->tenant->templates,
+            'templates' => $this->workflow->tenant->templates->where('status', TemplateStatus::Published),
         ]);
     }
 

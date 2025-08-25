@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Template;
 
+use App\Enums\TemplateStatus;
 use App\Models\Template;
 use Livewire\Component;
 
@@ -15,11 +16,14 @@ class Update extends Component
 
     public $name;
 
+    public bool $is_enabled;
+
     public function mount()
     {
         $this->subject = $this->template->subject;
         $this->body = $this->template->body;
         $this->name = $this->template->name;
+        $this->is_enabled = $this->template->status === TemplateStatus::Published ? true : false;
     }
 
     public function render()
@@ -35,5 +39,11 @@ class Update extends Component
             'body' => $this->body,
         ]);
         $this->dispatch('saved');
+    }
+
+    public function updatedIsEnabled()
+    {
+        $status = $this->is_enabled === true ? TemplateStatus::Published : TemplateStatus::Draft;
+        $this->template->update(['status' => $status]);
     }
 }
