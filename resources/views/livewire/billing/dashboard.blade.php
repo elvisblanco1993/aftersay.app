@@ -4,9 +4,17 @@
 
         <div class="space-y-6">
             <div class="space-y-3">
-                <flux:heading size="lg">Your Plan</flux:heading>
+                <div class="flex items-center justify-between">
+                    <flux:heading size="lg">Your Plan</flux:heading>
+                    @if ($user->currentTenant->subscribed('default'))
+                        <flux:button size="xs" href="{{ route('billing.update-plan') }}">Change plan</flux:button>
+                    @endif
+                </div>
                 <div class="card space-y-6">
-                    <flux:heading size="lg">{{ $plan['name'] }}</flux:heading>
+                    <div class="flex items-center justify-between">
+                        <flux:heading size="lg">{{ $plan['name'] }}</flux:heading>
+                        {{-- Display the plan's amount. --}}
+                    </div>
                     <div class="space-y-2 text-sm">
                         <div>Up to {{ $plan['features']['max_contacts'] }} contacts</div>
                         <div>Connect {{ ($plan['features']['max_review_platforms'] > 1) ? $plan['features']['max_review_platforms'] : 'unlimited' }} review platforms</div>
@@ -21,8 +29,6 @@
                     </div>
                     @if ($user->currentTenant->onTrial())
                         <flux:button variant="primary" href="{{ route('billing.plans') }}">Upgrade Plan</flux:button>
-                    @else
-                        <flux:text>You can update your subscription on your <a href="{{ route('billing.portal') }}" class="underline">Billing Portal</a>.</flux:text>
                     @endif
                 </div>
             </div>
@@ -43,10 +49,10 @@
             </div>
 
             <div class="space-y-3">
-                <flux:heading size="lg">Billing & Account</flux:heading>
+                <flux:heading size="lg">Manage your subscription</flux:heading>
                 <div class="card space-y-6">
-                    <flux:text>Update your payment method, view invoices, or switch plans anytime.</flux:text>
-                    <flux:button href="{{ route('billing.portal') }}" variant="primary">Open Billing Portal</flux:button>
+                    <flux:text>Go to Stripe billing portal to manage your subscription, edit your billing address, payments methods, and more.</flux:text>
+                    <flux:button href="{{ route('billing.portal') }}" icon-trailing="arrow-up-right">Open Billing Portal</flux:button>
                 </div>
             </div>
         </div>

@@ -11,6 +11,8 @@
         </nav>
 
         <!-- CTA Button -->
-        <a href="{{ route('register') }}" class="inline-block px-6 py-2 rounded-full text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-lg">Get Started Free</a>
+        @if (Route::has('register'))
+            <a href="{{ route('register') }}" class="inline-block px-6 py-2 rounded-full text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-lg">Get Started Free</a>
+        @endif
     </div>
 </header>

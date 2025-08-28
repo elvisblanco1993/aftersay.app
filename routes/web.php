@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BillingController;
 use App\Http\Controllers\PageController;
 use App\Http\Middleware\EnsureTenantIsSetup;
 use App\Http\Middleware\EnsureTenantIsSubscribed;
@@ -7,7 +8,6 @@ use App\Livewire\Settings\ApiTokens;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\Tenant;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'website.home')->name('home');
@@ -65,9 +65,8 @@ Route::middleware(['auth'])->group(function () {
 
             Route::get('billing', \App\Livewire\Billing\Dashboard::class)->name('billing.dashboard');
             Route::get('billing/plans', \App\Livewire\Billing\Plans::class)->name('billing.plans');
-            Route::get('billing/portal', function (Request $request) {
-                return $request->user()->currentTenant->redirectToBillingPortal(returnUrl: route('billing.dashboard'));
-            })->name('billing.portal');
+            Route::get('billing/portal', [BillingController::class, 'billingPortal'])->name('billing.portal');
+            Route::get('billing/plans/update', [BillingController::class, 'updatePlan'])->name('billing.update-plan');
         });
 
     });
