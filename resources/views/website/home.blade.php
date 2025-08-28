@@ -9,16 +9,15 @@
         <section class="relative min-h-screen flex items-center justify-center text-center py-20 px-4 md:px-6 overflow-hidden">
             <!-- Background Blob -->
             <div class="absolute inset-0 z-0">
-                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500 rounded-full opacity-20 blur-3xl animate-pulse"></div>
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500 rounded-full opacity-20 blur-3xl animate-pulse duration-1000"></div>
                 <div class="absolute top-1/4 right-1/4 w-72 h-72 bg-blue-500 rounded-full opacity-15 blur-3xl animate-pulse delay-500"></div>
             </div>
     
             <div class="max-w-7xl mx-auto relative z-10">
                 <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight text-white mb-4">
-                    <span class="text-gradient">Automate</span> Your Business Reviews,
-                    <br class="hidden md:inline">Boost Your Reputation.
+                    Effortlessly Grow Your Business with More <br class="hidden md:inline"><span class="text-gradient">5-Star Reviews</span>.
                 </h1>
-                <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8">AfterSay streamlines the process of getting both public reviews and private feedback, giving you control over your online reputation.</p>
+                <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8">AfterSay is the all-in-one platform that automates customer feedback collection, helps you manage your online reputation, and turns happy clients into powerful brand advocates.</p>
                 <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
                     <a href="#get-started" class="px-8 py-3 rounded-full text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-lg transform hover:scale-105">Start Your Free Trial</a>
                     <a href="#features" class="px-8 py-3 rounded-full text-lg font-semibold text-blue-400 border border-blue-400 hover:bg-blue-400 hover:text-gray-950 transition-colors transform hover:scale-105">Learn More</a>
