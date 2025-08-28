@@ -77,6 +77,13 @@ select:focus[data-flux-control] {
 /* Hide scrollbars */
 @utility scrollbar-hidden {  &::-webkit-scrollbar {    display: none;  }}
 
+.text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(to right, #6EE7B7, #3B82F6, #9333EA);
+}
+
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */

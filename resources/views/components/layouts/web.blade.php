@@ -3,7 +3,7 @@
     <head>
         @include('partials.head')
     </head>
-    <body class="antialiased text-zinc-800 dark:text-zinc-100 dark:bg-zinc-900 bg-white flex flex-col min-h-screen">
+    <body class="bg-gray-950 text-gray-100">
         @include('components.layouts.web.navbar')
         {{ $slot }}
         @include('components.layouts.web.footer')
