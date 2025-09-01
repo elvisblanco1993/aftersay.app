@@ -82,6 +82,8 @@ select:focus[data-flux-control] {
     }
 }
 
+cloak[x-cloak] { display: none !important; }
+
 .text-gradient {
     background-clip: text;
     -webkit-background-clip: text;
