@@ -10,9 +10,9 @@ use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\Tenant;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'website.home')->name('home');
-
-Route::get('join', \App\Livewire\Waitlist\Join::class)->name('waitlist.join');
+/**
+ * Website routes are located in the "website.php" routes file.
+ */
 
 /**
  * Client Public Routes
@@ -73,3 +73,4 @@ Route::middleware(['auth'])->group(function () {
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/website.php';

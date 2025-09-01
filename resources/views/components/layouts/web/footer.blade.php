@@ -1,15 +1,10 @@
-<footer class="bg-gray-950 py-12 px-4 md:px-6 border-t border-gray-800 footer-pattern">
+<footer class="bg-gray-950 py-12 px-4 md:px-6 footer-pattern">
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <!-- Company Info -->
             <div class="space-y-4">
-                <a href="#" class="flex items-center space-x-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.59-12.7L11.5 12.3l-2.09-2.09L5.7 14.2l-1.41 1.41 5.66-5.66L11.5 8l4.42 4.41 1.41-1.41z"/>
-                    </svg>
-                    <span class="text-xl font-bold text-gray-100">AfterSay</span>
-                </a>
-                <p class="text-gray-400 text-sm max-w-sm">Automating your business reputation, one review at a time. Made with love and code.</p>
+                <x-app-logo />
+                <p class="text-gray-400 text-sm max-w-sm">Automating your business reputation, one review at a time.</p>
             </div>
             <!-- Navigation Links -->
             <div>
@@ -17,17 +12,16 @@
                 <ul class="space-y-2">
                     <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">Home</a></li>
                     <li><a href="#features" class="text-gray-400 hover:text-blue-400 transition-colors">Features</a></li>
-                    <li><a href="#pricing" class="text-gray-400 hover:text-blue-400 transition-colors">Pricing</a></li>
-                    <li><a href="#contact" class="text-gray-400 hover:text-blue-400 transition-colors">Contact</a></li>
+                    <li><a href="{{ route('pricing') }}" class="text-gray-400 hover:text-blue-400 transition-colors">Pricing</a></li>
+                    <li><a href="#contact" class="text-gray-400 hover:text-blue-400 transition-colors">About</a></li>
                 </ul>
             </div>
             <!-- Legal Links -->
             <div>
                 <h4 class="text-lg font-semibold text-white mb-4">Legal</h4>
                 <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">Privacy Policy</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">Terms of Service</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">Disclaimer</a></li>
+                    <li><a href="{{ route('privacy') }}" class="text-gray-400 hover:text-blue-400 transition-colors">Privacy Policy</a></li>
+                    <li><a href="{{ route('terms') }}" class="text-gray-400 hover:text-blue-400 transition-colors">Terms of Service</a></li>
                 </ul>
             </div>
             <!-- Social Media -->
