@@ -1,5 +1,5 @@
 <x-layouts.web>
-    <div class="max-w-3xl mx-auto prose prose-invert py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 prose prose-invert py-24">
         <div>
             <h1>Terms and Conditions of Service</h1>
             <p><strong>Last updated:</strong> September 1, 2025</p>
