@@ -22,6 +22,8 @@ class Show extends Component
 
     public $feedback_comment;
 
+    public $feedback_name;
+
     public $feedback_email;
 
     public function mount($slug)
@@ -49,9 +51,11 @@ class Show extends Component
 
         Concern::create([
             'tenant_id' => $this->page->tenant_id,
+            'rating' => $this->rating,
             'content' => $this->feedback_comment,
             'contact_id' => $this->contact ? Contact::where('ulid', $this->contact)->first()?->id : null,
             'contact_email' => $this->feedback_email,
+            'contact_name' => $this->feedback_name,
         ]);
 
         // End campaign - No more automated emails
@@ -62,8 +66,7 @@ class Show extends Component
             ]);
         }
 
-        // TODO: Redirect to Thank You page.
-
+        $this->redirect(url: route('review-page.completed', ['slug' => $this->page->slug]), navigate: true);
     }
 
     public function updatedRating()

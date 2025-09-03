@@ -2,7 +2,7 @@
     <div class="space-y-6">
         <div>
             @if ($page->logo_url)
-                <img src="{{ $page->logo_url }}" alt="{{ $page->tenant->name }} logo" class="h-12 w-auto mx-auto">
+                <img src="{{ $page->logo_url }}" alt="{{ $page->tenant->name }} logo" class="h-12 sm:h-24 w-auto mx-auto">
             @endif
         </div>
 
@@ -29,7 +29,10 @@
                     <form class="mt-4 space-y-4" wire:submit="saveFeedback">
                         @csrf
                         <flux:textarea wire:model="feedback_comment" label="What could we have done better?" />
-                        <flux:input wire:model="feedback_email" type="email" placeholder="Your email (optional, but important for us to reach back)" />
+                        <div class="grid grid-cols-2 gap-4">
+                            <flux:input wire:model="feedback_name" type="text" label="Your name"/>
+                            <flux:input wire:model="feedback_email" type="email" label="Your email address" placeholder="your@email.com" />
+                        </div>
                         <flux:button type="submit" class="w-full" variant="danger">Submit Feedback</flux:button>
                     </form>
                 </div>

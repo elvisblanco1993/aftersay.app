@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use App\Models\LinkClick;
+use App\Models\Page;
 use App\Models\Platform;
 use Illuminate\Http\Request;
 
@@ -29,6 +30,18 @@ class PageController extends Controller
         });
 
         return redirect()->away($link->url);
+    }
 
+    /**
+     * Clients are redirected here after they submit feedback.
+     */
+    public function formCompleted($slug)
+    {
+        $page = Page::where('slug', $slug)->firstOrFail();
+
+        return view('website.thank-you', [
+            'title' => 'How did we do? | '.$page->tenant->name,
+            'page' => $page,
+        ]);
     }
 }
