@@ -50,11 +50,11 @@
 }
 
 .minicard {
-    @apply bg-white dark:bg-zinc-700/50 px-3 py-2.5 rounded-xl border dark:border-zinc-700;
+    @apply bg-white dark:bg-zinc-800/50 px-3 py-2.5 rounded-xl border dark:border-zinc-700/50;
 }
 
 .card {
-    @apply bg-white dark:bg-zinc-700/50 px-4 py-6 rounded-xl border dark:border-zinc-700;
+    @apply bg-white dark:bg-zinc-800/50 px-4 py-6 rounded-xl border dark:border-zinc-700/50;
 }
 
 [data-flux-field]:not(ui-radio, ui-checkbox) {
@@ -67,8 +67,9 @@
 
 input:focus[data-flux-control],
 textarea:focus[data-flux-control],
+.tiptap:focus,
 select:focus[data-flux-control] {
-    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+    @apply outline-hidden ring-2 ring-accent ring-offset-2 dark:ring-offset-zinc-900;
 }
 
 #qrcode > svg {
@@ -88,7 +89,7 @@ cloak[x-cloak] { display: none !important; }
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(to right, #6ee7b7, #3b82f6, #9333ea);
+    background-image: linear-gradient(to right, #6ee7b7, #3b82f6, #ea33b3);
 }
 
 .hero-pattern, .footer-pattern {

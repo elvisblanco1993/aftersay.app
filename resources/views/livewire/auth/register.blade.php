@@ -61,6 +61,18 @@
             <x-turnstile wire:model="captcha" data-action="register" />
         </div>
 
+        <flux:field variant="inline">
+            <flux:checkbox wire:model="terms" />
+            <flux:label>
+                {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                    'terms_of_service' => '<a target="_blank" href="'.route('terms').'" class="mx-1 underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">'.__('Terms of Service').'</a>',
+                    'privacy_policy' => '<a target="_blank" href="'.route('policy').'" class="mx-1 underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">'.__('Privacy Policy').'</a>',
+                ]) !!}
+            </flux:label>
+            <flux:error name="terms" />
+        </flux:field>
+
+
         <div class="flex items-center justify-end">
             <flux:button type="submit" variant="primary" class="w-full">
                 {{ __('Create account') }}

@@ -35,6 +35,8 @@ class Register extends Component
 
     public string $captcha = '';
 
+    public bool $terms = false;
+
     /**
      * Handle an incoming registration request.
      */
@@ -46,6 +48,7 @@ class Register extends Component
             'business_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+            'terms' => ['accepted', 'required'],
         ]);
 
         DB::transaction(function () use ($validated) {

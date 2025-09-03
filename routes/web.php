@@ -41,6 +41,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('contacts/{contact}', \App\Livewire\Contact\Show::class)->name('contact.show');
 
         /**
+         * Concern management routes
+         */
+        Route::get('concerns', \App\Livewire\Concern\Index::class)->name('concern.index');
+        Route::get('concerns/{concern}', \App\Livewire\Concern\Show::class)->name('concern.show');
+
+        /**
          * Link management routes
          */
         Route::get('workflows', \App\Livewire\Workflow\Index::class)->name('workflow.index');

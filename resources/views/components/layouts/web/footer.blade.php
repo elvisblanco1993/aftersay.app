@@ -20,7 +20,7 @@
             <div>
                 <h4 class="text-lg font-semibold text-white mb-4">Legal</h4>
                 <ul class="space-y-2">
-                    <li><a href="{{ route('privacy') }}" class="text-gray-400 hover:text-blue-400 transition-colors">Privacy Policy</a></li>
+                    <li><a href="{{ route('policy') }}" class="text-gray-400 hover:text-blue-400 transition-colors">Privacy Policy</a></li>
                     <li><a href="{{ route('terms') }}" class="text-gray-400 hover:text-blue-400 transition-colors">Terms of Service</a></li>
                 </ul>
             </div>
@@ -28,15 +28,11 @@
             <div>
                 <h4 class="text-lg font-semibold text-white mb-4">Connect</h4>
                 <div class="flex space-x-4">
-                    <a href="#" aria-label="Twitter" class="text-gray-400 hover:text-blue-400 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-1.042.614-2.188 1.062-3.42 1.291a4.912 4.912 0 00-8.384 4.482c-3.268-.2-6.185-1.725-8.12-4.102a4.887 4.887 0 00-.66 2.45c0 1.7.868 3.193 2.188 4.064-.808-.025-1.565-.245-2.228-.616v.061a4.88 4.88 0 003.922 4.793 4.872 4.872 0 01-2.21.084c.725 2.15 2.83 3.718 5.333 3.762A9.704 9.704 0 010 20.478c2.81 1.791 6.163 2.846 9.728 2.846 11.69 0 18.06-9.67 18.06-18.056 0-.276-.008-.55-.022-.823a12.915 12.915 0 003.176-3.29z"/></svg>
-                    </a>
-                    <a href="#" aria-label="Facebook" class="text-gray-400 hover:text-blue-400 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.04c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zM15 13h-2v4h-2v-4h-2V11h4V9c0-1.66 1.34-3 3-3h1v2h-1c-.55 0-1 .45-1 1v2h2l1 2z"/></svg>
-                    </a>
-                    <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-blue-400 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.04c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm4 1.5c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm3.95 6.09c-.06 1.48-.19 2.9-.53 4.29-.3 1.25-.97 2.37-2.02 3.42-1.05 1.05-2.17 1.72-3.42 2.02-1.39.34-2.81.47-4.29.53-1.48.06-2.9-.07-4.29-.41-1.25-.3-2.37-.97-3.42-2.02-1.05-1.05-1.72-2.17-2.02-3.42-.34-1.39-.47-2.81-.53-4.29-.06-1.48.07-2.9.41-4.29.3-1.25.97-2.37 2.02-3.42 1.05-1.05 2.17-1.72 3.42-2.02 1.39-.34 2.81-.47 4.29-.53 1.48-.06 2.9.07 4.29.41 1.25.3 2.37.97 3.42 2.02 1.05 1.05 1.72 2.17 2.02 3.42.34 1.39.47 2.81.53 4.29zM12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"/>
-                        </svg>
+                    {{-- <a href="https://www.instagram.com/codewizetech?ref=https://aftersay.app" target="x" aria-label="Twitter" class="text-gray-400 hover:text-blue-400 transition-colors">
+                        <svg role="img" class="size-6 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>X</title><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+                    </a> --}}
+                    <a href="https://www.facebook.com/codewizeco?ref=https://aftersay.app" target="fb" aria-label="Facebook" class="text-gray-400 hover:text-blue-400 transition-colors">
+                        <svg role="img" class="size-6 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
                     </a>
                 </div>
             </div>
