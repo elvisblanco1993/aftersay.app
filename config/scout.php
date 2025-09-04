@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Concern;
 use App\Models\Contact;
 use App\Models\Template;
 use App\Models\Workflow;
@@ -223,6 +224,22 @@ return [
                         ['name' => 'id', 'type' => 'string'],
                         ['name' => 'tenant_id', 'type' => 'string'],
                         ['name' => 'name', 'type' => 'string'],
+                        ['name' => 'created_at', 'type' => 'int64'],
+                    ],
+                    'default_sorting_field' => 'created_at',
+                ],
+                'search-parameters' => [
+                    'query_by' => 'name',
+                ],
+            ],
+            Concern::class => [
+                'collection-schema' => [
+                    'fields' => [
+                        ['name' => 'id', 'type' => 'string'],
+                        ['name' => 'tenant_id', 'type' => 'string'],
+                        ['name' => 'contact_name', 'type' => 'string'],
+                        ['name' => 'contact_email', 'type' => 'string'],
+                        ['name' => 'content', 'type' => 'string'],
                         ['name' => 'created_at', 'type' => 'int64'],
                     ],
                     'default_sorting_field' => 'created_at',
