@@ -7,7 +7,7 @@
                 <flux:breadcrumbs.item>{{ $concern->contact_name ?: $concern->contact_email }}</flux:breadcrumbs.item>
             </flux:breadcrumbs>
         </div>
-        <livewire:concern.reply />
+        <livewire:concern.resolve :concern="$concern" />
     </div>
 
     <flux:separator variant="subtle" />
@@ -16,7 +16,7 @@
     <div class="space-y-2">
         <flux:heading size="lg">Message</flux:heading>
         <div class="prose dark:prose-invert max-w-full">
-            {!! Str::markdown($concern->content) !!}
+            {{ $concern->content }}
         </div>
     </div>
 </div>

@@ -4,10 +4,10 @@ namespace App\Livewire\Concern;
 
 use Livewire\Component;
 
-class Reply extends Component
+class Resolve extends Component
 {
     public function render()
     {
-        return view('livewire.concern.reply');
+        return view('livewire.concern.resolve');
     }
 }
