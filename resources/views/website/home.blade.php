@@ -23,10 +23,10 @@
         <section id="features" class="py-20 px-4 md:px-6 bg-gray-950">
             <div class="max-w-7xl mx-auto">
                 <!-- Feature 1: Automated Feedback Collection -->
-                <div class="flex flex-col md:flex-row items-center justify-between mb-24 md:space-x-12">
+                <div class="flex flex-col md:flex-row items-center justify-between mb-24 md:space-x-12 selection:bg-pink-500">
                     <!-- Text Content -->
                     <div class="md:w-1/2 mb-10 md:mb-0">
-                        <h3 class="text-3xl sm:text-5xl font-semibold text-white mb-4"><span class="text-pink-500">Stop waiting</span> for reviews to happen</h3>
+                        <h3 class="text-3xl sm:text-5xl font-semibold text-white mb-4"><span class="text-pink-500 selection:bg-white">Stop waiting</span> for reviews to happen</h3>
                         <p class="text-white text-lg leading-relaxed">
                             Getting more reviews for your business has never been simpler. AfterSay automates the entire process, sending personalized requests to your clients on your behalf. More positive reviews, less work for you. It's that easy.
                         </p>
@@ -38,14 +38,14 @@
                 </div>
 
                 <!-- Feature 2: Private Feedback Channel -->
-                <div class="flex flex-col-reverse md:flex-row items-center justify-between mb-24 md:space-x-12">
+                <div class="flex flex-col-reverse md:flex-row items-center justify-between mb-24 md:space-x-12 selection:bg-blue-500">
                     <!-- Image/SVG -->
                     <div class="md:w-1/2 flex justify-center mb-10 md:mb-0">
                         {{--  --}}
                     </div>
                     <!-- Text Content -->
                     <div class="md:w-1/2">
-                        <h3 class="text-3xl sm:text-5xl font-semibold text-white mb-4"><span class="text-blue-500">Protect</span> your star rating from a bad day</h3>
+                        <h3 class="text-3xl sm:text-5xl font-semibold text-white mb-4"><span class="text-blue-500 selection:bg-white">Protect</span> your star rating from a bad day</h3>
                         <p class="text-white text-lg leading-relaxed">
                             No one is perfect, and sometimes a bad experience happens. Instead of letting a single negative review tank your rating, our system gives unhappy customers a private channel to reach out to you directly. You can solve their problem privately, show them you're committed to great service, and protect your public reputation all at once.
                         </p>
@@ -53,10 +53,10 @@
                 </div>
 
                 <!-- Feature 3: Reputation Protection -->
-                <div class="flex flex-col md:flex-row items-center justify-between md:space-x-12">
+                <div class="flex flex-col md:flex-row items-center justify-between md:space-x-12 selection:bg-green-500">
                     <!-- Text Content -->
                     <div class="md:w-1/2 mb-10 md:mb-0">
-                        <h3 class="text-3xl sm:text-5xl font-semibold text-white mb-4">Set up in minutes. <span class="block text-green-400">See results immediately.</span></h3>
+                        <h3 class="text-3xl sm:text-5xl font-semibold text-white mb-4">Set up in minutes. <span class="block text-green-500 selection:bg-white">See results immediately.</span></h3>
                         <p class="text-white text-lg leading-relaxed">
                             We know you're busy. That's why we designed AfterSay to be a seamless solution. Get set up and running in a matter of minutes, and you'll be on your way to a stronger online reputation and a steady flow of new reviews.
                         </p>
