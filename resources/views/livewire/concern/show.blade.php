@@ -1,7 +1,7 @@
 <div class="space-y-6">
     <div class="flex items-center justify-between">
         <div>
-            <flux:heading size="xl">{{ $concern->contact_name ?: $concern->contact_email }}</flux:heading>
+            <flux:heading size="xl">{{ $concern->contact_name ?: $concern?->contact?->full_name ?: $concern->contact_email }}</flux:heading>
             <flux:breadcrumbs>
                 <flux:breadcrumbs.item :href="route('concern.index')">Concerns</flux:breadcrumbs.item>
                 <flux:breadcrumbs.item>{{ $concern->contact_name ?: $concern->contact_email }}</flux:breadcrumbs.item>
