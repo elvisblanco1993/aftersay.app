@@ -1,6 +1,6 @@
 <div>
     <flux:modal.trigger name="resolve-modal">
-        <flux:button variant="primary" color="green" icon-trailing="check">Resolve</flux:button>
+        <flux:button variant="primary" icon-trailing="check">Resolve</flux:button>
     </flux:modal.trigger>
     <flux:modal name="resolve-modal" class="md:w-128">
         <form wire:submit="save">
@@ -15,7 +15,7 @@
 
                 <div class="flex">
                     <flux:spacer />
-                    <flux:button variant="primary" color="green" icon-trailing="check">Resolve</flux:button>
+                    <flux:button variant="primary" icon-trailing="check">Submit resolution</flux:button>
                 </div>
             </div>
         </form>

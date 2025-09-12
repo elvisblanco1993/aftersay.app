@@ -33,19 +33,21 @@ class Plans extends Component
         }
 
         // Check for incomplete subscriptions
-        if ($tenant->hasIncompletePayment('default') || $tenant->subscription('default')->hasIncompletePayment()) {
-            $url = route('cashier.payment', $tenant->subscription('default')->latestPayment()->id);
+        $subscription = $tenant->subscription('default');
 
-            $this->redirect($url);
+        if ($subscription && $subscription->hasIncompletePayment()) {
+            $url = route('cashier.payment', $subscription->latestPayment()->id);
+
+            return $this->redirect($url);
         }
 
         // Setup subscription
         $url = $tenant->newSubscription('default', $plan['stripe_monthly_price_id'])
             ->checkout([
+                'allow_promotion_codes' => true,
                 'success_url' => route('billing.portal'),
                 'cancel_url' => route('billing.plans'),
-            ])
-            ->url;
+            ])->url;
 
         $this->redirect($url);
     }

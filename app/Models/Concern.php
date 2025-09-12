@@ -6,6 +6,7 @@ use App\Models\Scopes\ConcernScope;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[ScopedBy(ConcernScope::class)]
 class Concern extends Model
@@ -30,5 +31,10 @@ class Concern extends Model
     public function contact(): BelongsTo
     {
         return $this->belongsTo(Contact::class);
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(ConcernComment::class);
     }
 }

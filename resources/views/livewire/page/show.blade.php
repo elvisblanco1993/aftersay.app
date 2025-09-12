@@ -29,10 +29,13 @@
                     <form class="mt-4 space-y-4" wire:submit="saveFeedback">
                         @csrf
                         <flux:textarea wire:model="feedback_comment" label="What could we have done better?" />
-                        <div class="grid grid-cols-2 gap-4">
-                            <flux:input wire:model="feedback_name" type="text" label="Your name"/>
-                            <flux:input wire:model="feedback_email" type="email" label="Your email address" placeholder="your@email.com" />
-                        </div>
+                        @if (! $contact)
+                            {{-- Ask for name and email address if the page was not accesseed through a request link. --}}
+                            <div class="grid grid-cols-2 gap-4">
+                                <flux:input wire:model="feedback_name" type="text" label="Your name"/>
+                                <flux:input wire:model="feedback_email" type="email" label="Your email address" placeholder="your@email.com" />
+                            </div>
+                        @endif
                         <flux:button type="submit" class="w-full" variant="danger">Submit Feedback</flux:button>
                     </form>
                 </div>

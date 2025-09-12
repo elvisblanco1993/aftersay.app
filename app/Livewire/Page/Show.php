@@ -46,16 +46,18 @@ class Show extends Component
         $this->validate([
             'feedback_comment' => ['required', 'min:20'],
         ], [
-            'feedback_comment.*' => 'Please give us a bit more information to work with.',
+            'feedback_comment.*' => 'Please give us a bit more information.',
         ]);
+
+        $contact = Contact::where('ulid', $this->contact)->first() ?: null;
 
         Concern::create([
             'tenant_id' => $this->page->tenant_id,
             'rating' => $this->rating,
             'content' => $this->feedback_comment,
-            'contact_id' => $this->contact ? Contact::where('ulid', $this->contact)->first()?->id : null,
-            'contact_email' => $this->feedback_email,
-            'contact_name' => $this->feedback_name,
+            'contact_id' => $this->contact ? $contact->id : null,
+            'contact_email' => $this->contact ? $contact?->email : $this->feedback_email,
+            'contact_name' => $this->contact ? $contact?->full_name : $this->feedback_name,
         ]);
 
         // End campaign - No more automated emails

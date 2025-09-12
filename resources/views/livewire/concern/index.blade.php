@@ -8,7 +8,7 @@
         <flux:input wire:model.live.debounce-250="query" icon="magnifying-glass" placeholder="Search..." class="w-full sm:max-w-xs" />
     </div>
 
-        <div class="relative overflow-x-auto border dark:border-zinc-700 rounded-lg">
+        <div class="relative overflow-x-auto border dark:border-zinc-700 rounded-xl">
         <table class="w-full text-sm text-left rtl:text-right text-zinc-500 dark:text-zinc-400">
             @if ($concerns->count() > 0)
                 <thead class="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-700 dark:text-zinc-400">
@@ -49,7 +49,7 @@
                     </tr>
                 @empty
                     <tr colspan="4">
-                        <div class="text-center space-y-3 p-4 bg-zinc-50 dark:bg-zinc-700">
+                        <div class="text-center space-y-3 card">
                             <flux:icon.sparkles class="size-6 mx-auto" />
                             <flux:heading size="lg">No concerns reported</flux:heading>
                         </div>
