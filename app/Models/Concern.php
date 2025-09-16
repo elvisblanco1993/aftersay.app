@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ConcernStatus;
 use App\Models\Scopes\ConcernScope;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +12,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 #[ScopedBy(ConcernScope::class)]
 class Concern extends Model
 {
+    protected function casts(): array
+    {
+        return [
+            'status' => ConcernStatus::class,
+        ];
+    }
+
     public function toSearchableArray(): array
     {
         return [

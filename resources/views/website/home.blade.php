@@ -14,7 +14,7 @@
                 </h1>
                 <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8">AfterSay is the all-in-one platform that automates customer feedback collection, helps you manage your online reputation, and turns happy clients into powerful brand advocates.</p>
                 <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="#get-started" class="px-8 py-5 bg-green-400 text-black rounded-lg md:text-xl font-medium">Get Started</a>
+                    <a href="{{ route('register') }}" class="px-8 py-5 bg-green-400 text-black rounded-lg md:text-xl font-medium">Get Started</a>
                 </div>
             </div>
         </section>

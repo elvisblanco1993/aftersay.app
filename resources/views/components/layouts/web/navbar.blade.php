@@ -8,7 +8,7 @@
         {{-- Navigation --}}
         <button @click="openMenu = !openMenu" class="font-bold sm:hidden" x-cloak>MENU</button>
         <nav class="hidden sm:flex items-center space-x-8" x-cloak>
-            <a href="#features" class="block text-gray-300 hover:text-white transition-colors">Features</a>
+            <a href="{{ route('home') }}#features" class="block text-gray-300 hover:text-white transition-colors">Features</a>
             <a href="{{ route('pricing') }}" class="block text-gray-300 hover:text-white transition-colors">Pricing</a>
             <a href="{{ route('about') }}" class="block text-gray-300 hover:text-white transition-colors">About</a>
             <a href="{{ route('login') }}" class="login-btn">Log In</a>

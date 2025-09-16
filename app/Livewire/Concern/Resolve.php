@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Concern;
 
+use App\Enums\ConcernStatus;
 use App\Models\Concern;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -27,8 +28,12 @@ class Resolve extends Component
             ]);
         }
 
+        // Save the concern resolution.
         $this->concern->update([
+            'status' => ConcernStatus::Resolved,
             'resolved_at' => now(),
         ]);
+
+        $this->redirect(url: url()->previous(), navigate: true);
     }
 }

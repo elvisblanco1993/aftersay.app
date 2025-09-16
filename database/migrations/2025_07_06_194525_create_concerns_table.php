@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('rating')->nullable();
             $table->text('content');
             $table->enum('status', ['new', 'in_review', 'resolved'])->default('new');
-            $table->timestamp('followed_up_at')->nullable();
+            $table->timestamp('resolved_at')->nullable();
             $table->timestamps();
         });
     }

@@ -43,7 +43,7 @@
                         </td>
                         <td>
                             <a href="{{ route('concern.show', ['concern' => $concern]) }}" class="block px-4 py-2.5">
-                               <flux:badge size="sm" color="red" variant="pill">New</flux:badge>
+                               <flux:badge size="sm" :color="$concern->status->color()" variant="pill">{{ $concern->status->label() }}</flux:badge>
                             </a>
                         </td>
                     </tr>
