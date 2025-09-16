@@ -18,6 +18,7 @@ class Join extends Component
 
     public function save()
     {
+        $this->validate(['email' => 'required']);
         Subscriber::updateOrCreate(['email' => $this->email]);
         $this->reset();
         $this->dispatch('joined');

@@ -4,9 +4,15 @@
         @include('partials.website-head')
     </head>
     <body class="bg-gray-950 text-gray-100">
-        @include('components.layouts.web.navbar')
+        @unless (request()->routeIs('waitlist.join'))
+            @include('components.layouts.web.navbar')
+        @else
+        @endunless
         {{ $slot }}
-        @include('components.layouts.web.footer')
+        @unless (request()->routeIs('waitlist.join'))
+            @include('components.layouts.web.footer')
+        @else
+        @endunless
         @fluxScripts
     </body>
 </html>
