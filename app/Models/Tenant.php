@@ -38,7 +38,7 @@ class Tenant extends Model
     {
         // If trial, assume they are trialing on the plan they signed up for
         if ($this->onTrial()) {
-            return 'starter';
+            return '500';
         }
 
         // Fallback to active subscription
