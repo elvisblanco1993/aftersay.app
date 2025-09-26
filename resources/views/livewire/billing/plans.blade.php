@@ -7,120 +7,28 @@
         </flux:breadcrumbs>
     </div>
 
-    <div class="card !px-6 space-y-4">
-        <flux:heading size="xl">{{ $plans['starter']['name'] }}</flux:heading>
+    @foreach ($plans as $index => $plan)
+        <div class="card !px-6 space-y-4">
+            <flux:heading>Up to {{ $plan['campaigns_per_month'] }} campaigns</flux:heading>
 
-        <div class="grid grid-cols-3 md:gap-4">
-            <div class="col-span-3 md:col-span-1">
-                <div class="flex items-center space-x-1">
-                    <flux:icon.check-circle variant="micro" class="fill-green-600"/>
-                    <span>Up to {{ $plans['starter']['features']['max_contacts'] }} contacts</span>
+            <div class="grid grid-cols-3 md:gap-4">
+                <div class="col-span-3 md:col-span-1">
+                    <div class="flex items-center space-x-1">
+                        <flux:icon.check-circle variant="micro" class="fill-green-600"/>
+                        <span>Up to {{ $plan['max_review_platforms'] }} review platforms</span>
+                    </div>
                 </div>
-                <div class="flex items-center space-x-1">
-                    <flux:icon.check-circle variant="micro" class="fill-green-600"/>
-                    <span>Up to {{ $plans['starter']['features']['max_review_platforms'] }} review platforms</span>
+                <div class="col-span-3 md:col-span-1">
+                    <div class="flex items-center space-x-1">
+                        <flux:icon.x-circle variant="micro" class="fill-red-600"/>
+                        <span>White Label</span>
+                    </div>
                 </div>
-                <div class="flex items-center space-x-1">
-                    <flux:icon.check-circle variant="micro" class="fill-green-600"/>
-                    <span>Unlimited feedback submissions</span>
-                </div>
-            </div>
-            <div class="col-span-3 md:col-span-1">
-                <div class="flex items-center space-x-1">
-                    <flux:icon.check-circle variant="micro" class="fill-green-600"/>
-                    <span>Custom branding</span>
-                </div>
-                <div class="flex items-center space-x-1">
-                    <flux:icon.check-circle variant="micro" class="fill-green-600"/>
-                    <span>Analytics</span>
-                </div>
-                <div class="flex items-center space-x-1">
-                    <flux:icon.x-circle variant="micro" class="fill-red-600"/>
-                    <span>White Label</span>
+                <div class="mt-4 md:mt-0 col-span-3 md:col-span-1 text-center">
+                    <div class="text-zinc-500 dark:text-zinc-300"><span class="text-2xl font-bold">${{ $plan['price_monthly'] }}</span>/month</div>
                 </div>
             </div>
-            <div class="mt-4 md:mt-0 col-span-3 md:col-span-1 text-center">
-                <div class="text-zinc-500 dark:text-zinc-300"><span class="text-5xl lg:text-6xl font-bold">${{ $plans['starter']['price_monthly'] }}</span>/month</div>
-            </div>
+            <flux:button variant="primary" wire:click="subscribe({{ $index }})">Select Plan</flux:button>
         </div>
-        <flux:button variant="primary" wire:click="subscribe('starter')">Select Plan</flux:button>
-    </div>
-
-    <div class="card !px-6 space-y-4">
-        <flux:heading size="xl">{{ $plans['growth']['name'] }}</flux:heading>
-
-        <div class="grid grid-cols-3 md:gap-4">
-            <div class="col-span-3 md:col-span-1">
-                <div class="flex items-center space-x-1">
-                    <flux:icon.check-circle variant="micro" class="fill-green-600"/>
-                    <span>Up to {{ $plans['growth']['features']['max_contacts'] }} contacts</span>
-                </div>
-                <div class="flex items-center space-x-1">
-                    <flux:icon.check-circle variant="micro" class="fill-green-600"/>
-                    <span>Up to {{ $plans['growth']['features']['max_review_platforms'] }} review platforms</span>
-                </div>
-                <div class="flex items-center space-x-1">
-                    <flux:icon.check-circle variant="micro" class="fill-green-600"/>
-                    <span>Unlimited feedback submissions</span>
-                </div>
-            </div>
-            <div class="col-span-3 md:col-span-1">
-                <div class="flex items-center space-x-1">
-                    <flux:icon.check-circle variant="micro" class="fill-green-600"/>
-                    <span>Custom branding</span>
-                </div>
-                <div class="flex items-center space-x-1">
-                    <flux:icon.check-circle variant="micro" class="fill-green-600"/>
-                    <span>Analytics</span>
-                </div>
-                <div class="flex items-center space-x-1">
-                    <flux:icon.check-circle variant="micro" class="fill-green-600"/>
-                    <span>White Label</span>
-                </div>
-            </div>
-            <div class="mt-4 md:mt-0 col-span-3 md:col-span-1 text-center">
-                <div class="text-zinc-500 dark:text-zinc-300"><span class="text-5xl lg:text-6xl font-bold">${{ $plans['growth']['price_monthly'] }}</span>/month</div>
-            </div>
-        </div>
-        <flux:button variant="primary" wire:click="subscribe('growth')">Select Plan</flux:button>
-    </div>
-
-    <div class="card !px-6 space-y-4">
-        <flux:heading size="xl">{{ $plans['business']['name'] }}</flux:heading>
-
-        <div class="grid grid-cols-3 md:gap-4">
-            <div class="col-span-3 md:col-span-1">
-                <div class="flex items-center space-x-1">
-                    <flux:icon.check-circle variant="micro" class="fill-green-600"/>
-                    <span>Up to {{ $plans['business']['features']['max_contacts'] }} contacts</span>
-                </div>
-                <div class="flex items-center space-x-1">
-                    <flux:icon.check-circle variant="micro" class="fill-green-600"/>
-                    <span>Unlimited review platforms</span>
-                </div>
-                <div class="flex items-center space-x-1">
-                    <flux:icon.check-circle variant="micro" class="fill-green-600"/>
-                    <span>Unlimited feedback submissions</span>
-                </div>
-            </div>
-            <div class="col-span-3 md:col-span-1">
-                <div class="flex items-center space-x-1">
-                    <flux:icon.check-circle variant="micro" class="fill-green-600"/>
-                    <span>Custom branding</span>
-                </div>
-                <div class="flex items-center space-x-1">
-                    <flux:icon.check-circle variant="micro" class="fill-green-600"/>
-                    <span>Analytics</span>
-                </div>
-                <div class="flex items-center space-x-1">
-                    <flux:icon.check-circle variant="micro" class="fill-green-600"/>
-                    <span>White Label</span>
-                </div>
-            </div>
-            <div class="mt-4 md:mt-0 col-span-3 md:col-span-1 text-center">
-                <div class="text-zinc-500 dark:text-zinc-300"><span class="text-5xl lg:text-6xl font-bold">${{ $plans['business']['price_monthly'] }}</span>/month</div>
-            </div>
-        </div>
-        <flux:button variant="primary" wire:click="subscribe('business')">Select Plan</flux:button>
-    </div>
+    @endforeach
 </div>

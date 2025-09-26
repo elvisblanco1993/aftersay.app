@@ -13,7 +13,7 @@ class Dashboard extends Component
     {
         $this->user = Auth::user();
 
-        dd($this->user->currentTenant->planConfig());
+        // dd($this->user->currentTenant->planConfig());
     }
 
     public function render()

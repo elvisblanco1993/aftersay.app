@@ -38,7 +38,7 @@ class Tenant extends Model
     {
         // If trial, assume they are trialing on the plan they signed up for
         if ($this->onTrial()) {
-            return '500';
+            return '50';
         }
 
         // Fallback to active subscription
@@ -46,7 +46,7 @@ class Tenant extends Model
             $priceId = $this->subscription('default')->stripe_price;
 
             foreach (config('internal.plans') as $key => $plan) {
-                if ($plan['stripe_monthly_price_id'] === $priceId || $plan['stripe_annual_price_id'] === $priceId) {
+                if ($plan['stripe_price_id_monthly'] === $priceId || $plan['stripe_price_id_annual'] === $priceId) {
                     return $key;
                 }
             }
@@ -57,7 +57,7 @@ class Tenant extends Model
 
     public function planConfig(): array
     {
-        $plan_key = $this->currentPlanKey() ?? 'starter';
+        $plan_key = $this->currentPlanKey() ?? '50';
 
         return PlanManager::getPlanConfig($plan_key);
     }

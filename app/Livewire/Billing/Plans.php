@@ -42,7 +42,7 @@ class Plans extends Component
         }
 
         // Setup subscription
-        $url = $tenant->newSubscription('default', $plan['stripe_monthly_price_id'])
+        $url = $tenant->newSubscription('default', $plan['stripe_price_id_monthly'])
             ->checkout([
                 'allow_promotion_codes' => true,
                 'success_url' => route('billing.portal'),

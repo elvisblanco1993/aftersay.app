@@ -11,13 +11,9 @@
                     @endif
                 </div>
                 <div class="card space-y-6">
-                    <div class="flex items-center justify-between">
-                        <flux:heading size="lg">{{ $plan['name'] }}</flux:heading>
-                        {{-- Display the plan's amount. --}}
-                    </div>
                     <div class="space-y-2 text-sm">
-                        <div>Up to {{ $plan['features']['max_contacts'] }} contacts</div>
-                        <div>Connect {{ ($plan['features']['max_review_platforms'] > 1) ? $plan['features']['max_review_platforms'] : 'unlimited' }} review platforms</div>
+                        <div>Up to {{ $plan['campaigns_per_month'] }} campaigns each month</div>
+                        <div>Connect up to {{ ($plan['max_review_platforms'] > 0) ? $plan['max_review_platforms'] : 'unlimited' }} review platforms</div>
     
                         <div class="flex items-center space-x-2">
                             <span>Unlimited feedback submissions</span>
@@ -37,13 +33,13 @@
                 <flux:heading size="lg">Your Usage</flux:heading>
                 <div class="card text-sm space-y-1">
                     <div class="grid grid-cols-4">
-                        <div class="col-span-1">Contacts</div>
-                        <div class="col-span-3"> {{ $contacts_count }} / {{ $plan['features']['max_contacts'] }}</div>
+                        <div class="col-span-1">Campaigns this month</div>
+                        <div class="col-span-3"> {{ $contacts_count }} / {{ $plan['campaigns_per_month'] }}</div>
                     </div>
 
                     <div class="grid grid-cols-4">
                         <div class="col-span-1">Review Platforms</div>
-                        <div class="col-span-3"> {{ $platforms_count }} / {{ ($plan['features']['max_review_platforms'] > 1) ? $plan['features']['max_review_platforms'] : 'unlimited' }}</div>
+                        <div class="col-span-3"> {{ $platforms_count }} / {{ ($plan['max_review_platforms'] > 0) ? $plan['max_review_platforms'] : 'unlimited' }}</div>
                     </div>           
                 </div>
             </div>
