@@ -8,7 +8,9 @@ use App\Livewire\Settings\ApiTokens;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\Tenant;
+use App\Livewire\Settings\TwoFactor;
 use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Features;
 
 /**
  * Website routes are located in the "website.php" routes file.
@@ -69,6 +71,17 @@ Route::middleware(['auth'])->group(function () {
             Route::get('api-tokens', ApiTokens::class)->name('settings.api-tokens');
             Route::get('profile', Profile::class)->name('settings.profile');
             Route::get('password', Password::class)->name('settings.password');
+
+            Route::get('two-factor', TwoFactor::class)
+                ->middleware(
+                    when(
+                        Features::canManageTwoFactorAuthentication()
+                            && Features::optionEnabled(Features::twoFactorAuthentication(), 'confirmPassword'),
+                        ['password.confirm'],
+                        [],
+                    ),
+                )
+                ->name('two-factor.show');
 
             Route::get('billing', \App\Livewire\Billing\Dashboard::class)->name('billing.dashboard');
             Route::get('billing/plans', \App\Livewire\Billing\Plans::class)->name('billing.plans');
