@@ -204,7 +204,7 @@
                     <div class="bg-gradient-to-br from-gray-950 to-gray-900 rounded-3xl p-12 border-2 border-green-400 shadow-2xl shadow-green-500/20 hover:shadow-green-500/40 transition-all transform hover:scale-105">
                         <div class="text-center mb-8">
                             <div class="mb-6">
-                                <span class="text-6xl md:text-7xl font-extrabold text-white">$29</span>
+                                <span class="text-6xl md:text-7xl font-extrabold text-white">${{ config('internal.plans.50.price_monthly') }}</span>
                                 <span class="text-xl text-gray-400">/month</span>
                             </div>
                             <p class="text-lg text-gray-300">Everything you need to grow your reputation</p>
@@ -212,33 +212,19 @@
                         
                         <ul class="space-y-4 mb-10">
                             <li class="flex items-start text-gray-300">
-                                <svg class="w-6 h-6 text-green-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
+                                <flux:icon.check class="text-green-400 mr-3 flex-shrink-0"/>
                                 <span>Automated feedback collection</span>
                             </li>
                             <li class="flex items-start text-gray-300">
-                                <svg class="w-6 h-6 text-green-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
+                                <flux:icon.check class="text-green-400 mr-3 flex-shrink-0"/>
                                 <span>Private feedback channel for unhappy customers</span>
                             </li>
                             <li class="flex items-start text-gray-300">
-                                <svg class="w-6 h-6 text-green-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span>Unlimited review requests</span>
-                            </li>
-                            <li class="flex items-start text-gray-300">
-                                <svg class="w-6 h-6 text-green-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
+                                <flux:icon.check class="text-green-400 mr-3 flex-shrink-0"/>
                                 <span>Analytics dashboard</span>
                             </li>
                             <li class="flex items-start text-gray-300">
-                                <svg class="w-6 h-6 text-green-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
+                                <flux:icon.check class="text-green-400 mr-3 flex-shrink-0"/>
                                 <span>Email support</span>
                             </li>
                         </ul>
