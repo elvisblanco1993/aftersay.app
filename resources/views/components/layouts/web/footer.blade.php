@@ -10,10 +10,10 @@
             <div>
                 <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
                 <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">Home</a></li>
-                    <li><a href="#features" class="text-gray-400 hover:text-blue-400 transition-colors">Features</a></li>
-                    <li><a href="{{ route('pricing') }}" class="text-gray-400 hover:text-blue-400 transition-colors">Pricing</a></li>
-                    <li><a href="#contact" class="text-gray-400 hover:text-blue-400 transition-colors">About</a></li>
+                    <li><a href="/" class="text-gray-400 hover:text-blue-400 transition-colors">Home</a></li>
+                    <li><a href="/#features" class="text-gray-400 hover:text-blue-400 transition-colors">Features</a></li>
+                    <li><a href="/#pricing" class="text-gray-400 hover:text-blue-400 transition-colors">Pricing</a></li>
+                    <li><a href="{{ route('about') }}" class="text-gray-400 hover:text-blue-400 transition-colors">About</a></li>
                 </ul>
             </div>
             <!-- Legal Links -->

@@ -9,7 +9,7 @@
         <button @click="openMenu = !openMenu" class="font-bold sm:hidden" x-cloak>MENU</button>
         <nav class="hidden sm:flex items-center space-x-8" x-cloak>
             <a href="{{ route('home') }}#features" class="block text-gray-300 hover:text-white transition-colors">Features</a>
-            <a href="{{ route('pricing') }}" class="block text-gray-300 hover:text-white transition-colors">Pricing</a>
+            <a href="/#pricing" class="block text-gray-300 hover:text-white transition-colors">Pricing</a>
             <a href="{{ route('about') }}" class="block text-gray-300 hover:text-white transition-colors">About</a>
             <a href="{{ route('login') }}" class="login-btn">Log In</a>
             <a href="{{ route('register') }}" class="register-btn">Try it for Free</a>
@@ -17,7 +17,7 @@
     </div>
     <nav x-show="openMenu" class="max-w-7xl mx-auto p-4 space-y-2 pt-6 text-center sm:hidden" x-cloak>
         <a href="#features" class="block text-gray-300 hover:text-white transition-colors">Features</a>
-        <a href="{{ route('pricing') }}" class="block text-gray-300 hover:text-white transition-colors">Pricing</a>
+        <a href="/#pricing" class="block text-gray-300 hover:text-white transition-colors">Pricing</a>
         <a href="{{ route('about') }}" class="block text-gray-300 hover:text-white transition-colors">About</a>
         <a href="{{ route('login') }}" class="login-btn">Log In</a>
         <a href="{{ route('register') }}" class="register-btn">Try it for Free</a>
