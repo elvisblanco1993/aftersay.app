@@ -16,7 +16,7 @@
                     Built by a Business Owner, <span class="text-green-400">For Business Owners</span>
                 </h1>
                 <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-                    AfterSay was born out of frustration with the status quo—and a belief that collecting reviews shouldn't be complicated or expensive.
+                    AfterSay was born out of frustration with the status quo - and a belief that collecting reviews shouldn't be complicated or expensive.
                 </p>
             </div>
         </section>
@@ -35,7 +35,7 @@
                             </div>
                             <h3 class="text-2xl font-bold text-white mb-4">The Problem</h3>
                             <p class="text-gray-300 leading-relaxed">
-                                Like many business owners, Elvis found himself spending hours manually collecting reviews from customers. It was time-consuming and honestly a bit awkward—nobody enjoys chasing people down for feedback.
+                                Like many business owners, Elvis found himself spending hours manually collecting reviews from customers. It was time-consuming and honestly a bit awkward - nobody enjoys chasing people down for feedback.
                             </p>
                         </div>
 
@@ -62,7 +62,7 @@
                             </div>
                             <h3 class="text-3xl font-bold text-white mb-4">The Solution</h3>
                             <p class="text-gray-300 leading-relaxed mb-6">
-                                So Elvis built AfterSay—a simple, affordable tool that does exactly what it needs to do and nothing more. No fluff, no confusion, just automated review collection that actually works.
+                                So Elvis built AfterSay - a simple, affordable tool that does exactly what it needs to do and nothing more. No fluff, no confusion, just automated review collection that actually works.
                             </p>
                             <p class="text-green-400 font-medium text-lg">
                                 Made for real businesses who want real results.
