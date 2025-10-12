@@ -59,7 +59,7 @@
                                     {!! file_get_contents($svgPath) !!}
                                 </div>
                             @else
-                                <flux:avatar :name="$link->name" size="sm" :circle="true"/>
+                                <flux:avatar :name="$link->name" size="sm" :circle="true" class="mx-auto"/>
                             @endif
                             <span class="text-sm font-medium text-zinc-700 dark:text-zinc-100">Review us on {{ ucfirst($link->name) }}</span>
                         </a>

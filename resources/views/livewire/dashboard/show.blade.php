@@ -14,7 +14,7 @@
      </div>
   </div>
 
-  <div class="bg-white dark:bg-white/10 p-4 border dark:border-white/10 dark:text-white rounded-xl">
+  {{-- <div class="bg-white dark:bg-white/10 p-4 border dark:border-white/10 dark:text-white rounded-xl">
      <x-chart wire:model="chart" />
-   </div>
+   </div> --}}
 </div>
