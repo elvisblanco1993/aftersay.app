@@ -233,11 +233,6 @@
                         
                         <p class="text-center text-gray-400 text-sm mt-6">No credit card required. Cancel anytime.</p>
                     </div>
-
-                    <div class="text-center mt-12">
-                        <p class="text-gray-300 text-lg mb-4">Need custom features or multiple locations?</p>
-                        <a href="/home#pricing" class="text-green-400 hover:text-green-300 font-medium text-lg underline">Contact us for custom pricing</a>
-                    </div>
                 </div>
             </div>
         </section>
@@ -295,7 +290,7 @@
                 <!-- Still have questions CTA -->
                 <div class="mt-16 text-center">
                     <p class="text-gray-300 text-lg mb-4">Still have questions?</p>
-                    <a href="#contact" class="text-green-400 hover:text-green-300 font-medium text-lg underline">Contact our support team</a>
+                    <a href="mailto:support@aftersay.app" class="text-green-400 hover:text-green-300 font-medium text-lg underline">Contact our support team</a>
                 </div>
             </div>
         </section>
