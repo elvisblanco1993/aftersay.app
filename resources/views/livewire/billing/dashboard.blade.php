@@ -12,14 +12,23 @@
                 </div>
                 <div class="card space-y-6">
                     <div class="space-y-2 text-sm">
-                        <div>Up to {{ $plan['campaigns_per_month'] }} campaigns each month</div>
-                        <div>Connect up to {{ ($plan['max_review_platforms'] > 0) ? $plan['max_review_platforms'] : 'unlimited' }} review platforms</div>
+                        <div class="flex items-center space-x-1">
+                            <flux:icon.check-circle variant="micro" class="opacity-80 fill-green-400"/>
+                            <div>Up to {{ $plan['campaigns_per_month'] }} campaigns each month</div>
+                        </div>
+
+                        <div class="flex items-center space-x-1">
+                            <flux:icon.check-circle variant="micro" class="opacity-80 fill-green-400"/>
+                            <div>Connect up to {{ ($plan['max_review_platforms'] > 0) ? $plan['max_review_platforms'] : 'unlimited' }} review platforms</div>
+                        </div>
     
-                        <div class="flex items-center space-x-2">
+                        <div class="flex items-center space-x-1">
+                            <flux:icon.check-circle variant="micro" class="opacity-80 fill-green-400"/>
                             <span>Unlimited feedback submissions</span>
                         </div>
     
-                        <div class="flex items-center space-x-2">
+                        <div class="flex items-center space-x-1">
+                            <flux:icon.check-circle variant="micro" class="opacity-80 fill-green-400"/>
                             <span>Custom branding</span>
                         </div>
                     </div>

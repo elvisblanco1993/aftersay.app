@@ -15,6 +15,13 @@
             </div>
             @can('create', \App\Models\Platform::class)
                 <livewire:platform.add />
+            @else
+                <flux:callout icon="information-circle" variant="secondary" inline>
+                    <flux:callout.heading>You’re growing fast! You’ve reached your platform link limit.</flux:callout.heading>
+                    <flux:callout.text>Upgrade your plan to keep adding more links.</flux:callout.text>
+                    <x-slot name="actions">
+                        <flux:button size="sm" :href="route('billing.plans')" icon-trailing="external-link">Upgrade plan</flux:button>
+                    </x-slot></flux:callout>
             @endcan
         </div>
     </x-settings.layout>

@@ -28,7 +28,21 @@ class PlatformPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        $tenant = $user->currentTenant;
+
+        $currentCount = $tenant->platforms->count(); // adjust relationship name
+
+        if ($tenant->onTrial()) {
+            return $currentCount < config('internal.plans.50.max_review_platforms');
+        }
+
+        if ($tenant->subscribed()) {
+            $maxItems = $tenant->planConfig()['max_review_platforms'];
+
+            return is_null($maxItems) || $currentCount < $maxItems;
+        }
+
+        return false;
     }
 
     /**

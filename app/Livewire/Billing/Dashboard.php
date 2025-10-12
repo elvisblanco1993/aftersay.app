@@ -12,8 +12,6 @@ class Dashboard extends Component
     public function mount()
     {
         $this->user = Auth::user();
-
-        // dd($this->user->currentTenant->planConfig());
     }
 
     public function render()

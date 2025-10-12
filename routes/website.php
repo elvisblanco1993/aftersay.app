@@ -2,8 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Route::view('/', 'website.home')->name('home');
-Route::redirect('/', '/join')->name('home');
+Route::view('/', 'website.home')->name('home');
 Route::view('/about', 'website.privacy')->name('about');
 Route::view('/pricing', 'website.privacy')->name('pricing');
 Route::view('/privacy', 'website.privacy')->name('policy');
