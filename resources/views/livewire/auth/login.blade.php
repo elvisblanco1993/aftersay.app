@@ -39,15 +39,15 @@
         <flux:checkbox wire:model="remember" :label="__('Remember me')" />
 
         {{-- Captcha --}}
-        <div wire:ignore>
+        {{-- <div wire:ignore>
             <x-turnstile wire:model="captcha" data-action="login" />
-        </div>
+        </div> --}}
 
-        @error('captcha')
+        {{-- @error('captcha')
             <div class="text-sm text-red-500">
                 {{ $message }}
             </div>
-        @enderror
+        @enderror --}}
 
         <div class="flex items-center justify-end">
             <flux:button variant="primary" type="submit" class="w-full">{{ __('Log in') }}</flux:button>

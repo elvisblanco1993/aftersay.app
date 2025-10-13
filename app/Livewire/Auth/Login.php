@@ -21,7 +21,7 @@ class Login extends Component
 
     public string $password = '';
 
-    public string $captcha = '';
+    // public string $captcha = '';
 
     public bool $remember = false;
 
@@ -33,7 +33,7 @@ class Login extends Component
         $this->validate([
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
-            'captcha' => ['required', Rule::turnstile()],
+            // 'captcha' => ['required', Rule::turnstile()],
         ]);
 
         $this->ensureIsNotRateLimited();
