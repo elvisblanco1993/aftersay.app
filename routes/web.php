@@ -31,9 +31,7 @@ Route::get('/r/{slug}/thank-you', [
 ])->name('review-page.completed');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('onboard', \App\Livewire\Onboard\Tenant::class)->name(
-        'onboard.tenant',
-    );
+    Route::get('onboard', \App\Livewire\Onboard\Tenant::class)->name('onboard.tenant');
     Route::redirect('settings', 'settings/profile');
 
     Route::middleware([
@@ -41,20 +39,13 @@ Route::middleware(['auth'])->group(function () {
         EnsureTenantIsSetup::class,
         EnsureTenantIsSubscribed::class,
     ])->group(function () {
-        Route::get('dashboard', \App\Livewire\Dashboard\Show::class)->name(
-            'dashboard',
-        );
+        Route::get('dashboard', \App\Livewire\Dashboard\Show::class)->name('dashboard');
 
         /**
          * Client management routes
          */
-        Route::get('contacts', \App\Livewire\Contact\Index::class)->name(
-            'contact.index',
-        );
-        Route::get(
-            'contacts/{contact}',
-            \App\Livewire\Contact\Show::class,
-        )->name('contact.show');
+        Route::get('contacts', \App\Livewire\Contact\Index::class)->name('contact.index');
+        Route::get('contacts/{contact}', \App\Livewire\Contact\Show::class)->name('contact.show');
 
         /**
          * Concern management routes
@@ -120,23 +111,18 @@ Route::middleware(['auth'])->group(function () {
                 )
                 ->name('two-factor.show');
 
-            Route::get('billing', \App\Livewire\Billing\Dashboard::class)->name(
-                'billing.dashboard',
-            );
-            Route::get(
-                'billing/plans',
-                \App\Livewire\Billing\Plans::class,
-            )->name('billing.plans');
-            Route::get('billing/portal', [
-                BillingController::class,
-                'billingPortal',
-            ])->name('billing.portal');
-            Route::get('billing/plans/update', [
-                BillingController::class,
-                'updatePlan',
-            ])->name('billing.update-plan');
+            Route::get('billing', \App\Livewire\Billing\Dashboard::class)->name('billing.dashboard');
+            Route::get('billing/portal', [BillingController::class, 'billingPortal'])->name('billing.portal');
+            Route::get('billing/plans/update', [BillingController::class, 'updatePlan'])->name('billing.update-plan');
         });
     });
+    /**
+     * Billing Plans
+     * This route must be here to correctly redirect users who's trial
+     * period has ended and must sign up for a plan, should they
+     * want to continue to use AfterSay.
+     */
+    Route::get('billing/plans', \App\Livewire\Billing\Plans::class)->name('billing.plans');
 });
 
 require __DIR__.'/auth.php';

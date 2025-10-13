@@ -19,7 +19,15 @@ class DeleteUserForm extends Component
             'password' => ['required', 'string', 'current_password'],
         ]);
 
-        tap(Auth::user(), $logout(...))->delete();
+        $user = Auth::user();
+        if ($user->ownedTenants()->count() > 0) {
+            foreach ($user->ownedTenants() as $tenant) {
+                // Stop Subscription if any.
+                // Delete owned tenants with all their related data.
+            }
+        }
+
+        tap($user, $logout(...))->delete();
 
         $this->redirect('/', navigate: true);
     }

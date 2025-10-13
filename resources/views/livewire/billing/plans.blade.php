@@ -7,6 +7,13 @@
         </flux:breadcrumbs>
     </div>
 
+    @if (! Auth::user()->currentTenant->onTrial() && ! Auth::user()->currentTenant->subscribed('default'))
+        <flux:callout icon="triangle-alert" color="pink">
+            <flux:callout.heading>Your AfterSay trial has wrapped up</flux:callout.heading>
+            <flux:callout.text>We'd love to have you stick around! If you've found value in what we offer, select a plan below to keep going.</flux:callout.text>
+        </flux:callout>
+    @endif
+
     <div class="grid grid-cols-2 gap-6">
         @foreach ($plans as $index => $plan)
             <flux:callout inline>
