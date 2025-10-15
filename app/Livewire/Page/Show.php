@@ -26,11 +26,16 @@ class Show extends Component
 
     public $feedback_email;
 
+    public $showBranding;
+
     public function mount($slug)
     {
         $this->page = Page::where('slug', $slug)->firstOrFail();
         $this->updatedRating();
         $this->contact = request(key: 'ref');
+
+        $tenant = $this->page->tenant;
+        $this->showBranding = ($tenant->subscription('default')->onTrial() || $tenant->subscribed()) && ($tenant->planConfig()['show_powered_by'] === true);
     }
 
     public function render()
