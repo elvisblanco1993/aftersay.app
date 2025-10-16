@@ -45,6 +45,21 @@
                         <span>[phone]</span>
                         <span>The contact's Phone Number</span>
                     </li>
+                    <flux:separator />
+                    <li class="grid grid-cols-2 gap-8 px-4 py-2">
+                        <span>[company_name]</span>
+                        <span>The name of your company</span>
+                    </li>
+                    <flux:separator />
+                    <li class="grid grid-cols-2 gap-8 px-4 py-2">
+                        <span>[business_type]</span>
+                        <span>Your business industry</span>
+                    </li>
+                    <flux:separator />
+                    <li class="grid grid-cols-2 gap-8 px-4 py-2">
+                        <span>[feedback_url]</span>
+                        <span>The link to the review page</span>
+                    </li>
                 </ul>
             </div>
 
