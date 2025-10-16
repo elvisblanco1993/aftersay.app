@@ -29,10 +29,10 @@
                         @endif
                     @endif
         
-                    <flux:radio.group wire:model.live="content_type" label="How should we craft the message?" variant="segmented">
+                    {{-- <flux:radio.group wire:model.live="content_type" label="How should we craft the message?" variant="segmented">
                         <flux:radio value="template" label="Template" />
                         <flux:radio value="custom" label="Custom" />
-                    </flux:radio.group>
+                    </flux:radio.group> --}}
         
                     @if ($content_type === 'template')
                         <flux:select wire:model="template_id" label="Choose a template">
