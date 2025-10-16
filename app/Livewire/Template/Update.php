@@ -2,8 +2,12 @@
 
 namespace App\Livewire\Template;
 
+use App\Actions\ParseMessageContent;
 use App\Enums\TemplateStatus;
+use App\Models\Contact;
 use App\Models\Template;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Update extends Component
@@ -45,5 +49,26 @@ class Update extends Component
     {
         $status = $this->is_enabled === true ? TemplateStatus::Published : TemplateStatus::Draft;
         $this->template->update(['status' => $status]);
+    }
+
+    #[On('parse-content')]
+    public function parsePreview($preview)
+    {
+        if ($preview === true) {
+            // Create fake contact
+            $recipient = Contact::make([
+                'first_name' => 'John',
+                'last_name' => 'Doe',
+                'email' => 'john@example.com',
+            ]);
+            $content = (new ParseMessageContent)(
+                content: $this->body,
+                contact: $recipient,
+                tenant: Auth::user()->currentTenant,
+            );
+            $this->body = $content;
+        } else {
+            $this->body = $this->template->body;
+        }
     }
 }

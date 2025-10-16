@@ -68,7 +68,7 @@ class Show extends Component
         // End campaign - No more automated emails
         if ($this->contact && $contact = Contact::where('ulid', $this->contact)->first()) {
             $contact->campaign->update([
-                'status' => CampaignStatus::Completed->value,
+                'status' => CampaignStatus::Completed,
                 'next_run_at' => null,
             ]);
         }

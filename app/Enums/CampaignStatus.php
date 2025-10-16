@@ -22,9 +22,9 @@ enum CampaignStatus: string
     public function color(): string
     {
         return match ($this) {
-            self::Running => 'green',
+            self::Running => 'blue',
             self::Paused => 'yellow',
-            self::Completed => 'blue',
+            self::Completed => 'green',
             self::Failed => 'red',
         };
     }

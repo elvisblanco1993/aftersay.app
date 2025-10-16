@@ -1,5 +1,5 @@
 <footer class="bg-gray-950 py-12 px-4 md:px-6 footer-pattern">
-    <div class="max-w-7xl mx-auto">
+    <div class="max-w-5xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <!-- Company Info -->
             <div class="space-y-4">

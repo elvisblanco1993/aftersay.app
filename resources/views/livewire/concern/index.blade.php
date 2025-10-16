@@ -50,8 +50,8 @@
                 @empty
                     <tr colspan="4">
                         <div class="text-center space-y-3 card">
-                            <flux:icon.sparkles class="size-6 mx-auto" />
-                            <flux:heading size="lg">No concerns reported</flux:heading>
+                            <flux:icon.ghost class="size-12 text-zinc-400/50 mx-auto" />
+                            <flux:text size="lg">This is where concerns and feedback from your contacts will appear.</flux:text>
                         </div>
                     </tr>
                 @endforelse

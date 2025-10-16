@@ -1,5 +1,5 @@
 <main>
-    <div class="max-w-7xl mx-auto py-4 px-4 md:px-6 flex items-center justify-between">
+    <div class="max-w-5xl mx-auto py-4 px-4 md:px-6 flex items-center justify-between">
         <img src="{{ asset('logo-dark.webp') }}" alt="AfterSay" class="h-7">
     </div>
     {{-- Hero --}}
@@ -10,7 +10,7 @@
             <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-green-600/40 rounded-full opacity-15 blur-3xl animate-pulse delay-800"></div>
         </div>
 
-        <div class="max-w-7xl mx-auto relative z-10">
+        <div class="max-w-5xl mx-auto relative z-10">
             <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight text-white mb-4">
                 Effortlessly Grow Your Business with More 5-Star Reviews.
             </h1>
@@ -31,7 +31,7 @@
             <p class="text-sm text-gray-500 mt-6">Join our early access waitlist and get 50% off for life.</p>
         </div>
     </section>
-    <div class="max-w-7xl mx-auto py-4 px-4 md:px-6 flex items-center justify-center">
+    <div class="max-w-5xl mx-auto py-4 px-4 md:px-6 flex items-center justify-center">
         <p class="text-sm text-zinc-500">Built with ❤️ by <a href="https://elvisbg.dev" class="underline" target="_elvisbgdotdev">Elvis Blanco</a></p>
     </div>
 </main>

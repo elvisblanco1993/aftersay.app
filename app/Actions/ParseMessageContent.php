@@ -32,7 +32,7 @@ class ParseMessageContent
             $contact->phone ?? null,
             $tenant->name ?? null,
             $tenant->industry ?? null,
-            "<a href='".($url ?? '#')."'><strong>Leave us a Review</strong></a>",
+            "<a href='".($url ?? '#')."'><strong>Leave us a review</strong></a>",
         ];
 
         return str_replace($shortcodes, $data, $content);

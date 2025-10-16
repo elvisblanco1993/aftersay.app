@@ -17,7 +17,7 @@
                 <div class="absolute top-1/3 right-1/3 w-2 h-2 bg-yellow-400 rounded-full animate-pulse" style="animation-delay: 1.5s;"></div>
             </div>
     
-            <div class="max-w-7xl mx-auto relative z-10">
+            <div class="max-w-5xl mx-auto relative z-10">
                 <!-- Star Rating Visual -->
                 <div class="flex justify-center mb-8 space-x-2">
                     <svg class="w-10 h-10 text-yellow-400 animate-bounce" style="animation-delay: 0s;" fill="currentColor" viewBox="0 0 20 20">
@@ -62,7 +62,7 @@
 
         {{-- Features --}}
         <section id="features" class="py-24 px-4 md:px-6 bg-gray-950">
-            <div class="max-w-7xl mx-auto">
+            <div class="max-w-5xl mx-auto">
                 <!-- Feature 1: Automated Feedback Collection -->
                 <div class="flex flex-col md:flex-row items-center justify-between mb-32 md:space-x-16">
                     <!-- Text Content -->

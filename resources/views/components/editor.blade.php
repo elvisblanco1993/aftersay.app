@@ -21,7 +21,11 @@
 
         <div x-show="preview"></div>
 
-        <flux:switch x-model="preview" label="Preview" />
+        <flux:switch 
+            x-model="preview" 
+            label="Preview"
+            @change="$dispatch('parse-content', { preview })"
+        />
     </div>
     
     {{-- Editor --}}

@@ -7,7 +7,7 @@ return [
         'name' => 'Email: Initial Feedback Request',
         'type' => 'email',
         'subject' => 'Quick favor — how did we do?',
-        'body' => 'Hi [first_name],</br>Thanks again for choosing [company_name]. We hope everything went smoothly with your [service].</br>Could you take a moment to let us know how we did? Your feedback helps us improve and better serve great clients like you.',
+        'body' => 'Hi [first_name],</br>Thanks again for choosing [company_name]. We hope everything went smoothly with your visit.</br>Could you take a moment to let us know how we did? Your feedback helps us improve and better serve great clients like you.',
     ],
 
     'reminder' => [

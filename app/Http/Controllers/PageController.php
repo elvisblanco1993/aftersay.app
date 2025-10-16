@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\CampaignStatus;
+use App\Models\Campaign;
 use App\Models\Contact;
 use App\Models\LinkClick;
 use App\Models\Page;
@@ -27,6 +29,15 @@ class PageController extends Controller
                 'contact_id' => $contact?->id,
                 'created_at' => now(),
             ]);
+
+            // Stop Campaign
+            if ($contact->exists()) {
+                Campaign::where('contact_id', $contact?->id)
+                    ->update([
+                        'status' => CampaignStatus::Completed,
+                        'next_run_at' => null,
+                    ]);
+            }
         });
 
         return redirect()->away($link->url);

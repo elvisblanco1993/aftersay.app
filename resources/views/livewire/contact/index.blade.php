@@ -23,6 +23,9 @@
                             Phone
                         </th>
                         <th scope="col" class="px-4 py-2">
+                            Campaign Status
+                        </th>
+                        <th scope="col" class="px-4 py-2">
                             <span class="sr-only">Edit</span>
                         </th>
                     </tr>
@@ -49,15 +52,24 @@
                                 {{ $contact->phone }}
                             </a>
                         </td>
+                        <td>
+                            <a href="{{ route('contact.show', ['contact' => $contact]) }}" class="block px-4 py-2.5">
+                                @if ($contact->campaign)
+                                    <flux:badge size="sm" variant="pill" :color="$contact->campaign->status->color()">{{ $contact->campaign->status->label() }}</flux:badge>
+                                @else
+                                    -
+                                @endif
+                            </a>
+                        </td>
                         <td class="px-4 py-2.5 text-right">
                             @if (!$contact->campaign || ($contact->campaign && $contact->campaign->status !== \App\Enums\CampaignStatus::Completed))
-                                <x-button size="sm" type="button" @click="$dispatch('start-campaign', { contact_id: {{ $contact->id }} })">
+                                <flux:button size="xs" type="button" :icon-trailing="$contact->campaign ? 'rotate-ccw' : 'play'" @click="$dispatch('start-campaign', { contact_id: {{ $contact->id }} })">
                                     @if ($contact->campaign)
-                                        Reset Campaign
+                                        Restart Campaign
                                     @else
                                         Start Campaign
                                     @endif
-                                </x-button>
+                                </flux:button>
                             @endif
                         </td>
                     </tr>
