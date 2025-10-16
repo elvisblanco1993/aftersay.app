@@ -65,7 +65,11 @@
 
             <flux:separator text="Template Settings" />
             <flux:input wire:model="name" label="Template name" description="Used internally to help you easily locate the template." />
-            <flux:switch align="left" label="Enabled" wire:model.live="is_enabled" />
+            <flux:callout>
+                <flux:switch align="left" label="Enable template" wire:model.live="is_enabled" description="Toggle to use the template in workflows." />
+            </flux:callout>
+            
+            <livewire:template.delete :template="$template" />
         </div>
     </form>
 </div>
