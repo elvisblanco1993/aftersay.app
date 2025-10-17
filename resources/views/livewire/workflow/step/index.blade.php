@@ -11,9 +11,9 @@
 
             <div class="border border-zinc-400/50 rounded-xl p-4" wire:sortable.item="{{ $step->id }}" wire:key="step-{{ $step->id }}">
                 <div class="flex justify-between">
-                    <div>
-                        <h3 class="text-zinc-800 dark:text-white font-semibold text-base">{{ $step->action->label() }}</h3>
-                    </div>
+                    <flux:badge size="sm" :icon="$step->action->icon()">{{ $step->action->label() }}</flux:badge>
+
+
                     @unless ($readonly)
                         <div wire:sortable.handle class=" cursor-grab">
                             <flux:icon.grip-vertical variant="mini" />
