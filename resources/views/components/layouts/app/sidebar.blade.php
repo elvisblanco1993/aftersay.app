@@ -37,8 +37,8 @@
                     </div>
                 @endif
 
-                <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-                {{ __('Documentation') }}
+                <flux:navlist.item icon="book-open-text" href="https://aftersay.tawk.help" target="_blank">
+                {{ __('Support') }}
                 </flux:navlist.item>
             </flux:navlist>
 
