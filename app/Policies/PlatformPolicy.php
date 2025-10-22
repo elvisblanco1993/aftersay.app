@@ -39,7 +39,8 @@ class PlatformPolicy
         if ($tenant->subscribed()) {
             $maxItems = $tenant->planConfig()['max_review_platforms'];
 
-            return is_null($maxItems) || $currentCount < $maxItems;
+            // If maxItems is negative, it means unlimited
+            return is_null($maxItems) || $currentCount < $maxItems || $maxItems < 0;
         }
 
         return false;
