@@ -12,6 +12,7 @@
                 <flux:text size="lg" class="mt-2">{{ $page->subheading }}</flux:text>
             </div>
 
+            @unless ($rating)
             <div>
                 <flux:select wire:model.live="rating" :label="__('How was your experience?')">
                     <option value="">Select an option</option>
@@ -20,6 +21,7 @@
                     @endforeach
                 </flux:select>
             </div>
+            @endunless
 
             @if ($rating && $rating <=2)
                 <div class="text-left">

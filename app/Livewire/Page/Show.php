@@ -13,7 +13,7 @@ class Show extends Component
 {
     public $page;
 
-    #[Url(except: '')]
+    #[Url(except: null)]
     public $rating;
 
     public $links;

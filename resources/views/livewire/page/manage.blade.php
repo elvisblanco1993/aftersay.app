@@ -26,9 +26,9 @@
                     <flux:input type="file" label="Logo" wire:model.live="logo" accept="image/*" />
 
                     @if ($logo)
-                        <img src="{{ $logo->temporaryUrl() }}" class="h-8 w-auto max-w-full" alt="Temporary Logo">
+                        <img src="{{ $logo->temporaryUrl() }}" class="h-16 w-auto max-w-full" alt="Temporary Logo">
                     @elseif ($page->logo)
-                        <img src="{{ $page->logo_url }}" class="h-8 w-auto max-w-full" alt="Page Logo">
+                        <img src="{{ $page->logo_url }}" class="h-16 w-auto max-w-full" alt="Page Logo">
                     @endif
 
                     <div class="flex items-center gap-3">
