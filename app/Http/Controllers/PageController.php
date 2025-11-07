@@ -20,27 +20,24 @@ class PageController extends Controller
 
         $contact = $ref ? Contact::where('ulid', $ref)->first() : null;
 
-        // Record the click
-        defer(function () use ($link, $contact) {
-            try {
-                LinkClick::create([
-                    'tenant_id' => $link->tenant_id,
-                    'platform_id' => $link->id,
-                    'contact_id' => $contact?->id,
-                    'created_at' => now(),
-                ]);
+        try {
+            LinkClick::create([
+                'tenant_id' => $link->tenant_id,
+                'platform_id' => $link->id,
+                'contact_id' => $contact?->id,
+                'created_at' => now(),
+            ]);
 
-                // Stop Campaign if a valid contact exists
-                if ($contact && $contact->exists) {
-                    Campaign::where('contact_id', $contact->id)->update([
-                        'status' => CampaignStatus::Completed,
-                        'next_run_at' => null,
-                    ]);
-                }
-            } catch (\Throwable $e) {
-                Log::error('Deferred linkRedirect error: '.$e->getMessage());
+            // Stop Campaign if a valid contact exists
+            if ($contact && $contact->exists) {
+                Campaign::where('contact_id', $contact->id)->update([
+                    'status' => CampaignStatus::Completed,
+                    'next_run_at' => null,
+                ]);
             }
-        });
+        } catch (\Throwable $e) {
+            Log::error('Deferred linkRedirect error: '.$e->getMessage());
+        }
 
         return redirect()->away($link->url);
     }
