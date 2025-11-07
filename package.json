@@ -25,6 +25,7 @@
     },
     "devDependencies": {
         "@tailwindcss/typography": "^0.5.16",
-        "@wotz/livewire-sortablejs": "^1.0.0"
+        "@wotz/livewire-sortablejs": "^1.0.0",
+        "patch-package": "^8.0.1"
     }
 }
