@@ -27,7 +27,7 @@
                 <flux:link class="text-sm" :href="asset('downloads/aftersay-wp.zip')">Download the WordPress Plugin</flux:link>
             </div>
 
-            <flux:input wire:model="contacts_endpoint" readonly copyable label="Testimonials API Endpoint" />
+            <flux:input wire:model="testimonials_endpoint" readonly copyable label="Testimonials API Endpoint" />
             <flux:text>Use your API token for authentication. You can create one using the <strong>Generate New Token</strong> button above.</flux:text>
 
             <flux:separator />
@@ -37,7 +37,7 @@
                 <flux:text>Use this endpoint to create contacts directly from your own apps or forms via <strong>POST</strong> requests.</flux:text>
             </div>
 
-            <flux:input wire:model="testimonials_endpoint" readonly copyable label="Contact Submission Endpoint" description="Submit new testimonials directly to your account using this endpoint:" />
+            <flux:input wire:model="contacts_endpoint" readonly copyable label="Contact Submission Endpoint" description="Submit new testimonials directly to your account using this endpoint:" />
             <flux:text>Authenticate with your API token. You can create one above clicking <strong>Generate New Token</strong>.</flux:text> 
         </div>
 
