@@ -54,7 +54,7 @@
 }
 
 .card {
-    @apply bg-white dark:bg-zinc-800/50 px-4 py-6 rounded-xl border dark:border-zinc-700/50;
+    @apply bg-white dark:bg-zinc-800/50 px-4 py-6 space-y-6 rounded-xl border dark:border-zinc-700/50;
 }
 
 [data-flux-field]:not(ui-radio, ui-checkbox) {

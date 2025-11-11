@@ -3,6 +3,7 @@
 use App\Models\Concern;
 use App\Models\Contact;
 use App\Models\Template;
+use App\Models\Testimonial;
 use App\Models\Workflow;
 
 return [
@@ -245,7 +246,25 @@ return [
                     'default_sorting_field' => 'created_at',
                 ],
                 'search-parameters' => [
-                    'query_by' => 'name',
+                    'query_by' => 'contact_name, contact_email, content',
+                ],
+            ],
+            Testimonial::class => [
+                'collection-schema' => [
+                    'fields' => [
+                        ['name' => 'id', 'type' => 'string'],
+                        ['name' => 'tenant_id', 'type' => 'string'],
+                        ['name' => 'title', 'type' => 'string'],
+                        ['name' => 'content', 'type' => 'string'],
+                        ['name' => 'author_name', 'type' => 'string'],
+                        ['name' => 'author_title', 'type' => 'string'],
+                        ['name' => 'company', 'type' => 'string'],
+                        ['name' => 'created_at', 'type' => 'int64'],
+                    ],
+                    'default_sorting_field' => 'created_at',
+                ],
+                'search-parameters' => [
+                    'query_by' => 'title, content, author_name, company',
                 ],
             ],
             // User::class => [

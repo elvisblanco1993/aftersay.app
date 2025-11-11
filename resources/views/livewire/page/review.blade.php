@@ -2,15 +2,16 @@
     <div class="space-y-6">
         <div>
             @if ($page->logo_url)
-                <img src="{{ $page->logo_url }}" alt="{{ $page->tenant->name }} logo" class="h-12 sm:h-24 w-auto mx-auto">
+                <img src="{{ $page->logo_url }}" alt="{{ $page->tenant->name }} logo" class="h-24 w-auto mx-auto">
             @endif
         </div>
 
-        <div class="w-full md:min-w-xl md:max-w-xl space-y-6 rounded-2xl bg-white dark:bg-zinc-700/80 p-6 drop-shadow-xl">
-            <div>
-                <flux:heading level="1" size="xl">{{ $page->heading }}</flux:heading>
-                <flux:text size="lg" class="mt-2">{{ $page->subheading }}</flux:text>
-            </div>
+        <div class="text-center">
+            <flux:heading level="1" size="xl">{{ $page->heading }}</flux:heading>
+            <flux:text size="lg" class="mt-2">{{ $page->subheading }}</flux:text>
+        </div>
+
+        <div class="w-full md:min-w-xl md:max-w-xl space-y-6 card md:drop-shadow-xl/5">
 
             @unless ($rating)
             <div>
@@ -73,6 +74,6 @@
     </div>
 
     @if ($showBranding)
-        <div class="text-sm text-zinc-500 dark:text-zinc-400">Powered by <a href="{{ route('home') }}?ref={{ $page->slug }}" class="underline">AfterSay</a></div>
+        <div class="text-xs text-zinc-500 dark:text-zinc-400">Powered by <a href="{{ route('home') }}?ref={{ $page->slug }}" class="underline">AfterSay</a></div>
     @endif
 </main>

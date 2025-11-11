@@ -19,7 +19,9 @@ class Manage extends Component
 
     public $slug;
 
-    public $url;
+    public $review_url;
+
+    public $testimonial_url;
 
     public $heading;
 
@@ -31,7 +33,8 @@ class Manage extends Component
     {
         $this->tenant = Auth::user()->currentTenant;
         $this->page = $this->tenant->page;
-        $this->url = route('review-page.show', ['slug' => $this->page->slug]);
+        $this->review_url = route('review-page.show', ['slug' => $this->page->slug]);
+        $this->testimonial_url = route('testimonial-page.show', ['slug' => $this->page->slug]);
         $this->heading = $this->page->heading;
         $this->subheading = $this->page->subheading;
     }

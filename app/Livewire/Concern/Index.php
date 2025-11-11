@@ -7,12 +7,14 @@ use Livewire\Component;
 
 class Index extends Component
 {
+    public string $query = '';
+
     public int $perPage = 15;
 
     public function render()
     {
         return view('livewire.concern.index', [
-            'concerns' => Concern::paginate($this->perPage),
+            'concerns' => Concern::search($this->query)->paginate($this->perPage),
         ]);
     }
 }

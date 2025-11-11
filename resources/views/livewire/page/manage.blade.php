@@ -3,15 +3,47 @@
 
     <x-settings.layout :heading="__('Page Setup')" :subheading="__('Manage your public-facing reviews page.')">
 
-        <div class="mb-6 flex items-center gap-3">
-            <flux:input size="sm" wire:model="url" copyable />
-            <div class="flex-none">
-                <flux:modal.trigger name="edit-profile">
-                    <flux:button icon="settings" size="sm" />
-                </flux:modal.trigger>
+        <div class="space-y-6">
+            <div class="flex items-center gap-3">
+                <flux:input wire:model="review_url" readonly copyable />
+                <div class="flex-none">
+                    <flux:modal.trigger name="edit-profile">
+                        <flux:button icon="settings" size="sm" />
+                    </flux:modal.trigger>
+                </div>
             </div>
+
+            {{-- Placeholder Design --}}
+            <div class="text-center space-y-6">
+                <div>
+                    @if ($page->logo_url)
+                        <img src="{{ $page->logo_url }}" alt="{{ $page->tenant->name }} logo" class="h-12 w-auto mx-auto">
+                    @endif
+                </div>
+
+                <div>
+                    <flux:heading level="1" size="xl">{{ $page->heading }}</flux:heading>
+                    <flux:text size="lg" class="mt-2">{{ $page->subheading }}</flux:text>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <flux:select :label="__('How was your experience?')">
+                            <option value="">Select an option</option>
+                            @foreach (\App\Enums\ExperienceRating::cases() as $opt)
+                                <option value="{{ $opt->value }}">{{ $opt->label() }}</option>
+                            @endforeach
+                        </flux:select>
+                    </div>
+                </div>
+            </div>
+
+            <flux:separator />
+
+            <flux:input wire:model="testimonial_url" label="Testimonial Page URL" readonly copyable />
         </div>
 
+        {{-- Review Page Update Modal --}}
         <flux:modal name="edit-profile" class="md:w-128" variant="flyout">
             <form wire:submit="save">
                 @csrf
@@ -39,30 +71,5 @@
                 </div>
             </form>
         </flux:modal>
-        {{-- Placeholder Design --}}
-        <div class="text-center">
-            <div>
-                @if ($page->logo_url)
-                    <img src="{{ $page->logo_url }}" alt="{{ $page->tenant->name }} logo" class="h-12 w-auto mx-auto">
-                @endif
-            </div>
-
-            <div class="card">
-                <div>
-                    <flux:heading level="1" size="xl">{{ $page->heading }}</flux:heading>
-                    <flux:text size="lg" class="mt-2">{{ $page->subheading }}</flux:text>
-                </div>
-
-                <div>
-                    <flux:select :label="__('How was your experience?')">
-                        <option value="">Select an option</option>
-                        @foreach (\App\Enums\ExperienceRating::cases() as $opt)
-                            <option value="{{ $opt->value }}">{{ $opt->label() }}</option>
-                        @endforeach
-                    </flux:select>
-                </div>
-            </div>
-        </div>
-        {{-- Placeholder Design - End --}}
     </x-settings.layout>
 </section>

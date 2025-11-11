@@ -15,9 +15,15 @@ class ApiTokens extends Component
 
     public $user;
 
+    public $contacts_endpoint;
+
+    public $testimonials_endpoint;
+
     public function mount()
     {
         $this->user = Auth::user();
+        $this->contacts_endpoint = route('api.contacts.create');
+        $this->testimonials_endpoint = route('api.testimonials', ['tenant' => $this->user->currentTenant]);
     }
 
     public function create()

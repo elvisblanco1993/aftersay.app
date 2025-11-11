@@ -28,13 +28,15 @@ class Page extends Model
 
     public function getLogoUrlAttribute()
     {
-        if ($this->logo) {
-            $cacheKey = "logo_url:{$this->id}";
+        $cacheKey = "tenant_logo_url:{$this->id}";
 
-            return Cache::remember($cacheKey, now()->addMinutes(9), function () {
+        return Cache::remember($cacheKey, now()->addMinutes(9), function () {
+            if ($this->logo) {
                 return Storage::temporaryUrl($this->logo, now()->addMinutes(10));
-            });
-        }
+            } else {
+                return "https://avatars.laravel.cloud/{$this?->slug}";
+            }
+        });
 
         return '';
     }

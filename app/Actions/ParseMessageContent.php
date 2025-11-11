@@ -18,12 +18,15 @@ class ParseMessageContent
             '[company_name]',
             '[business_type]',
             '[feedback_url]',
+            '[testimonial_url]',
         ];
 
-        $url = Uri::of(route('review-page.show', ['slug' => $tenant?->page->slug]))
+        $feedback_url = Uri::of(route('review-page.show', ['slug' => $tenant?->page->slug]))
             ->withQuery([
                 'ref' => $contact->ulid,
             ]);
+
+        $testimonial_url = Uri::of(route('testimonial-page.show', ['slug' => $tenant?->page?->slug]));
 
         $data = [
             $contact->first_name ?? null,
@@ -32,7 +35,8 @@ class ParseMessageContent
             $contact->phone ?? null,
             $tenant->name ?? null,
             $tenant->industry ?? null,
-            "<a href='".($url ?? '#')."'><strong>Leave us a review</strong></a>",
+            "<a href='".($feedback_url ?? '#')."'><strong>Leave Us a Quick Review</strong></a>",
+            "<a href='".($testimonial_url ?? '#')."'><strong>Share Your Story With Others</strong></a>",
         ];
 
         return str_replace($shortcodes, $data, $content);

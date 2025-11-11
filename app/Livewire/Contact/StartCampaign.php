@@ -6,6 +6,7 @@ use App\Enums\CampaignStatus;
 use App\Models\Contact;
 use App\Models\Workflow;
 use Flux\Flux;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -39,7 +40,7 @@ class StartCampaign extends Component
         ]);
 
         try {
-            $this->contact->campaign()->updateOrCreate([
+            $this->contact->campaigns()->updateOrCreate([
                 'tenant_id' => $this->contact->tenant_id,
                 'workflow_id' => $this->workflow_id,
             ], [
@@ -51,7 +52,7 @@ class StartCampaign extends Component
             session()->flash('flash.banner', $this->contact->name.' messages will start processing soon.');
             session()->flash('flash.bannerStyle', 'success');
         } catch (\Throwable $th) {
-            // throw $th;
+            Log::error($th);
             session()->flash('flash.banner', 'There was an error and we could not process your request. Please try again or contact support.');
             session()->flash('flash.bannerStyle', 'danger');
         }

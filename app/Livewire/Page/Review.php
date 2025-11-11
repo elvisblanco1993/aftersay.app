@@ -6,10 +6,11 @@ use App\Enums\CampaignStatus;
 use App\Models\Concern;
 use App\Models\Contact;
 use App\Models\Page;
+use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
-class Show extends Component
+class Review extends Component
 {
     public $page;
 
@@ -40,7 +41,7 @@ class Show extends Component
 
     public function render()
     {
-        return view('livewire.page.show')
+        return view('livewire.page.review')
             ->layout('components.layouts.business-page', [
                 'title' => 'How did we do? | '.$this->page->tenant->name,
             ]);
@@ -54,23 +55,27 @@ class Show extends Component
             'feedback_comment.*' => 'Please give us a bit more information.',
         ]);
 
-        $contact = Contact::where('ulid', $this->contact)->first() ?: null;
+        try {
+            $contact = Contact::where('ulid', $this->contact)->first() ?: null;
 
-        Concern::create([
-            'tenant_id' => $this->page->tenant_id,
-            'rating' => $this->rating,
-            'content' => $this->feedback_comment,
-            'contact_id' => $this->contact ? $contact->id : null,
-            'contact_email' => $this->contact ? $contact?->email : $this->feedback_email,
-            'contact_name' => $this->contact ? $contact?->full_name : $this->feedback_name,
-        ]);
-
-        // End campaign - No more automated emails
-        if ($this->contact && $contact = Contact::where('ulid', $this->contact)->first()) {
-            $contact->campaign->update([
-                'status' => CampaignStatus::Completed,
-                'next_run_at' => null,
+            Concern::create([
+                'tenant_id' => $this->page->tenant_id,
+                'rating' => $this->rating,
+                'content' => $this->feedback_comment,
+                'contact_id' => $this->contact ? $contact->id : null,
+                'contact_email' => $this->contact ? $contact?->email : $this->feedback_email,
+                'contact_name' => $this->contact ? $contact?->full_name : $this->feedback_name,
             ]);
+
+            // End campaign - No more automated emails
+            if ($this->contact && $contact = Contact::where('ulid', $this->contact)->first()) {
+                $contact->campaign->update([
+                    'status' => CampaignStatus::Completed,
+                    'next_run_at' => null,
+                ]);
+            }
+        } catch (\Throwable $th) {
+            Log::error($th);
         }
 
         $this->redirect(url: route('review-page.completed', ['slug' => $this->page->slug]), navigate: true);

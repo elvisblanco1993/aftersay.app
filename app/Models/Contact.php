@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Scout\Searchable;
 
@@ -39,9 +38,9 @@ class Contact extends Model
         return $this->belongsTo(Tenant::class);
     }
 
-    public function campaign(): HasOne
+    public function campaigns(): HasMany
     {
-        return $this->hasOne(Campaign::class);
+        return $this->hasMany(Campaign::class);
     }
 
     public function concerns(): HasMany

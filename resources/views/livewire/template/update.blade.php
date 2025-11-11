@@ -58,7 +58,12 @@
                     <flux:separator />
                     <li class="grid grid-cols-2 gap-8 px-4 py-2">
                         <span>[feedback_url]</span>
-                        <span>The link to the review page</span>
+                        <span>The link to the reviews collection page</span>
+                    </li>
+                    <flux:separator />
+                    <li class="grid grid-cols-2 gap-8 px-4 py-2">
+                        <span>[testimonial_url]</span>
+                        <span>The link to the testimonials collection page</span>
                     </li>
                 </ul>
             </div>
