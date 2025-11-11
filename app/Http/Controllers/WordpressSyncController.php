@@ -33,7 +33,7 @@ class WordpressSyncController extends Controller
                 'date_given' => $testimonial->created_at->format('Y-m-d'),
                 'featured' => (bool) $testimonial->is_featured,
                 'headshot_url' => $testimonial->headshot_url
-                    ? asset('storage/'.$testimonial->headshot_url)
+                    ? $testimonial->author_headshot
                     : null,
             ];
         });
