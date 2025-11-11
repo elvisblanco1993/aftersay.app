@@ -47,7 +47,7 @@
         </form>
     </div>
 
-    @if ($showBranding)
+    {{-- @if ($showBranding)
         <div class="text-center text-xs text-zinc-500 dark:text-zinc-400">Powered by <a href="{{ route('home') }}?ref={{ $page->slug }}" class="underline">AfterSay</a></div>
-    @endif
+    @endif --}}
 </main>
