@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\CampaignStatus;
 use App\Models\Scopes\ContactScope;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Model;
@@ -41,6 +42,11 @@ class Contact extends Model
     public function campaigns(): HasMany
     {
         return $this->hasMany(Campaign::class);
+    }
+
+    public function getActiveCampaignsAttribute()
+    {
+        return $this->campaigns->where('status', CampaignStatus::Running);
     }
 
     public function concerns(): HasMany

@@ -14,6 +14,7 @@
             <flux:navlist variant="outline">
                 <flux:navlist.item icon="layout-dashboard" :href="route('dashboard')" :current="request()->routeIs('dashboard')">{{ __('Dashboard') }}</flux:navlist.item>
                 <flux:navlist.item icon="users" :href="route('contact.index')" :current="request()->routeIs('contact.*')" wire:navigate>{{ __('Contacts') }}</flux:navlist.item>
+                <flux:navlist.item icon="megaphone" :href="route('campaign.index')" :current="request()->routeIs('campaign.*')" wire:navigate>{{ __('Campaigns') }}</flux:navlist.item>
                 <flux:navlist.item icon="user-star" :href="route('testimonial.index')" :current="request()->routeIs('testimonial.*')" wire:navigate>{{ __('Testimonials') }}</flux:navlist.item>
                 <flux:navlist.item icon="mail" :href="route('concern.index')" :current="request()->routeIs('concern.*')" wire:navigate>{{ __('Concerns') }}</flux:navlist.item>
                 <flux:navlist.item icon="workflow" :href="route('workflow.index')" :current="request()->routeIs('workflow.*')" wire:navigate>{{ __('Workflows') }}</flux:navlist.item>

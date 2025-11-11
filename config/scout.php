@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Campaign;
 use App\Models\Concern;
 use App\Models\Contact;
 use App\Models\Template;
@@ -231,6 +232,21 @@ return [
                 ],
                 'search-parameters' => [
                     'query_by' => 'name',
+                ],
+            ],
+            Campaign::class => [
+                'collection-schema' => [
+                    'fields' => [
+                        ['name' => 'id', 'type' => 'string'],
+                        ['name' => 'tenant_id', 'type' => 'string'],
+                        ['name' => 'name', 'type' => 'string'],
+                        ['name' => 'contact_name', 'type' => 'string'],
+                        ['name' => 'created_at', 'type' => 'int64'],
+                    ],
+                    'default_sorting_field' => 'created_at',
+                ],
+                'search-parameters' => [
+                    'query_by' => 'name, contact_name',
                 ],
             ],
             Concern::class => [

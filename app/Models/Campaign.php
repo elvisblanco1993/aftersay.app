@@ -6,9 +6,12 @@ use App\Enums\CampaignStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Scout\Searchable;
 
 class Campaign extends Model
 {
+    use Searchable;
+
     protected $fillable = [
         'tenant_id',
         'workflow_id',
@@ -22,6 +25,17 @@ class Campaign extends Model
         'status' => CampaignStatus::class,
         'next_run_at' => 'datetime',
     ];
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => (string) $this->id,
+            'tenant_id' => (string) $this->tenant_id,
+            'name' => (string) $this?->workflow?->name ?? '__NULL__',
+            'contact_name' => (string) $this?->contact?->full_name ?? '__NULL__',
+            'created_at' => $this->created_at->timestamp,
+        ];
+    }
 
     public function workflow(): BelongsTo
     {

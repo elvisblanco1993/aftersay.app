@@ -26,8 +26,18 @@
 
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3">
-                    <flux:button wire:click="approve({{ $testimonial->id }})" icon="check" size="sm" variant="filled">Approve</flux:button>
-                    <flux:button wire:click="feature({{ $testimonial->id }})" icon="star" size="sm" variant="filled">Feature</flux:button>
+                    <flux:button 
+                        wire:click="approve({{ $testimonial->id }})" 
+                        icon="check" 
+                        size="sm" 
+                        :variant="$testimonial->is_approved ? 'primary' : 'filled'"
+                    >{{ $testimonial->is_approved ? 'Approved' : 'Approve' }}</flux:button>
+                    <flux:button 
+                        wire:click="feature({{ $testimonial->id }})" 
+                        icon="star" 
+                        size="sm" 
+                        :variant="$testimonial->is_featured ? 'primary' : 'filled'"
+                    >{{ $testimonial->is_approved ? 'Featured' : 'Feature' }}</flux:button>
                 </div>
 
                 <flux:button wire:confirm="Are you sure you want to delete this testimony?\nThis action cannot be undone." wire:click="delete({{ $testimonial->id }})" icon="trash" size="sm" variant="subtle">Delete</flux:button>
