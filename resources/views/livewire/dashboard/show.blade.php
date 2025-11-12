@@ -1,4 +1,5 @@
 <div class="space-y-6">
+   <flux:heading size="xl">Welcome back, {{ auth()->user()->first_name }}</flux:heading>
    <div class="grid grid-cols-3 gap-6">
      <div class="col-span-2 md:col-span-1 bg-white dark:bg-white/10 p-4 border dark:border-white/10 rounded-xl">
         <flux:heading size="xl">{{ $campaigns }}</flux:heading>
@@ -17,4 +18,8 @@
   {{-- <div class="bg-white dark:bg-white/10 p-4 border dark:border-white/10 dark:text-white rounded-xl">
      <x-chart wire:model="chart" />
    </div> --}}
+
+   @env('local')
+   <livewire:onboard.todo />
+   @endenv
 </div>

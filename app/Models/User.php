@@ -66,6 +66,11 @@ class User extends Authenticatable implements MustVerifyEmail
             ->implode('');
     }
 
+    public function getFirstNameAttribute(): string
+    {
+        return explode(' ', trim($this->name))[0] ?? '';
+    }
+
     public function tenants(): BelongsToMany
     {
         return $this->belongsToMany(Tenant::class)->withPivot('permissions')->withTimestamps();

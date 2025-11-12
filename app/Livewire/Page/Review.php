@@ -36,7 +36,13 @@ class Review extends Component
         $this->contact = request(key: 'ref');
 
         $tenant = $this->page->tenant;
-        // $this->showBranding = ($tenant->subscription('default')->onTrial() || $tenant->subscribed()) && ($tenant->planConfig()['show_powered_by'] === true);
+        $subscription = $tenant->subscription('default');
+
+        $this->showBranding = ! $subscription
+            || ($subscription
+            && ($subscription->onTrial() || $subscription->active())
+            && ($tenant->planConfig()['show_powered_by'] ?? false));
+
     }
 
     public function render()

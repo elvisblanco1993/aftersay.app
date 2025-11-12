@@ -58,7 +58,7 @@
                     <tr colspan="4">
                         <div class="text-center space-y-3 p-4 bg-zinc-50 dark:bg-zinc-700">
                             <flux:icon.sparkles class="size-6 mx-auto" />
-                            <flux:heading size="lg">This is where your campaigns will show up. Go to your contacts and start a campaign to see them here.</flux:heading>
+                            <flux:heading size="lg">This is where your campaigns will show up. <a href="{{ route('contact.index') }}" class="underline">Go to your contacts</a> to start your first campaign.</flux:heading>
                         </div>
                     </tr>
                 @endforelse

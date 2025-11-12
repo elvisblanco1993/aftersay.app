@@ -30,12 +30,14 @@ class Page extends Model
     {
         $cacheKey = "tenant_logo_url:{$this->id}";
 
-        return Cache::remember($cacheKey, now()->addMinutes(9), function () {
-            if ($this->logo) {
-                return Storage::temporaryUrl($this->logo, now()->addMinutes(10));
-            } else {
-                return "https://avatars.laravel.cloud/{$this?->slug}";
-            }
+        if ($this->logo) {
+            $logo = Storage::temporaryUrl($this->logo, now()->addMinutes(10));
+        } else {
+            $logo = "https://avatars.laravel.cloud/{$this?->slug}";
+        }
+
+        return Cache::remember($cacheKey, now()->addMinutes(9), function () use ($logo) {
+            return $logo;
         });
 
         return '';
