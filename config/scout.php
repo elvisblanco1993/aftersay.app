@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Campaign;
 use App\Models\Concern;
 use App\Models\Contact;
+use App\Models\Sequence;
 use App\Models\Template;
 use App\Models\Testimonial;
 use App\Models\Workflow;
@@ -234,7 +234,7 @@ return [
                     'query_by' => 'name',
                 ],
             ],
-            Campaign::class => [
+            Sequence::class => [
                 'collection-schema' => [
                     'fields' => [
                         ['name' => 'id', 'type' => 'string'],

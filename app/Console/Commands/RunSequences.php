@@ -2,21 +2,21 @@
 
 namespace App\Console\Commands;
 
-use App\Enums\CampaignStatus;
-use App\Jobs\ProcessCampaignStep;
-use App\Models\Campaign;
+use App\Enums\SequenceStatus;
+use App\Jobs\ProcessSequenceStep;
+use App\Models\Sequence;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
-class RunCampaigns extends Command
+class RunSequences extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'campaign:run';
+    protected $signature = 'sequence:run';
 
     /**
      * The console command description.
@@ -33,15 +33,15 @@ class RunCampaigns extends Command
         try {
             $now = Carbon::now()->startOfMinute();
             $nextMinute = (clone $now)->addMinute();
-            Campaign::where('status', CampaignStatus::Running->value)
+            Sequence::where('status', SequenceStatus::Running->value)
                 ->whereBetween('next_run_at', [$now, $nextMinute])
-                ->chunkById(10, function ($campaigns) {
-                    ProcessCampaignStep::dispatch($campaigns->pluck('id')->toArray());
+                ->chunkById(10, function ($sequences) {
+                    ProcessSequenceStep::dispatch($sequences->pluck('id')->toArray());
                 });
 
             return Command::SUCCESS;
         } catch (\Throwable $th) {
-            Log::error('Error in RunCampaigns command: '.$th->getMessage(), [
+            Log::error('Error in RunSequences command: '.$th->getMessage(), [
                 'trace' => $th->getTraceAsString(),
             ]);
 

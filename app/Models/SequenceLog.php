@@ -4,19 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CampaignLog extends Model
+class SequenceLog extends Model
 {
     protected $fillable = [
-        'campaign_id',
+        'sequence_id',
         'workflow_step_id',
         'action',
         'details',
         'status',
     ];
 
-    public function campaign()
+    public function sequence()
     {
-        return $this->belongsTo(Campaign::class);
+        return $this->belongsTo(Sequence::class);
     }
 
     public function step()

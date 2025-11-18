@@ -17,7 +17,7 @@
     <div class="grid grid-cols-2 gap-6">
         @foreach ($plans as $index => $plan)
             <flux:callout inline>
-                <flux:callout.heading>Up to {{ $plan['campaigns_per_month'] }} campaigns</flux:callout.heading>
+                <flux:callout.heading>Up to {{ $plan['sequences_per_month'] }} sequences</flux:callout.heading>
                 @if ($plan['max_review_platforms'] > 0)
                     <flux:callout.text>Up to {{ $plan['max_review_platforms'] }} review platforms</flux:callout.text>
                 @else

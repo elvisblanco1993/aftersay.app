@@ -93,7 +93,7 @@ class Register extends Component
                 ]);
             }
 
-            // Create default campaign workflow
+            // Create default sequence workflow
             app(CreateDefaultWorkflow::class)($this->user);
         });
 

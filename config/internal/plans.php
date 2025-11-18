@@ -4,7 +4,7 @@ return [
     '50' => [
         'price_monthly' => 15,
         'price_annual' => 150,
-        'campaigns_per_month' => 50,
+        'sequences_per_month' => 50,
         'max_review_platforms' => 3,
         'show_powered_by' => true,
         'stripe_price_id_monthly' => env('STRIPE_PRICE_15_MONTHLY'),
@@ -14,7 +14,7 @@ return [
     '150' => [
         'price_monthly' => 25,
         'price_annual' => 250,
-        'campaigns_per_month' => 150,
+        'sequences_per_month' => 150,
         'max_review_platforms' => 6,
         'show_powered_by' => true,
         'stripe_price_id_monthly' => env('STRIPE_PRICE_25_MONTHLY'),
@@ -24,7 +24,7 @@ return [
     '500' => [
         'price_monthly' => 45,
         'price_annual' => 450,
-        'campaigns_per_month' => 500,
+        'sequences_per_month' => 500,
         'max_review_platforms' => 10,
         'show_powered_by' => true,
         'stripe_price_id_monthly' => env('STRIPE_PRICE_45_MONTHLY'),
@@ -34,7 +34,7 @@ return [
     '1000' => [
         'price_monthly' => 60,
         'price_annual' => 600,
-        'campaigns_per_month' => 1000,
+        'sequences_per_month' => 1000,
         'max_review_platforms' => 15,
         'show_powered_by' => true,
         'stripe_price_id_monthly' => env('STRIPE_PRICE_60_MONTHLY'),
@@ -44,7 +44,7 @@ return [
     '2500' => [
         'price_monthly' => 100,
         'price_annual' => 1000,
-        'campaigns_per_month' => 2500,
+        'sequences_per_month' => 2500,
         'max_review_platforms' => 20,
         'show_powered_by' => false,
         'stripe_price_id_monthly' => env('STRIPE_PRICE_100_MONTHLY'),
@@ -54,7 +54,7 @@ return [
     '5000' => [
         'price_monthly' => 140,
         'price_annual' => 1400,
-        'campaigns_per_month' => 5000,
+        'sequences_per_month' => 5000,
         'max_review_platforms' => 25,
         'show_powered_by' => false,
         'stripe_price_id_monthly' => env('STRIPE_PRICE_140_MONTHLY'),
@@ -64,7 +64,7 @@ return [
     '10000' => [
         'price_monthly' => 200,
         'price_annual' => 2000,
-        'campaigns_per_month' => 10000,
+        'sequences_per_month' => 10000,
         'max_review_platforms' => -1, // unlimited
         'show_powered_by' => false,
         'stripe_price_id_monthly' => env('STRIPE_PRICE_200_MONTHLY'),

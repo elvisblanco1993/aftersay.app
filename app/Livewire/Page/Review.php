@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Page;
 
-use App\Enums\CampaignStatus;
+use App\Enums\SequenceStatus;
 use App\Models\Concern;
 use App\Models\Contact;
 use App\Models\Page;
@@ -73,10 +73,10 @@ class Review extends Component
                 'contact_name' => $this->contact ? $contact?->full_name : $this->feedback_name,
             ]);
 
-            // End campaign - No more automated emails
+            // End sequence - No more automated emails
             if ($this->contact && $contact = Contact::where('ulid', $this->contact)->first()) {
-                $contact->campaign->update([
-                    'status' => CampaignStatus::Completed,
+                $contact->sequence->update([
+                    'status' => SequenceStatus::Completed,
                     'next_run_at' => null,
                 ]);
             }

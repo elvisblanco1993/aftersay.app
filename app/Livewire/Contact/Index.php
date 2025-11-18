@@ -20,4 +20,9 @@ class Index extends Component
             'contacts' => Contact::search($this->query)->paginate($this->per_page),
         ]);
     }
+
+    public function addContact()
+    {
+        $this->dispatch('add-contact');
+    }
 }

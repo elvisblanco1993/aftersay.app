@@ -1,10 +1,10 @@
 <div>
-    <flux:modal name="start-campaign" class="md:w-96" variant="flyout">
+    <flux:modal name="start-sequence" class="md:w-96" variant="flyout">
         <form wire:submit="save">
             @csrf
             <div class="space-y-6">
                 <div>
-                    <flux:heading size="lg">Start Campaign</flux:heading>
+                    <flux:heading size="lg">Start Sequence</flux:heading>
                     <flux:text class="mt-2">For: {{ $contact?->full_name ?? '' }}</flux:text>
                 </div>
 
@@ -19,7 +19,7 @@
                 <div class="flex">
                     <flux:spacer />
 
-                    <flux:button type="submit" variant="primary" icon="rocket">Launch Campaign</flux:button>
+                    <flux:button type="submit" variant="primary" icon="rocket">Launch Sequence</flux:button>
                 </div>
             </div>
         </form>

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\CampaignStatus;
+use App\Enums\SequenceStatus;
 use App\Models\Scopes\ContactScope;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Model;
@@ -39,14 +39,14 @@ class Contact extends Model
         return $this->belongsTo(Tenant::class);
     }
 
-    public function campaigns(): HasMany
+    public function sequences(): HasMany
     {
-        return $this->hasMany(Campaign::class);
+        return $this->hasMany(Sequence::class);
     }
 
-    public function getActiveCampaignsAttribute()
+    public function getActiveSequencesAttribute()
     {
-        return $this->campaigns->where('status', CampaignStatus::Running);
+        return $this->sequences->where('status', SequenceStatus::Running);
     }
 
     public function concerns(): HasMany

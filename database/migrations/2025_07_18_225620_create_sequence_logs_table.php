@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Campaign;
+use App\Models\Sequence;
 use App\Models\WorkflowStep;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('campaign_logs', function (Blueprint $table) {
+        Schema::create('sequence_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Campaign::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Sequence::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(WorkflowStep::class)->nullable()->constrained()->nullOnDelete();
             $table->string('action');
             $table->text('details')->nullable();

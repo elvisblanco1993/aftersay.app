@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Contact;
 
-use App\Enums\CampaignStatus;
+use App\Enums\SequenceStatus;
 use App\Models\Contact;
 use App\Models\Workflow;
 use Flux\Flux;
@@ -11,7 +11,7 @@ use Illuminate\Validation\Rule;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class StartCampaign extends Component
+class StartSequence extends Component
 {
     public $contact = null;
 
@@ -24,11 +24,11 @@ class StartCampaign extends Component
         $this->workflows = Workflow::get();
     }
 
-    #[On('start-campaign')]
-    public function startCampaign($contact_id)
+    #[On('start-sequence')]
+    public function startSequence($contact_id)
     {
         $this->contact = Contact::findOrFail($contact_id);
-        Flux::modal('start-campaign')->show();
+        Flux::modal('start-sequence')->show();
     }
 
     public function save()
@@ -40,13 +40,13 @@ class StartCampaign extends Component
         ]);
 
         try {
-            $this->contact->campaigns()->updateOrCreate([
+            $this->contact->sequences()->updateOrCreate([
                 'tenant_id' => $this->contact->tenant_id,
                 'workflow_id' => $this->workflow_id,
             ], [
                 'contact_id' => $this->contact->id,
                 'current_step' => 1,
-                'status' => CampaignStatus::Running->value,
+                'status' => SequenceStatus::Running->value,
                 'next_run_at' => now()->ceilMinute(5),
             ]);
             session()->flash('flash.banner', $this->contact->name.' messages will start processing soon.');
@@ -62,6 +62,6 @@ class StartCampaign extends Component
 
     public function render()
     {
-        return view('livewire.contact.start-campaign');
+        return view('livewire.contact.start-sequence');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Dashboard;
 
-use App\Enums\CampaignStatus;
+use App\Enums\SequenceStatus;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -27,9 +27,11 @@ class Show extends Component
         $tenant = Auth::user()->currentTenant;
 
         return view('livewire.dashboard.show', [
-            'campaigns' => $tenant->campaigns->where('status', '!=', CampaignStatus::Completed)->count(),
+            'contacts' => $tenant->contacts->count(),
+            'sequences' => $tenant->sequences->where('status', '!=', SequenceStatus::Completed)->count(),
             'linkClicks' => $tenant->linkClicks->count(),
             'concerns' => $tenant->concerns->count(),
+            'testimonials' => $tenant->testimonials->count(),
         ]);
     }
 }

@@ -28,8 +28,8 @@
             <flux:heading>{{ $contact->phone }}</flux:heading>
         </div>
         <div class="space-y-2">
-            <flux:text>Campaign Status</flux:text>
-            <flux:badge :color="$contact?->campaign?->status?->color() ?? 'gray'">{{ $contact?->campaign?->status?->label() ?? 'New' }}</flux:badge>
+            <flux:text>Sequence Status</flux:text>
+            <flux:badge :color="$contact?->sequence?->status?->color() ?? 'gray'">{{ $contact?->sequence?->status?->label() ?? 'New' }}</flux:badge>
         </div>
         <div class="space-y-2">
             <flux:text>Created</flux:text>

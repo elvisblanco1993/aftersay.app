@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\CampaignStatus;
-use App\Models\Campaign;
+use App\Enums\SequenceStatus;
 use App\Models\Contact;
 use App\Models\LinkClick;
 use App\Models\Page;
 use App\Models\Platform;
+use App\Models\Sequence;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -28,10 +28,10 @@ class PageController extends Controller
                 'created_at' => now(),
             ]);
 
-            // Stop Campaign if a valid contact exists
+            // Stop Sequence if a valid contact exists
             if ($contact && $contact->exists) {
-                Campaign::where('contact_id', $contact->id)->update([
-                    'status' => CampaignStatus::Completed,
+                Sequence::where('contact_id', $contact->id)->update([
+                    'status' => SequenceStatus::Completed,
                     'next_run_at' => null,
                 ]);
             }

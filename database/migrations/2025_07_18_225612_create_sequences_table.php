@@ -14,7 +14,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('campaigns', function (Blueprint $table) {
+        Schema::create('sequences', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Tenant::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Workflow::class)->constrained()->cascadeOnDelete();
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('campaigns');
+        Schema::dropIfExists('sequences');
     }
 };

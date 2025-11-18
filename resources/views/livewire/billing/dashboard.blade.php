@@ -14,7 +14,7 @@
                     <div class="space-y-2 text-sm">
                         <div class="flex items-center space-x-1">
                             <flux:icon.check-circle variant="micro" class="opacity-80 fill-green-400"/>
-                            <div>Up to {{ $plan['campaigns_per_month'] }} campaigns each month</div>
+                            <div>Up to {{ $plan['sequences_per_month'] }} sequences each month</div>
                         </div>
 
                         <div class="flex items-center space-x-1">
@@ -42,8 +42,8 @@
                 <flux:heading size="lg">Your Usage</flux:heading>
                 <div class="card text-sm space-y-1">
                     <div class="grid grid-cols-4">
-                        <div class="col-span-1">Campaigns this month</div>
-                        <div class="col-span-3"> {{ $contacts_count }} / {{ $plan['campaigns_per_month'] }}</div>
+                        <div class="col-span-1">Sequences this month</div>
+                        <div class="col-span-3"> {{ $contacts_count }} / {{ $plan['sequences_per_month'] }}</div>
                     </div>
 
                     <div class="grid grid-cols-4">

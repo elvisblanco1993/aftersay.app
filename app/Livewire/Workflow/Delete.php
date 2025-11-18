@@ -17,7 +17,7 @@ class Delete extends Component
     public function delete()
     {
         if ($this->workflow->instances->count() > 0) {
-            session()->flash('flash.banner', 'This workflow cannot be deleted because there are contacts with active campaigns.');
+            session()->flash('flash.banner', 'This workflow cannot be deleted because there are contacts with active sequences.');
             session()->flash('flash.bannerStyle', 'danger');
             $this->redirect(url: url()->previous(), navigate: true);
         } else {

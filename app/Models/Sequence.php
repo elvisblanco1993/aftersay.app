@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\Enums\CampaignStatus;
+use App\Enums\SequenceStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 
-class Campaign extends Model
+class Sequence extends Model
 {
     use Searchable;
 
@@ -22,7 +22,7 @@ class Campaign extends Model
     ];
 
     protected $casts = [
-        'status' => CampaignStatus::class,
+        'status' => SequenceStatus::class,
         'next_run_at' => 'datetime',
     ];
 
@@ -49,6 +49,6 @@ class Campaign extends Model
 
     public function logs(): HasMany
     {
-        return $this->hasMany(CampaignLog::class);
+        return $this->hasMany(SequenceLog::class);
     }
 }

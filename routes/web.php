@@ -43,10 +43,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('contacts/{contact}', \App\Livewire\Contact\Show::class)->name('contact.show');
 
         /**
-         * Campaign routes
+         * Sequence routes
          */
-        Route::get('campaigns', \App\Livewire\Campaign\Index::class)->name('campaign.index');
-        Route::get('campaigns/{campaign}', \App\Livewire\Campaign\Show::class)->name('campaign.show');
+        Route::get('sequences', \App\Livewire\Sequence\Index::class)->name('sequence.index');
+        Route::get('sequences/{sequence}', \App\Livewire\Sequence\Show::class)->name('sequence.show');
 
         /**
          * Concern management routes

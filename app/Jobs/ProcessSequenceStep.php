@@ -3,27 +3,27 @@
 namespace App\Jobs;
 
 use App\Actions\ParseMessageContent;
-use App\Enums\CampaignStatus;
-use App\Models\Campaign;
-use App\Models\CampaignLog;
+use App\Enums\SequenceStatus;
+use App\Models\Sequence;
+use App\Models\SequenceLog;
 use App\Notifications\SendMessage;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Log;
 
-class ProcessCampaignStep implements ShouldQueue
+class ProcessSequenceStep implements ShouldQueue
 {
     use Queueable;
 
-    public $campaigns;
+    public $sequences;
 
     /**
      * Create a new job instance.
      */
     public function __construct(array $step_ids)
     {
-        $this->campaigns = Campaign::whereIn('id', $step_ids)->get();
+        $this->sequences = Sequence::whereIn('id', $step_ids)->get();
     }
 
     /**
@@ -31,14 +31,14 @@ class ProcessCampaignStep implements ShouldQueue
      */
     public function handle(): void
     {
-        foreach ($this->campaigns as $campaign) {
+        foreach ($this->sequences as $sequence) {
             $details = null;
             $status = null;
 
             try {
-                $workflow = $campaign->workflow;
-                $recipient = $campaign->contact;
-                $step = $workflow->steps()->where('order', $campaign->current_step)->first();
+                $workflow = $sequence->workflow;
+                $recipient = $sequence->contact;
+                $step = $workflow->steps()->where('order', $sequence->current_step)->first();
 
                 // Send Email
                 $content = $step->template_id ? $step->template->body : $step->custom_message;
@@ -60,7 +60,7 @@ class ProcessCampaignStep implements ShouldQueue
 
                 // TODO:
                 // Set the next current_step
-                $nextStep = $workflow->steps()->where('order', ($campaign->current_step + 1))->first();
+                $nextStep = $workflow->steps()->where('order', ($sequence->current_step + 1))->first();
                 if ($nextStep) {
                     $delay = $nextStep->delay;
                     $delayUnit = $nextStep->delay_unit;
@@ -72,15 +72,15 @@ class ProcessCampaignStep implements ShouldQueue
                         default => $baseDate,
                     };
 
-                    // Update campaign
-                    $campaign->update([
+                    // Update sequence
+                    $sequence->update([
                         'current_step' => $nextStep->id,
                         'next_run_at' => $nextRunAt,
-                        'status' => CampaignStatus::Running->value,
+                        'status' => SequenceStatus::Running->value,
                     ]);
                 } else {
-                    $campaign->update([
-                        'status' => CampaignStatus::Completed->value,
+                    $sequence->update([
+                        'status' => SequenceStatus::Completed->value,
                     ]);
                 }
 
@@ -92,8 +92,8 @@ class ProcessCampaignStep implements ShouldQueue
             }
 
             // Log the instance run
-            CampaignLog::create([
-                'campaign_id' => $campaign->id,
+            SequenceLog::create([
+                'sequence_id' => $sequence->id,
                 'workflow_step_id' => $step?->id,
                 'action' => $step->action,
                 'status' => $status,

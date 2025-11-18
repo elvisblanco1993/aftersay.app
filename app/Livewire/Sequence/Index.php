@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Livewire\Campaign;
+namespace App\Livewire\Sequence;
 
-use App\Models\Campaign;
+use App\Models\Sequence;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -24,7 +24,7 @@ class Index extends Component
 
     public function render()
     {
-        $campaigns = Campaign::search($this->query)
+        $sequences = Sequence::search($this->query)
             ->where('tenant_id', $this->tenantId)
             ->query(function ($builder) {
                 $builder->with([
@@ -34,8 +34,8 @@ class Index extends Component
             })
             ->paginate($this->perPage);
 
-        return view('livewire.campaign.index', [
-            'campaigns' => $campaigns,
+        return view('livewire.sequence.index', [
+            'sequences' => $sequences,
         ]);
     }
 }

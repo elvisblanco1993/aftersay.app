@@ -84,9 +84,9 @@ class Tenant extends Model
         return $this->hasMany(Platform::class);
     }
 
-    public function campaigns(): HasMany
+    public function sequences(): HasMany
     {
-        return $this->hasMany(Campaign::class);
+        return $this->hasMany(Sequence::class);
     }
 
     public function linkClicks(): HasMany
@@ -97,6 +97,11 @@ class Tenant extends Model
     public function concerns(): HasMany
     {
         return $this->hasMany(Concern::class);
+    }
+
+    public function testimonials(): HasMany
+    {
+        return $this->hasMany(Testimonial::class);
     }
 
     public function page(): HasOne

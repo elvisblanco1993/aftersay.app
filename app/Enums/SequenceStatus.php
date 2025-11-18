@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum CampaignStatus: string
+enum SequenceStatus: string
 {
     case Running = 'running';
     case Paused = 'paused';

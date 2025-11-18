@@ -23,7 +23,7 @@
                             Phone
                         </th>
                         <th scope="col" class="px-4 py-2">
-                            Active Campaigns
+                            Active Sequences
                         </th>
                         <th scope="col" class="px-4 py-2">
                             <span class="sr-only">Edit</span>
@@ -53,15 +53,15 @@
                             </a>
                         </td>
                         <td class="px-4 py-2.5 space-x-2 space-y-1">
-                            <flux:badge size="sm" variant="pill">{{ $contact->activeCampaigns->count() }}</flux:badge>
+                            <flux:badge size="sm" variant="pill">{{ $contact->activeSequences->count() }}</flux:badge>
                         </td>
                         <td class="px-4 py-2.5 text-right">
-                            @if (!$contact->campaign || ($contact->campaign && $contact->campaign->status !== \App\Enums\CampaignStatus::Completed))
-                                <flux:button size="xs" type="button" :icon-trailing="$contact->campaign ? 'rotate-ccw' : 'play'" @click="$dispatch('start-campaign', { contact_id: {{ $contact->id }} })">
-                                    @if ($contact->campaign)
-                                        Restart Campaign
+                            @if (!$contact->sequence || ($contact->sequence && $contact->sequence->status !== \App\Enums\SequenceStatus::Completed))
+                                <flux:button size="xs" type="button" :icon-trailing="$contact->sequence ? 'rotate-ccw' : 'play'" @click="$dispatch('start-sequence', { contact_id: {{ $contact->id }} })">
+                                    @if ($contact->sequence)
+                                        Restart Sequence
                                     @else
-                                        Start Campaign
+                                        Start Sequence
                                     @endif
                                 </flux:button>
                             @endif
@@ -81,6 +81,6 @@
 
     <div>{{ $contacts->links() }}</div>
 
-    {{-- Campaign Selector --}}
-    <livewire:contact.start-campaign />
+    {{-- Sequence Selector --}}
+    <livewire:contact.start-sequence />
 </div>
