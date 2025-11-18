@@ -37,7 +37,7 @@
                             <span>Please upload your professional photo</span>
                         </div>
                     </flux:description>
-                    <flux:error name="website" />
+                    <flux:error name="headshot" />
                 </flux:field>
     
                 <flux:checkbox wire:model="terms" label="I agree to allow my testimonial to be published on your website and marketing materials." />
