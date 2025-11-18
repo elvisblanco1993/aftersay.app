@@ -34,7 +34,7 @@
                     <flux:description class="-mt-0.5!">
                         <div class="flex items-center gap-1">
                             <flux:icon.information-circle variant="micro" />
-                            <span>Please upload your professional photo</span>
+                            <span>Upload PNG, JPEG images up to 50MB</span>
                         </div>
                     </flux:description>
                     <flux:error name="headshot" />
