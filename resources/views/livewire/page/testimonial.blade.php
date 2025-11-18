@@ -29,8 +29,8 @@
                 <flux:input wire:model="company" label="Company Name" placeholder="ACME Corporation" />
     
                 <flux:field>
-                    <flux:label>Upload Your Headshot (Optional)</flux:label>
-                    <flux:input wire:model="headshot" type="file" />
+                    <flux:label>Upload Your Headshot</flux:label>
+                    <flux:input wire:model="headshot" type="file" accept="image/jpg,image/png" />
                     <flux:description class="-mt-0.5!">
                         <div class="flex items-center gap-1">
                             <flux:icon.information-circle variant="micro" />
