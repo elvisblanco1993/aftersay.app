@@ -65,7 +65,7 @@ class Testimonial extends Component
             'title' => ['required'],
             'content' => ['required', 'min:50'],
             'author_name' => ['required'],
-            'headshot' => ['required', 'image', 'max:1024'],
+            'headshot' => ['required', 'image', 'max:2048'],
             'terms' => ['accepted', 'required'],
         ]);
             
