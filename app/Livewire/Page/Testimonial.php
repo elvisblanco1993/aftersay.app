@@ -63,7 +63,7 @@ $this->validate([
             'title' => ['required'],
             'content' => ['required', 'min:50'],
             'author_name' => ['required'],
-            'headshot' => ['required', 'image', 'max:2048'],
+            'headshot' => ['required', 'image', 'max:51200'], // 50mb
             'terms' => ['accepted', 'required'],
         ]);
         try {
