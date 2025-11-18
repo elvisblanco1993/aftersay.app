@@ -58,17 +58,17 @@ class Testimonial extends Component
 
     public function save()
     {
-        
-$this->validate([
+
+        $this->validate([
             'title' => ['required'],
             'content' => ['required', 'min:50'],
             'author_name' => ['required'],
             'headshot' => ['required', 'image', 'max:51200'], // 50mb
             'terms' => ['accepted', 'required'],
         ]);
+
         try {
-            
-            
+
             $contact = Contact::where('ulid', $this->contact)->first() ?: null;
 
             $headshot_url = $this->headshot ? $this->headshot->store("tenant/{$this->page->slug}/testimonials") : null;
