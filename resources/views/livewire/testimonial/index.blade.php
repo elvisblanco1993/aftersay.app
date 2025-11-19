@@ -13,7 +13,7 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <flux:avatar :src="$testimonial->author_headshot" />
+                <flux:avatar :src="$testimonial->author_headshot" :href="$testimonial->author_headshot" target="_blank" />
                 <div class="space-y-0.5 block">
                     <p class="font-medium">{{ $testimonial->author_name }}</p>
                     @if ($testimonial->author_title && $testimonial->company)
