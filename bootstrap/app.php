@@ -18,7 +18,14 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        // Send error reports to HoneyBadger in Production Only
+        if (app()->isProduction()) {
+            $exceptions->reportable(static function (Throwable $e) {
+                if (app()->bound('honeybadger')) {
+                    app('honeybadger')->notify($e, app('request'));
+                }
+            });
+        }
     })
     ->booting(function () {
         //
