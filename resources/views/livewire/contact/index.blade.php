@@ -1,7 +1,10 @@
 <div class="space-y-6">
     <div class="flex items-center justify-between">
         <flux:heading size="xl">Contacts</flux:heading>
-        <livewire:contact.create />
+        <div class="flex items-center gap-3">
+            <livewire:contact.import />
+            <livewire:contact.create />
+        </div>
     </div>
 
     <div class="flex items-center justify-between">

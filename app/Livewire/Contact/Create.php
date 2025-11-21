@@ -5,7 +5,6 @@ namespace App\Livewire\Contact;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -39,7 +38,6 @@ class Create extends Component
         try {
             Contact::create([
                 'tenant_id' => Auth::user()->current_tenant_id,
-                'ulid' => Str::ulid(now()),
                 'first_name' => $this->first_name,
                 'last_name' => $this->last_name,
                 'email' => $this->email,

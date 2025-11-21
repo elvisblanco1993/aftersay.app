@@ -1,0 +1,10 @@
+# Database Server Setup
+sudo mysql -u root -p;
+
+# Create DB and set DB user privileges
+CREATE DATABASE aftersay;
+CREATE USER 'aftersay'@'localhost' IDENTIFIED BY 'Bahia#9398!!';
+ALTER USER 'aftersay'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Bahia#9398!!';
+GRANT ALL PRIVILEGES ON aftersay.* to 'aftersay'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+exit;

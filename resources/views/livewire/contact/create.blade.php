@@ -3,7 +3,7 @@
         <flux:button variant="primary">Add contact</flux:button>
     </flux:modal.trigger>
 
-    <flux:modal name="add-contact" class="md:w-96">
+    <flux:modal name="add-contact" class="md:w-128">
         <form wire:submit="save">
             @csrf
             <div class="space-y-6">
@@ -14,7 +14,7 @@
                     <flux:input wire:model="last_name" label="Last name" />
                 </div>
                 <flux:input wire:model="email" label="Email address" type="email" />
-                <flux:input wire:model="phone" label="Phone number" type="tel" />
+                <flux:input wire:model="phone" label="Phone number (optional)" type="tel" />
 
                 <div class="flex">
                     <flux:spacer />

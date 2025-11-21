@@ -62,7 +62,7 @@ class Review extends Component
         ]);
 
         try {
-            $contact = Contact::where('ulid', $this->contact)->first() ?: null;
+            $contact = Contact::where('id', $this->contact)->first() ?: null;
 
             Concern::create([
                 'tenant_id' => $this->page->tenant_id,
@@ -74,7 +74,7 @@ class Review extends Component
             ]);
 
             // End sequence - No more automated emails
-            if ($this->contact && $contact = Contact::where('ulid', $this->contact)->first()) {
+            if ($this->contact && $contact = Contact::find($this->contact)) {
                 $contact->sequence->update([
                     'status' => SequenceStatus::Completed,
                     'next_run_at' => null,

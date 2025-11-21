@@ -49,7 +49,7 @@ class StartSequence extends Component
                 'status' => SequenceStatus::Running->value,
                 'next_run_at' => now()->ceilMinute(5),
             ]);
-            session()->flash('flash.banner', $this->contact->name.' messages will start processing soon.');
+            session()->flash('flash.banner', $this->contact->full_name.' messages will start processing soon.');
             session()->flash('flash.bannerStyle', 'success');
         } catch (\Throwable $th) {
             Log::error($th);

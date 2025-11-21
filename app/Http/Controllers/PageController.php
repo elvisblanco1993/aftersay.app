@@ -18,7 +18,7 @@ class PageController extends Controller
         $link = Platform::where('ulid', $request->ulid)->firstOrFail();
         $ref = $request->query('ref');
 
-        $contact = $ref ? Contact::where('ulid', $ref)->first() : null;
+        $contact = $ref ? Contact::where('id', $ref)->first() : null;
 
         try {
             LinkClick::create([

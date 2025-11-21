@@ -23,7 +23,7 @@ class ParseMessageContent
 
         $feedback_url = Uri::of(route('review-page.show', ['slug' => $tenant?->page->slug]))
             ->withQuery([
-                'ref' => $contact->ulid,
+                'ref' => $contact->ulid ?: $contact->id,
             ]);
 
         $testimonial_url = Uri::of(route('testimonial-page.show', ['slug' => $tenant?->page?->slug]));

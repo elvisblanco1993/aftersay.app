@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class ContactController extends Controller
 {
@@ -15,7 +14,6 @@ class ContactController extends Controller
             'email' => 'required|email',
         ]);
 
-        $validated['ulid'] = Str::ulid();
         $validated['phone'] = $request->phone;
 
         $contact = $request->user()->currentTenant->contacts()->create($validated);

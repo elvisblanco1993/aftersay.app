@@ -69,7 +69,7 @@ class Testimonial extends Component
 
         try {
 
-            $contact = Contact::where('ulid', $this->contact)->first() ?: null;
+            $contact = Contact::find($this->contact) ?: null;
 
             $headshot_url = $this->headshot ? $this->headshot->store("tenant/{$this->page->slug}/testimonials") : null;
 
