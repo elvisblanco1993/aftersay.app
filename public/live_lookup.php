@@ -1,23 +1,5 @@
 <?php
 
-/**
- * HelpSpot Live Lookup Integration Script (PHP)
- *
- * This script connects to the dummyjson.com user search API, fetches user data,
- * and formats the response as XML for HelpSpot's Live Lookup feature.
- *
- * It implements prioritized search logic, checking for multiple GET parameters
- * (customer_id, email, last_name, first_name) to determine the search query.
- *
- * FIX: The final closing PHP tag '?>' has been removed, and all XML output
- * is now strictly controlled by 'echo' to prevent the "Invalid document end" error.
- */
-
-// -----------------------------------------------------------------------------
-// 1. Configuration & Setup
-// -----------------------------------------------------------------------------
-
-// Set the API endpoint
 const DUMMY_API_URL = 'https://dummyjson.com/users/search?q=';
 
 // Initialize search query
@@ -28,16 +10,16 @@ $search_query = '';
 // -----------------------------------------------------------------------------
 
 // This logic attempts to find the most specific parameter passed by HelpSpot.
-if (!empty($_GET['customer_id'])) {
+if (! empty($_GET['customer_id'])) {
     // 1. If an ID is passed in, use that for the search.
     $search_query = trim($_GET['customer_id']);
-} elseif (!empty($_GET['email'])) {
+} elseif (! empty($_GET['email'])) {
     // 2. If no ID, try searching by email.
     $search_query = trim($_GET['email']);
-} elseif (!empty($_GET['last_name'])) {
+} elseif (! empty($_GET['last_name'])) {
     // 3. If no ID or email, search on last name.
     $search_query = trim($_GET['last_name']);
-} elseif (!empty($_GET['first_name'])) {
+} elseif (! empty($_GET['first_name'])) {
     // 4. Try first name if nothing else is available.
     $search_query = trim($_GET['first_name']);
 }
@@ -61,7 +43,7 @@ if (empty($search_query)) {
 
 // The dummyjson API uses 'q' for the search term, which is now populated by
 // one of the prioritized GET parameters above.
-$api_url = DUMMY_API_URL . urlencode($search_query);
+$api_url = DUMMY_API_URL.urlencode($search_query);
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $api_url);
@@ -90,7 +72,7 @@ if ($json_response === false || $http_code !== 200) {
 $data = json_decode($json_response, true);
 
 // Check if decoding was successful and if the 'users' array exists
-if ($data === null || !isset($data['users']) || !is_array($data['users'])) {
+if ($data === null || ! isset($data['users']) || ! is_array($data['users'])) {
     header('Content-Type: text/xml; charset=utf-8');
     echo '<?xml version="1.0" encoding="utf-8"?><livelookup/>';
     // NOTE: Closing PHP tag is omitted to prevent whitespace issues.
@@ -116,7 +98,7 @@ foreach ($data['users'] as $user) {
     $last_name = htmlspecialchars($user['lastName'] ?? '');
     $email = htmlspecialchars($user['email'] ?? '');
     $phone = htmlspecialchars($user['phone'] ?? '');
-    
+
     $xml_output .= "
     <customer>
         <customer_id>{$id}</customer_id>
@@ -132,6 +114,3 @@ $xml_output .= '</livelookup>';
 
 // Output the final XML
 echo $xml_output;
-
-// NOTE: The final closing PHP tag '?>' is intentionally omitted here to prevent
-// accidental output of trailing whitespace, which causes the "Invalid document end" XML error.
