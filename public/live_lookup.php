@@ -1,116 +1,180 @@
 <?php
 
-const DUMMY_API_URL = 'https://dummyjson.com/users/search?q=';
+/**
+ * HelpSpot Live Lookup Integration with DummyJSON Users API
+ *
+ * This script integrates the dummyjson.com users API with HelpSpot's Live Lookup feature.
+ * It searches for users and returns results in HelpSpot's required XML format.
+ *
+ * Usage: Deploy this script to a web-accessible location and configure the URL in
+ * HelpSpot Admin -> Settings -> Live Lookup (HTTP mode)
+ */
 
-// Initialize search query
-$search_query = '';
+// Set headers for XML output
+header('Content-Type: text/xml; charset=utf-8');
 
-// -----------------------------------------------------------------------------
-// 2. Prioritized Search Query Determination (Matches MySQL Logic)
-// -----------------------------------------------------------------------------
+// Enable error logging (disable display for production)
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
 
-// This logic attempts to find the most specific parameter passed by HelpSpot.
-if (! empty($_GET['customer_id'])) {
-    // 1. If an ID is passed in, use that for the search.
-    $search_query = trim($_GET['customer_id']);
-} elseif (! empty($_GET['email'])) {
-    // 2. If no ID, try searching by email.
-    $search_query = trim($_GET['email']);
-} elseif (! empty($_GET['last_name'])) {
-    // 3. If no ID or email, search on last name.
-    $search_query = trim($_GET['last_name']);
-} elseif (! empty($_GET['first_name'])) {
-    // 4. Try first name if nothing else is available.
-    $search_query = trim($_GET['first_name']);
+/**
+ * Get search query from HelpSpot parameters
+ * HelpSpot passes customer information as GET parameters
+ */
+function getSearchQuery()
+{
+    $searchTerms = [];
+
+    // Check for available search parameters from HelpSpot
+    if (! empty($_GET['first_name'])) {
+        $searchTerms[] = $_GET['first_name'];
+    }
+    if (! empty($_GET['last_name'])) {
+        $searchTerms[] = $_GET['last_name'];
+    }
+    if (! empty($_GET['email'])) {
+        $searchTerms[] = $_GET['email'];
+    }
+
+    // If no parameters provided, return empty string
+    if (empty($searchTerms)) {
+        return '';
+    }
+
+    // Combine search terms with space
+    return implode(' ', $searchTerms);
 }
 
-// -----------------------------------------------------------------------------
-// 3. Error Handling for No Query
-// -----------------------------------------------------------------------------
+/**
+ * Search the DummyJSON API
+ *
+ * @param  string  $query  Search query
+ * @return array|null Array of users or null on failure
+ */
+function searchDummyJsonAPI($query)
+{
+    if (empty($query)) {
+        return null;
+    }
 
-// If no query is provided, return an empty XML response immediately (1=0 equivalent)
-if (empty($search_query)) {
-    // Output XML headers and empty livelookup tag
-    header('Content-Type: text/xml; charset=utf-8');
-    echo '<?xml version="1.0" encoding="utf-8"?><livelookup/>';
-    // NOTE: Closing PHP tag is omitted to prevent whitespace issues.
-    exit;
+    // Build API URL with encoded query
+    $apiUrl = 'https://dummyjson.com/users/search?q='.urlencode($query);
+
+    // Initialize cURL
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $apiUrl);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+    // Execute request
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $error = curl_error($ch);
+    curl_close($ch);
+
+    // Check for errors
+    if ($error) {
+        error_log('DummyJSON API Error: '.$error);
+
+        return null;
+    }
+
+    if ($httpCode !== 200) {
+        error_log('DummyJSON API returned HTTP code: '.$httpCode);
+
+        return null;
+    }
+
+    // Decode JSON response
+    $data = json_decode($response, true);
+
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        error_log('JSON decode error: '.json_last_error_msg());
+
+        return null;
+    }
+
+    // Return users array
+    return isset($data['users']) ? $data['users'] : null;
 }
 
-// -----------------------------------------------------------------------------
-// 4. API Call using cURL
-// -----------------------------------------------------------------------------
-
-// The dummyjson API uses 'q' for the search term, which is now populated by
-// one of the prioritized GET parameters above.
-$api_url = DUMMY_API_URL.urlencode($search_query);
-
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $api_url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_TIMEOUT, 5); // Set a timeout to prevent hanging
-
-$json_response = curl_exec($ch);
-$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-$curl_error = curl_error($ch);
-curl_close($ch);
-
-// -----------------------------------------------------------------------------
-// 5. API Response Processing
-// -----------------------------------------------------------------------------
-
-// Handle cURL and HTTP errors
-if ($json_response === false || $http_code !== 200) {
-    // Return empty result to HelpSpot to avoid disruption
-    header('Content-Type: text/xml; charset=utf-8');
-    echo '<?xml version="1.0" encoding="utf-8"?><livelookup/>';
-    // NOTE: Closing PHP tag is omitted to prevent whitespace issues.
-    exit;
+/**
+ * Escape XML special characters
+ *
+ * @param  string  $text  Text to escape
+ * @return string Escaped text
+ */
+function xmlEscape($text)
+{
+    return htmlspecialchars($text, ENT_XML1, 'UTF-8');
 }
 
-// Decode the JSON response
-$data = json_decode($json_response, true);
+/**
+ * Generate HelpSpot Live Lookup XML response
+ *
+ * @param  array|null  $users  Array of user data
+ * @return string XML response
+ */
+function generateLiveLookupXML($users)
+{
+    $xml = '<?xml version="1.0" encoding="utf-8"?>'."\n";
 
-// Check if decoding was successful and if the 'users' array exists
-if ($data === null || ! isset($data['users']) || ! is_array($data['users'])) {
-    header('Content-Type: text/xml; charset=utf-8');
-    echo '<?xml version="1.0" encoding="utf-8"?><livelookup/>';
-    // NOTE: Closing PHP tag is omitted to prevent whitespace issues.
-    exit;
+    // Root element with columns to display for multiple matches
+    $xml .= '<livelookup version="1.0" columns="first_name,last_name,email">'."\n";
+
+    // If we have users, add customer elements
+    if (! empty($users) && is_array($users)) {
+        foreach ($users as $user) {
+            $xml .= "  <customer>\n";
+
+            // Required: customer_id (using the user's id from API)
+            $xml .= '    <customer_id>'.xmlEscape($user['id'])."</customer_id>\n";
+
+            // Standard HelpSpot fields
+            if (isset($user['firstName'])) {
+                $xml .= '    <first_name>'.xmlEscape($user['firstName'])."</first_name>\n";
+            }
+
+            if (isset($user['lastName'])) {
+                $xml .= '    <last_name>'.xmlEscape($user['lastName'])."</last_name>\n";
+            }
+
+            if (isset($user['email'])) {
+                $xml .= '    <email>'.xmlEscape($user['email'])."</email>\n";
+            }
+
+            if (isset($user['phone'])) {
+                $xml .= '    <phone>'.xmlEscape($user['phone'])."</phone>\n";
+            }
+
+            $xml .= "  </customer>\n";
+        }
+    }
+
+    $xml .= '</livelookup>';
+
+    return $xml;
 }
 
-// -----------------------------------------------------------------------------
-// 6. Generate HelpSpot Live Lookup XML (Strict Procedural Output)
-// -----------------------------------------------------------------------------
+// Main execution
+try {
+    // Get search query from HelpSpot parameters
+    $searchQuery = getSearchQuery();
 
-// Set the response header
-header('Content-Type: text/xml; charset=ISO-8859-1');
+    // Search the API
+    $users = searchDummyJsonAPI($searchQuery);
 
-// Start the XML structure
-$xml_output = '<?xml version="1.0" encoding="ISO-8859-1"?>';
-$xml_output .= '<livelookup version="1.0" columns="first_name,last_name,email">';
+    // Generate and output XML response
+    echo generateLiveLookupXML($users);
 
-// Loop through users and build the <customer> records
-foreach ($data['users'] as $user) {
-    // Get fields with null-coalescing and ensure they are properly escaped for XML
-    $id = htmlspecialchars($user['id'] ?? '');
-    $first_name = htmlspecialchars($user['firstName'] ?? '');
-    $last_name = htmlspecialchars($user['lastName'] ?? '');
-    $email = htmlspecialchars($user['email'] ?? '');
-    $phone = htmlspecialchars($user['phone'] ?? '');
+} catch (Exception $e) {
+    // Log error and return empty result set
+    error_log('HelpSpot Live Lookup Error: '.$e->getMessage());
 
-    $xml_output .= "
-    <customer>
-        <customer_id>{$id}</customer_id>
-        <first_name>{$first_name}</first_name>
-        <last_name>{$last_name}</last_name>
-        <email>{$email}</email>
-        <phone>{$phone}</phone>
-    </customer>";
+    // Return empty XML (no results found)
+    echo '<?xml version="1.0" encoding="utf-8"?>'."\n";
+    echo '<livelookup version="1.0" columns="first_name,last_name,email">'."\n";
+    echo '</livelookup>';
 }
-
-// Close the XML structure
-$xml_output .= '</livelookup>';
-
-// Output the final XML
-echo $xml_output;
