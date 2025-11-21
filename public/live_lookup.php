@@ -19,7 +19,6 @@ ini_set('log_errors', 1);
 
 /**
  * Get search query from HelpSpot parameters
- * HelpSpot passes customer information as GET parameters
  */
 function getSearchQuery()
 {
@@ -47,9 +46,6 @@ function getSearchQuery()
 
 /**
  * Search the DummyJSON API
- *
- * @param  string  $query  Search query
- * @return array|null Array of users or null on failure
  */
 function searchDummyJsonAPI($query)
 {
@@ -72,7 +68,6 @@ function searchDummyJsonAPI($query)
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     $error = curl_error($ch);
-    curl_close($ch);
 
     // Check for errors
     if ($error) {
@@ -102,9 +97,6 @@ function searchDummyJsonAPI($query)
 
 /**
  * Escape XML special characters
- *
- * @param  string  $text  Text to escape
- * @return string Escaped text
  */
 function xmlEscape($text)
 {
@@ -113,9 +105,6 @@ function xmlEscape($text)
 
 /**
  * Generate HelpSpot Live Lookup XML response
- *
- * @param  array|null  $users  Array of user data
- * @return string XML response
  */
 function generateLiveLookupXML($users)
 {
@@ -136,15 +125,12 @@ function generateLiveLookupXML($users)
             if (isset($user['firstName'])) {
                 $xml .= '    <first_name>'.xmlEscape($user['firstName'])."</first_name>\n";
             }
-
             if (isset($user['lastName'])) {
                 $xml .= '    <last_name>'.xmlEscape($user['lastName'])."</last_name>\n";
             }
-
             if (isset($user['email'])) {
                 $xml .= '    <email>'.xmlEscape($user['email'])."</email>\n";
             }
-
             if (isset($user['phone'])) {
                 $xml .= '    <phone>'.xmlEscape($user['phone'])."</phone>\n";
             }
