@@ -23,6 +23,7 @@
         "livewire/volt": "^1.7.0",
         "maatwebsite/excel": "^3.1",
         "ryangjchandler/laravel-cloudflare-turnstile": "^2.0",
+        "spatie/laravel-backup": "^9.3",
         "spatie/livewire-filepond": "^1.5",
         "typesense/typesense-php": "^5.1",
         "ublabs/blade-simple-icons": "^0.162.0"
