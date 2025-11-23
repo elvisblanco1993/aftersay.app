@@ -1,7 +1,7 @@
 <?php
 
 /**
- * HelpSpot Live Lookup Integration with DummyJSON Users API
+ * HelpSpot Live Lookup Integration with the DummyJSON Users API
  *
  * This script integrates the dummyjson.com users API with HelpSpot's Live Lookup feature.
  * It searches for users and returns results in HelpSpot's required XML format.
@@ -10,7 +10,7 @@
  * HelpSpot Admin -> Settings -> Live Lookup (HTTP mode)
  */
 
-// Set headers for XML output
+// Headers for XML output
 header('Content-Type: text/xml; charset=utf-8');
 
 // Enable error logging (disable display for production)
@@ -18,7 +18,7 @@ ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 
 /**
- * Get search query from HelpSpot parameters
+ * Search query from HelpSpot parameters
  */
 function getSearchQuery()
 {
