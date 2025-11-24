@@ -16,40 +16,49 @@ class ProcessSequenceStep implements ShouldQueue
 {
     use Queueable;
 
-    public $sequences;
+    public array $sequence_ids;
 
-    /**
-     * Create a new job instance.
-     */
-    public function __construct(array $step_ids)
+    public function __construct(array $sequence_ids)
     {
-        $this->sequences = Sequence::whereIn('id', $step_ids)->get();
+        $this->sequence_ids = $sequence_ids;
     }
 
-    /**
-     * Execute the job.
-     */
     public function handle(): void
     {
-        foreach ($this->sequences as $sequence) {
-            $details = null;
-            $status = null;
+        $sequences = Sequence::whereIn('id', $this->sequence_ids)->get();
 
+        foreach ($sequences as $sequence) {
             try {
                 $workflow = $sequence->workflow;
                 $recipient = $sequence->contact;
-                $step = $workflow->steps()->where('order', $sequence->current_step)->first();
 
-                // Send Email
-                $content = $step->template_id ? $step->template->body : $step->custom_message;
+                // Current step (safe lookup)
+                $step = $workflow->steps()
+                    ->where('order', $sequence->current_step)
+                    ->first();
 
-                // Parse message shortcodes.
+                if (! $step) {
+                    // If the step doesn't exist, mark as failed.
+                    $sequence->update([
+                        'status' => SequenceStatus::Failed->value,
+                    ]);
+
+                    continue;
+                }
+
+                // Resolve template / custom message
+                $content = $step->template_id
+                    ? $step->template?->body
+                    : $step->custom_message;
+
+                // Process shortcodes
                 $content = (new ParseMessageContent)(
                     content: $content,
                     contact: $recipient,
-                    tenant: $recipient->tenant,
+                    tenant: $recipient->tenant
                 );
 
+                // Send notification
                 $recipient->notify(
                     new SendMessage(
                         step: $step,
@@ -58,13 +67,18 @@ class ProcessSequenceStep implements ShouldQueue
                     )
                 );
 
-                // TODO:
-                // Set the next current_step
-                $nextStep = $workflow->steps()->where('order', ($sequence->current_step + 1))->first();
+                /**
+                 * Advance to the next step
+                 */
+                $nextStep = $workflow->steps()
+                    ->where('order', $sequence->current_step + 1)
+                    ->first();
+
                 if ($nextStep) {
                     $delay = $nextStep->delay;
                     $delayUnit = $nextStep->delay_unit;
-                    $baseDate = Carbon::parse($step->next_run_at ?? now());
+                    $baseDate = Carbon::parse($sequence->next_run_at ?? now());
+
                     $nextRunAt = match ($delayUnit) {
                         'minutes' => $baseDate->copy()->addMinutes($delay),
                         'hours' => $baseDate->copy()->addHours($delay),
@@ -72,33 +86,39 @@ class ProcessSequenceStep implements ShouldQueue
                         default => $baseDate,
                     };
 
-                    // Update sequence
                     $sequence->update([
-                        'current_step' => $nextStep->id,
+                        'current_step' => $nextStep->order,
                         'next_run_at' => $nextRunAt,
                         'status' => SequenceStatus::Running->value,
                     ]);
                 } else {
+                    // No next step → sequence completed
                     $sequence->update([
                         'status' => SequenceStatus::Completed->value,
+                        'next_run_at' => null,
                     ]);
                 }
 
-                $status = 'success';
+                /**
+                 * Log only successful actions
+                 */
+                SequenceLog::create([
+                    'sequence_id' => $sequence->id,
+                    'workflow_step_id' => $step->id,
+                    'action' => $step->action,
+                    'status' => 'success', // Only business activity statuses
+                    'details' => null,
+                ]);
             } catch (\Throwable $th) {
-                Log::error($th);
-                $details = $th;
-                $status = 'error';
-            }
 
-            // Log the instance run
-            SequenceLog::create([
-                'sequence_id' => $sequence->id,
-                'workflow_step_id' => $step?->id,
-                'action' => $step->action,
-                'status' => $status,
-                'details' => $details,
-            ]);
+                // Only log error to system log — NOT to SequenceLog
+                Log::error($th);
+
+                // Mark as failed
+                $sequence->update([
+                    'status' => SequenceStatus::Failed->value,
+                ]);
+            }
         }
     }
 }
