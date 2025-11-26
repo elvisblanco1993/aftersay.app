@@ -16,6 +16,8 @@ class Show extends Component
 
     public function render()
     {
-        return view('livewire.contact.show');
+        return view('livewire.contact.show', [
+            'sequences' => $this->contact->sequences()->paginate(),
+        ]);
     }
 }

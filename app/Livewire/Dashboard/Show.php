@@ -27,11 +27,11 @@ class Show extends Component
         $tenant = Auth::user()->currentTenant;
 
         return view('livewire.dashboard.show', [
-            'contacts' => $tenant->contacts->count(),
+            'contacts' => $tenant->contacts()->count(),
             'sequences' => $tenant->sequences->where('status', '!=', SequenceStatus::Completed)->count(),
-            'linkClicks' => $tenant->linkClicks->count(),
-            'concerns' => $tenant->concerns->count(),
-            'testimonials' => $tenant->testimonials->count(),
+            'linkClicks' => $tenant->linkClicks()->count(),
+            'concerns' => $tenant->concerns()->count(),
+            'testimonials' => $tenant->testimonials()->count(),
         ]);
     }
 }

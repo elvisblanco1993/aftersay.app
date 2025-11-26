@@ -16,8 +16,6 @@ class Create extends Component
 
     public $email;
 
-    public $phone;
-
     public function rules()
     {
         return [
@@ -41,7 +39,6 @@ class Create extends Component
                 'first_name' => $this->first_name,
                 'last_name' => $this->last_name,
                 'email' => $this->email,
-                'phone' => $this->phone,
             ]);
         } catch (\Throwable $th) {
             Log::error($th);

@@ -11,12 +11,12 @@ if (! function_exists('download_contacts_sample_csv')) {
             $output = fopen('php://output', 'w');
 
             // Header row
-            fputcsv($output, ['first_name', 'last_name', 'email', 'phone']);
+            fputcsv($output, ['first_name', 'last_name', 'email']);
 
             // Sample rows
-            fputcsv($output, ['John', 'Doe', 'john.doe@example.com', '555-123-4567']);
-            fputcsv($output, ['Jane', 'Smith', 'jane.smith@example.com', '555-987-6543']);
-            fputcsv($output, ['Carlos', 'Perez', 'carlos.perez@example.com', '555-222-7788']);
+            fputcsv($output, ['John', 'Doe', 'john.doe@example.com']);
+            fputcsv($output, ['Jane', 'Smith', 'jane.smith@example.com']);
+            fputcsv($output, ['Carlos', 'Perez', 'carlos.perez@example.com']);
 
             fclose($output);
         };

@@ -60,7 +60,7 @@
             </form>
         </flux:modal>
 
-        <flux:modal name="showToken" class="md:w-128" :dismissible="false">
+        <flux:modal name="showToken" class="md:w-128" >
             @if ($plainTextToken)
                 <div class="space-y-6">
                     <div class="space-y-2">

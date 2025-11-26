@@ -23,9 +23,6 @@
                             Email
                         </th>
                         <th scope="col" class="px-4 py-2">
-                            Phone
-                        </th>
-                        <th scope="col" class="px-4 py-2">
                             Active Sequences
                         </th>
                         <th scope="col" class="px-4 py-2">
@@ -50,24 +47,13 @@
                                 {{ $contact->email }}
                             </a>
                         </td>
-                        <td>
-                            <a href="{{ route('contact.show', ['contact' => $contact]) }}" class="block px-4 py-2.5">
-                                {{ $contact->phone }}
-                            </a>
-                        </td>
                         <td class="px-4 py-2.5 space-x-2 space-y-1">
                             <flux:badge size="sm" variant="pill">{{ $contact->activeSequences->count() }}</flux:badge>
                         </td>
                         <td class="px-4 py-2.5 text-right">
-                            @if (!$contact->sequence || ($contact->sequence && $contact->sequence->status !== \App\Enums\SequenceStatus::Completed))
-                                <flux:button size="xs" type="button" :icon-trailing="$contact->sequence ? 'rotate-ccw' : 'play'" @click="$dispatch('start-sequence', { contact_id: {{ $contact->id }} })">
-                                    @if ($contact->sequence)
-                                        Restart Sequence
-                                    @else
-                                        Start Sequence
-                                    @endif
-                                </flux:button>
-                            @endif
+                            <flux:button size="xs" type="button" icon-trailing="play" @click="$dispatch('start-sequence', { contact_id: {{ $contact->id }} })">
+                                Start Sequence
+                            </flux:button>
                         </td>
                     </tr>
                 @empty

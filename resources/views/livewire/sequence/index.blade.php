@@ -13,7 +13,7 @@
                 <thead class="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-700 dark:text-zinc-400">
                     <tr>
                         <th scope="col" class="px-4 py-2">
-                            Name
+                            Workflow
                         </th>
                         <th scope="col" class="px-4 py-2">
                             Contact

@@ -45,14 +45,14 @@
                 @else
                     <flux:callout color="blue" icon="file-spreadsheet" heading="Need a template?" text="Download our CSV template to ensure your data is formatted correctly">
                         <x-slot name="actions">
-                            <flux:button icon="download" type="button" wire:click="downloadSample" size="xs">Download template</flux:button>
+                            <flux:button icon="download" type="button" wire:click="downloadSample" size="sm">Download template</flux:button>
                         </x-slot>
                     </flux:callout>
 
                     <flux:callout heading="CSV Format Requirements:">
                         <flux:callout.text>
                             <ul class="ml-4 list-disc">
-                                <li>Include headers: first_name, last_name, email, phone (optional)</li>
+                                <li>Include headers: first_name, last_name, email</li>
                                 <li>One contact per row</li>
                             </ul>
                         </flux:callout.text>

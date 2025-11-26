@@ -1,6 +1,6 @@
 <div>
     <flux:modal.trigger name="update-contact">
-        <flux:button icon="settings" size="sm" />
+        <flux:button icon="user-pen" size="sm" />
     </flux:modal.trigger>
 
     <flux:modal name="update-contact" class="md:w-96">
@@ -14,7 +14,6 @@
                     <flux:input wire:model="last_name" label="Last name" />
                 </div>
                 <flux:input wire:model="email" label="Email address" type="email" />
-                <flux:input wire:model="phone" label="Phone number" type="tel" />
 
                 <div class="flex">
                     <flux:spacer />

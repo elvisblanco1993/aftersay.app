@@ -50,7 +50,6 @@ class ContactsImport implements ShouldQueue, SkipsOnFailure, ToCollection, WithC
                 'first_name' => $row['first_name'],
                 'last_name' => $row['last_name'],
                 'email' => $row['email'],
-                'phone' => $row['phone'] ?? null,
                 'created_at' => $this->created_at,
                 'updated_at' => $this->updated_at,
             ], [
@@ -69,8 +68,7 @@ class ContactsImport implements ShouldQueue, SkipsOnFailure, ToCollection, WithC
         return [
             'first_name' => ['required', 'string', 'max:100'],
             'last_name' => ['required', 'string', 'max:100'],
-            'email' => ['required', 'email', 'max:255'],
-            'phone' => ['nullable', 'string', 'max:20'],
+            'email' => ['required', 'email', 'max:100'],
         ];
     }
 

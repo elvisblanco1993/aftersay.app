@@ -18,8 +18,8 @@ class Dashboard extends Component
     {
         return view('livewire.billing.dashboard', [
             'plan' => $this->user->currentTenant->planConfig(),
-            'contacts_count' => $this->user->currentTenant->contacts->count(),
-            'platforms_count' => $this->user->currentTenant->platforms->count(),
+            'contacts_count' => $this->user->currentTenant->contacts()->count(),
+            'platforms_count' => $this->user->currentTenant->platforms()->count(),
         ]);
     }
 }

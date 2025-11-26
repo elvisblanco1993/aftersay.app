@@ -2,7 +2,7 @@
     <flux:modal.trigger name="add-platform">
         <flux:button variant="primary" icon-trailing="plus">Add</flux:button>
     </flux:modal.trigger>
-    <flux:modal name="add-platform" class="md:w-xl" :dismissible="false" variant="flyout">   
+    <flux:modal name="add-platform" class="md:w-xl"  variant="flyout">   
         <form wire:submit="savePlatform">
             @csrf
             <div class="space-y-6">

@@ -17,14 +17,11 @@ class Update extends Component
 
     public $email;
 
-    public $phone;
-
     public function mount()
     {
         $this->first_name = $this->contact->first_name;
         $this->last_name = $this->contact->last_name;
         $this->email = $this->contact->email;
-        $this->phone = $this->contact->phone;
     }
 
     public function rules()
@@ -49,7 +46,6 @@ class Update extends Component
                 'first_name' => $this->first_name,
                 'last_name' => $this->last_name,
                 'email' => $this->email,
-                'phone' => $this->phone,
             ]);
         } catch (\Throwable $th) {
             Log::error($th);

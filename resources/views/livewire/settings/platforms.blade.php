@@ -25,7 +25,7 @@
         </div>
 
         {{-- Add Platform Modal --}}
-        <flux:modal name="add-platform" class="md:w-xl" :dismissible="false">
+        <flux:modal name="add-platform" class="md:w-xl" >
             <form wire:submit="savePlatform">
                 @csrf
                 <div class="space-y-6">
