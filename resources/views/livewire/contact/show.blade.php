@@ -71,9 +71,9 @@
                         </tr>
                     @empty
                         <tr colspan="4">
-                            <div class="text-center space-y-3! card">
+                            <div class="text-center space-y-3! bg-white dark:bg-white/10 px-4 py-6">
                                 <flux:icon.megaphone class="size-8 mx-auto" />
-                                <flux:text>This is where your sequences will show up. <a href="{{ route('contact.index') }}" class="underline">Go to your contacts</a> to start your first sequence.</flux:text>
+                                <flux:text>This contact hasn't been added to any sequences yet.</flux:text>
                             </div>
                         </tr>
                     @endforelse

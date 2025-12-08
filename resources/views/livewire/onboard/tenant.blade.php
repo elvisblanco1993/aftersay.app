@@ -12,7 +12,7 @@
                     <flux:separator />
             
                     <div class="grid grid-cols-2 gap-6">
-                        <flux:input wire:model="business_name" label="Business Name" />
+                        <flux:input wire:model="business_name" label="Business Name" required />
                         <flux:select wire:model="industry" label="Industry">
                             <option value="">Select an option</option>
                             @forelse (config('internal.industries') as $opt)
