@@ -1,5 +1,5 @@
 <link rel="canonical" href="{{ config('app.url') }}">
-<meta name="description" content="AfterSay automates customer review collection for local businesses. Get more 5-star reviews, protect your reputation with private feedback channels, and grow your business effortlessly. Start free trial today.">
+<meta name="description" content="<meta name="description" content="Review management software that automates customer feedback collection. Get more Google reviews, protect your reputation, and grow your business. Try free.">">
 <meta name="keywords" content="review management software, automated review collection, Google review automation, online reputation management, customer feedback software, local business reviews, review generation, negative review protection, small business reputation, automated review requests">
 <!-- Essential OG Tags -->
 <meta property="og:title" content="AfterSay - Automated Review Collection for Local Businesses">
