@@ -24,6 +24,7 @@
         "maatwebsite/excel": "^3.1",
         "ryangjchandler/laravel-cloudflare-turnstile": "^2.0",
         "spatie/laravel-backup": "^9.3",
+        "spatie/laravel-sitemap": "^7.3",
         "spatie/livewire-filepond": "^1.5",
         "typesense/typesense-php": "^5.1",
         "ublabs/blade-simple-icons": "^0.162.0"
@@ -36,8 +37,8 @@
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
-        "pestphp/pest": "^3.8",
-        "pestphp/pest-plugin-laravel": "^3.2"
+        "pestphp/pest": "^4.0",
+        "pestphp/pest-plugin-laravel": "^4.0"
     },
     "autoload": {
         "psr-4": {
