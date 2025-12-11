@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c5301967aef3d1dcc0c8092e609cb985",
+    "content-hash": "40ef21e5e9812e6ba31a93d98150972e",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -3063,6 +3063,79 @@
                 "source": "https://github.com/livewire/flux/tree/v2.9.2"
             },
             "time": "2025-12-04T17:09:39+00:00"
+        },
+        {
+            "name": "livewire/flux-pro",
+            "version": "2.9.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.fluxui.dev/download/a0843966-980f-472e-ac02-3fff5b0dd424/flux-pro-2.9.2.zip",
+                "reference": "9a53a80c3922fc44df95b0653164efc1180019f2",
+                "shasum": "e45cbb87c256d537ec5d0bb9c62e7da59dd4893a"
+            },
+            "require": {
+                "illuminate/console": "^10.0|^11.0|^12.0",
+                "illuminate/support": "^10.0|^11.0|^12.0",
+                "illuminate/view": "^10.0|^11.0|^12.0",
+                "laravel/prompts": "^0.1.24|^0.2|^0.3",
+                "livewire/flux": "2.9.2|dev-main",
+                "livewire/livewire": "^3.7.0|^4.0",
+                "php": "^8.1",
+                "symfony/console": "^6.0|^7.0"
+            },
+            "require-dev": {
+                "livewire/volt": "*",
+                "orchestra/testbench": "^10.8"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Flux": "FluxPro\\FluxPro"
+                    },
+                    "providers": [
+                        "FluxPro\\FluxProServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "FluxPro\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "App\\": "workbench/app/"
+                }
+            },
+            "scripts": {
+                "serve": [
+                    "Composer\\Config::disableProcessTimeout",
+                    "@php vendor/bin/testbench workbench:build --ansi",
+                    "@php vendor/bin/testbench serve --port 3000 --ansi"
+                ]
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Porzio",
+                    "email": "calebporzio@gmail.com"
+                }
+            ],
+            "description": "The pro version of Flux, the official UI component library for Livewire.",
+            "keywords": [
+                "components",
+                "flux",
+                "laravel",
+                "livewire",
+                "ui"
+            ],
+            "time": "2025-12-05T01:19:53+00:00"
         },
         {
             "name": "livewire/livewire",
@@ -6161,84 +6234,6 @@
                 }
             ],
             "time": "2025-11-25T21:06:08+00:00"
-        },
-        {
-            "name": "spatie/livewire-filepond",
-            "version": "1.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/livewire-filepond.git",
-                "reference": "fd91404aab616ef2093f21971242ea7f25e285b2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/livewire-filepond/zipball/fd91404aab616ef2093f21971242ea7f25e285b2",
-                "reference": "fd91404aab616ef2093f21971242ea7f25e285b2",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/contracts": "^10.0||^11.0||^12.0",
-                "livewire/livewire": "^3.5",
-                "php": "^8.2",
-                "spatie/laravel-package-tools": "^1.16"
-            },
-            "require-dev": {
-                "larastan/larastan": "^3.1",
-                "laravel/pint": "^1.14",
-                "nunomaduro/collision": "^8.1.1||^7.10.0",
-                "orchestra/testbench": "^9.0.0||^8.22.0||^10.0",
-                "pestphp/pest": "^2.34||^3.7",
-                "pestphp/pest-plugin-arch": "^2.7||^3.0",
-                "pestphp/pest-plugin-laravel": "^2.3||^3.1",
-                "phpstan/extension-installer": "^1.3",
-                "phpstan/phpstan-deprecation-rules": "^1.1||^2.0",
-                "phpstan/phpstan-phpunit": "^1.3||^2.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Spatie\\LivewireFilepond\\LivewireFilepondServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\LivewireFilepond\\": "src/",
-                    "Spatie\\LivewireFilepond\\Database\\Factories\\": "database/factories/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rias Van der Veken",
-                    "email": "rias@spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Upload files using Filepond in Livewire components",
-            "homepage": "https://github.com/spatie/livewire-filepond",
-            "keywords": [
-                "laravel",
-                "livewire",
-                "livewire-filepond",
-                "spatie",
-                "uploads"
-            ],
-            "support": {
-                "issues": "https://github.com/spatie/livewire-filepond/issues",
-                "source": "https://github.com/spatie/livewire-filepond/tree/1.5.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/Spatie",
-                    "type": "github"
-                }
-            ],
-            "time": "2025-05-26T07:34:37+00:00"
         },
         {
             "name": "spatie/robots-txt",

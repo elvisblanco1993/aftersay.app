@@ -29,6 +29,9 @@
     --color-accent: var(--color-indigo-500);
     --color-accent-content: var(--color-indigo-600);
     --color-accent-foreground: var(--color-white);
+
+    /* Sequence Status Colors */
+    --bg-blue-500: var(--bg-blue-500);
 }
 
 @layer theme {
@@ -117,20 +120,3 @@ background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
-
-
-/* 
-Filepond Styles
- */
-
-.filepond--credits {
-    @apply hidden;
-}
-
-.filepond--drop-label, .filepond--panel, .filepond--panel-root {
-    @apply bg-zinc-50! dark:text-white! dark:bg-zinc-700! border-2! text-sm! border-dashed! dark:border-zinc-600 rounded-lg!;
-}
-
-.filepond-max-filesize-label {
-    @apply mt-1! text-xs! block! text-center! dark:text-zinc-300!;
-}

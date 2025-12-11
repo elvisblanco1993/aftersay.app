@@ -20,12 +20,12 @@
         "laravel/scout": "^10.17",
         "laravel/tinker": "^2.10.1",
         "livewire/flux": "^2.1.1",
+        "livewire/flux-pro": "^2.9",
         "livewire/volt": "^1.7.0",
         "maatwebsite/excel": "^3.1",
         "ryangjchandler/laravel-cloudflare-turnstile": "^2.0",
         "spatie/laravel-backup": "^9.3",
         "spatie/laravel-sitemap": "^7.3",
-        "spatie/livewire-filepond": "^1.5",
         "typesense/typesense-php": "^5.1",
         "ublabs/blade-simple-icons": "^0.162.0"
     },
@@ -95,5 +95,11 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": {
+        "flux-pro": {
+            "type": "composer",
+            "url": "https://composer.fluxui.dev"
+        }
+    }
 }
