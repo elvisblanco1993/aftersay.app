@@ -11,16 +11,19 @@
             <flux:text size="lg" class="mt-2">{{ $page->subheading }}</flux:text>
         </div>
 
-        <div class="w-full md:min-w-xl md:max-w-xl space-y-6 card md:drop-shadow-xl/5">
+        <flux:card>
 
             @unless ($rating)
             <div>
-                <flux:select wire:model.live="rating" :label="__('How was your experience?')">
-                    <option value="">Select an option</option>
+                <flux:text>Tap a button to share your feedback.</flux:text>
+                <flux:radio.group wire:model.live="rating" variant="buttons" class="mt-3 w-full *:flex items-center justify-center">
                     @foreach (\App\Enums\ExperienceRating::cases() as $opt)
-                        <option value="{{ $opt->value }}">{{ $opt->label() }}</option>
+                        <flux:radio class="size-16! aspect-square! text-center" value="{{ $opt->value }}">
+                            <span class="block text-lg md:text-xl">{{ $opt->emoji() }}</span>
+                            <span class="text-sm">{{ $opt->label() }}</span>
+                        </flux:radio>
                     @endforeach
-                </flux:select>
+                </flux:radio.group>
             </div>
             @endunless
 
@@ -46,7 +49,7 @@
 
             @if ($rating && $rating > 2)
                 <div class="text-left">
-                    <flux:heading level="2" size="lg">We're glad you had a great experience!</flux:heading>
+                    <flux:heading level="2" size="lg">We're glad you had a {{ strtolower(\App\Enums\ExperienceRating::from($rating)->label()) }} experience!</flux:heading>
                     <flux:text class="mt-2">Would you mind leaving us a review on one of the following platforms?</flux:text>
                 </div>
 
@@ -70,7 +73,7 @@
                     @endforelse
                 </div>
             @endif
-        </div>
+        </flux:card>
     </div>
 
     @if ($showBranding)
