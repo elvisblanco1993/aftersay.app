@@ -239,8 +239,10 @@ return [
                     'fields' => [
                         ['name' => 'id', 'type' => 'string'],
                         ['name' => 'tenant_id', 'type' => 'string'],
+                        ['name' => 'workflow_id', 'type' => 'string'],
                         ['name' => 'name', 'type' => 'string'],
                         ['name' => 'contact_name', 'type' => 'string'],
+                        ['name' => 'status', 'type' => 'string'],
                         ['name' => 'created_at', 'type' => 'int64'],
                     ],
                     'default_sorting_field' => 'created_at',

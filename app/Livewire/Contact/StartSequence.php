@@ -46,8 +46,8 @@ class StartSequence extends Component
             ], [
                 'contact_id' => $this->contact->id,
                 'current_step' => 1,
-                'status' => SequenceStatus::Running->value,
-                'next_run_at' => now()->ceilMinute(5),
+                'status' => SequenceStatus::Queued->value,
+                'next_run_at' => now()->ceilMinute(1),
             ]);
             session()->flash('flash.banner', $this->contact->full_name.' messages will start processing soon.');
             session()->flash('flash.bannerStyle', 'success');

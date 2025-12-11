@@ -28,7 +28,7 @@ class Show extends Component
 
         return view('livewire.dashboard.show', [
             'contacts' => $tenant->contacts()->count(),
-            'sequences' => $tenant->sequences->where('status', '!=', SequenceStatus::Completed)->count(),
+            'activeSequences' => $tenant->sequences->where('status', SequenceStatus::Running)->count(),
             'linkClicks' => $tenant->linkClicks()->count(),
             'concerns' => $tenant->concerns()->count(),
             'testimonials' => $tenant->testimonials()->count(),

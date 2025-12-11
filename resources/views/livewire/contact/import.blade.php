@@ -12,12 +12,16 @@
                     <flux:text class="mt-2">Upload a CSV file to import your contacts</flux:text>
                 </div>
 
-                <x-filepond::upload 
-                    wire:model="file" 
-                    accept=".csv"
-                    labelFileProcessingComplete="File ready to import"
-                    labelIdle="Drop your CSV file here <span class='filepond--label-action'> or click to browse </span> <span class='filepond-max-filesize-label'>Maximum file size: {{ $maxUploadSize }}B</span>"
-                />
+                <div class="my-6">
+                    <flux:file-upload accept="text/.csv" wire:model="file">
+                        <flux:file-upload.dropzone
+                            heading="Drop your CSV file here or click to browse"
+                            text="CSV up to {{ $maxUploadSize }}"
+                            with-progress
+                            inline
+                        />
+                    </flux:file-upload>
+                </div>
 
                 @if (!empty($previewData))
                     <flux:separator text="Data Preview (First {{ count($previewData) }} Rows)" />
@@ -67,6 +71,4 @@
             </div>
         </form>
     </flux:modal>
-
-    @filepondScripts
 </div>
