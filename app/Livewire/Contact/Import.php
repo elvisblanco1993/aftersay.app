@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Maatwebsite\Excel\Facades\Excel;
-use Spatie\LivewireFilepond\WithFilePond;
 
 class Import extends Component
 {
-    use WithFilePond;
+    use WithFileUploads;
 
     public $file;
 

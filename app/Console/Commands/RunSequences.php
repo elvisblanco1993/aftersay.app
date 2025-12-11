@@ -33,7 +33,7 @@ class RunSequences extends Command
         try {
             $now = Carbon::now()->startOfMinute();
             $nextMinute = (clone $now)->addMinute();
-            Sequence::where('status', SequenceStatus::Running->value)
+            Sequence::whereIn('status', [SequenceStatus::Queued->value, SequenceStatus::Running->value])
                 ->whereBetween('next_run_at', [$now, $nextMinute])
                 ->chunkById(10, function ($sequences) {
                     ProcessSequenceStep::dispatch($sequences->pluck('id')->toArray());

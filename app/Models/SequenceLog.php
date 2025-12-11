@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SequenceLog extends Model
 {
@@ -14,12 +15,17 @@ class SequenceLog extends Model
         'status',
     ];
 
-    public function sequence()
+    public function sequence(): BelongsTo
     {
         return $this->belongsTo(Sequence::class);
     }
 
-    public function step()
+    public function step(): BelongsTo
+    {
+        return $this->belongsTo(WorkflowStep::class);
+    }
+
+    public function workflowStep(): BelongsTo
     {
         return $this->belongsTo(WorkflowStep::class);
     }

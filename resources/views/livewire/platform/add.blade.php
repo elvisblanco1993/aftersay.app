@@ -8,10 +8,10 @@
             <div class="space-y-6">
                 <flux:heading size="lg">Add a review platform</flux:heading>
 
-                <flux:select wire:model.live="provider" label="Select Platform">
-                    <option selected value=''>None selected</option>
+                <flux:select wire:model.live="provider" variant="listbox" searchable label="Select Platform">
+                    <flux:select.option selected value=''>None selected</flux:select.option>
                     @foreach (config('internal.platforms') as $key => $platform)
-                        <option value="{{ $key }}">{{ $platform['name'] }}</option>
+                        <flux:select.option value="{{ $key }}">{{ $platform['name'] }}</flux:select.option>
                     @endforeach
                 </flux:select>
 
