@@ -25,9 +25,9 @@
                         <th scope="col" class="px-4 py-2">
                             Active Sequences
                         </th>
-                        <th scope="col" class="px-4 py-2">
+                        {{-- <th scope="col" class="px-4 py-2">
                             <span class="sr-only">Edit</span>
-                        </th>
+                        </th> --}}
                     </tr>
                 </thead>
             @endif
@@ -50,11 +50,6 @@
                         <td class="px-4 py-2.5 space-x-2 space-y-1">
                             <flux:badge size="sm" variant="pill">{{ $contact->activeSequences->count() }}</flux:badge>
                         </td>
-                        <td class="px-4 py-2.5 text-right">
-                            <flux:button size="xs" type="button" icon-trailing="play" @click="$dispatch('start-sequence', { contact_id: {{ $contact->id }} })">
-                                Start Sequence
-                            </flux:button>
-                        </td>
                     </tr>
                 @empty
                     <tr colspan="4">
@@ -69,7 +64,4 @@
     </div>
 
     <div>{{ $contacts->links() }}</div>
-
-    {{-- Sequence Selector --}}
-    <livewire:contact.start-sequence />
 </div>
