@@ -17,7 +17,7 @@ class EnsureTenantIsSetup
     {
         $tenant = $request->user()->currentTenant;
 
-        if (! $tenant->onboarded_at || ! $tenant->page->ready_at) {
+        if (! $tenant || ! $tenant->onboarded_at || ! $tenant->page->ready_at) {
             return redirect(to: route('onboard.tenant'));
         }
 
