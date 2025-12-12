@@ -40,9 +40,11 @@ enum SequenceStatus: string
     public function timestamp(\App\Models\Sequence $sequence)
     {
         return match ($this) {
-            self::Completed => $sequence->updated_at,
-            self::Running => $sequence->created_at,
             self::Queued => $sequence->created_at,
+            self::Running => $sequence->created_at,
+            self::Paused => $sequence->updated_at,
+            self::Completed => $sequence->updated_at,
+            self::Failed => $sequence->updated_at,
         };
     }
 }
