@@ -1,6 +1,9 @@
 <div class="space-y-6">
     <div class="flex items-center justify-between">
-        <flux:heading size="xl">Templates</flux:heading>
+        <div>
+            <flux:heading size="xl">Templates</flux:heading>
+            <flux:subheading>Manage email and workflow templates</flux:subheading>
+        </div>
         <livewire:template.create />
     </div>
 

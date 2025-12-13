@@ -17,7 +17,7 @@ class SendMessage extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(public WorkflowStep $step, public Contact $contact, public string $content)
+    public function __construct(public WorkflowStep $step, public Contact $contact, public string $content, public string $pixel)
     {
         $this->channel = 'mail';
     }
@@ -38,6 +38,7 @@ class SendMessage extends Notification
             ->subject($subject)
             ->markdown('mail.send-message', [
                 'message' => $this->content,
+                'pixel' => $this->pixel,
             ]);
     }
 }

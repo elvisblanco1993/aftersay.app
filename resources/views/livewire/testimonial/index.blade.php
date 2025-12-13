@@ -1,6 +1,9 @@
 <div class="space-y-6">
     <div class="flex items-center justify-between">
-        <flux:heading size="xl">Testimonials</flux:heading>
+        <div>
+            <flux:heading size="xl">Testimonials</flux:heading>
+            <flux:subheading>Manage and review client testimonials</flux:subheading>
+        </div>
     </div>
 
     <flux:input wire:model.live.debounce-250="query" icon="magnifying-glass" placeholder="Search..." class="w-full sm:max-w-xs" />

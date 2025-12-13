@@ -193,7 +193,7 @@ return [
                     'fields' => [
                         ['name' => 'id', 'type' => 'string'],
                         ['name' => 'tenant_id', 'type' => 'string'],
-                        ['name' => 'name', 'type' => 'string'],
+                        ['name' => 'name', 'type' => 'string', 'sort' => true],
                         ['name' => 'email', 'type' => 'string'],
                         ['name' => 'phone', 'type' => 'string'],
                         ['name' => 'created_at', 'type' => 'int64'],
@@ -226,6 +226,7 @@ return [
                         ['name' => 'id', 'type' => 'string'],
                         ['name' => 'tenant_id', 'type' => 'string'],
                         ['name' => 'name', 'type' => 'string'],
+                        ['name' => 'is_active', 'type' => 'bool'],
                         ['name' => 'created_at', 'type' => 'int64'],
                     ],
                     'default_sorting_field' => 'created_at',

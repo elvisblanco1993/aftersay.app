@@ -1,6 +1,6 @@
 <div>
     <flux:modal.trigger name="start-sequence">
-        <flux:button icon:trailing="plus" variant="primary">Start New Sequence</flux:button>
+        <flux:button variant="primary">Start Sequence</flux:button>
     </flux:modal.trigger>
 
     <flux:modal name="start-sequence" variant="floating" flyout class="w-full md:w-96">

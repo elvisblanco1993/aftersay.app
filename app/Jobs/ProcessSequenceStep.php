@@ -7,10 +7,12 @@ use App\Enums\SequenceStatus;
 use App\Models\Sequence;
 use App\Models\SequenceLog;
 use App\Notifications\SendMessage;
+use App\Support\EmailTracking;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class ProcessSequenceStep implements ShouldQueue
 {
@@ -58,14 +60,34 @@ class ProcessSequenceStep implements ShouldQueue
                     tenant: $recipient->tenant
                 );
 
+                do {
+                    $token = Str::random(64);
+                } while (SequenceLog::where('token', $token)->exists());
+
+                $trackingPixel = EmailTracking::pixelUrl($token);
+
                 // Send notification
                 $recipient->notify(
                     new SendMessage(
                         step: $step,
                         contact: $recipient,
-                        content: $content
+                        content: $content,
+                        pixel: $trackingPixel,
                     )
                 );
+
+                // Log the sent message
+                SequenceLog::create([
+                    'token' => $token,
+                    'contact_id' => $recipient->id,
+                    'sequence_id' => $sequence->id,
+                    'workflow_step_id' => $step->id,
+                    'action' => $step->action,
+                    'recipient' => $recipient->email,
+                    'subject' => $step?->template?->subject,
+                    'status' => 'success',
+                    'details' => null,
+                ]);
 
                 /**
                  * Advance to the next step
@@ -98,17 +120,6 @@ class ProcessSequenceStep implements ShouldQueue
                         'next_run_at' => null,
                     ]);
                 }
-
-                /**
-                 * Log only successful actions
-                 */
-                SequenceLog::create([
-                    'sequence_id' => $sequence->id,
-                    'workflow_step_id' => $step->id,
-                    'action' => $step->action,
-                    'status' => 'success', // Only business activity statuses
-                    'details' => null,
-                ]);
             } catch (\Throwable $th) {
 
                 // Only log error to system log — NOT to SequenceLog
