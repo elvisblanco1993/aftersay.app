@@ -38,7 +38,7 @@ class StripeEventListener
             }
 
             // Retrieve full subscription details from Stripe
-            Stripe::setApiKey(config('cashier.key'));
+            Stripe::setApiKey(config('cashier.secret'));
             $stripeSubscription = StripeSubscription::retrieve($subscriptionId);
 
             if (! $stripeSubscription) {
