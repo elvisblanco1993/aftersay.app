@@ -39,7 +39,6 @@ class StripeEventListener
             // Retrieve full subscription details from Stripe
             $stripeSubscription = StripeSubscription::retrieve(
                 $subscriptionId,
-                $tenant->stripeOptions()
             );
 
             if (! $stripeSubscription) {
