@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Models\Tenant;
 use Illuminate\Support\Facades\Log;
 use Laravel\Cashier\Events\WebhookReceived;
+use Stripe\Subscription as StripeSubscription;
 
 class StripeEventListener
 {
@@ -36,9 +37,10 @@ class StripeEventListener
             }
 
             // Retrieve full subscription details from Stripe
-            $stripeSubscription = $tenant->asStripeCustomer()
-                ->subscriptions
-                ->retrieve($subscriptionId);
+            $stripeSubscription = StripeSubscription::retrieve(
+                $subscriptionId,
+                $tenant->stripeOptions()
+            );
 
             if (! $stripeSubscription) {
                 Log::warning('Could not retrieve subscription from Stripe', [
