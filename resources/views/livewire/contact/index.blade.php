@@ -1,6 +1,9 @@
 <div class="space-y-6">
     <div class="flex items-center justify-between">
-        <flux:heading size="xl">Contacts</flux:heading>
+        <div>
+            <flux:heading size="xl">Contacts</flux:heading>
+            <flux:subheading>Manage your outreach contacts</flux:subheading>
+        </div>
         <div class="flex items-center gap-3">
             <livewire:contact.import />
             <livewire:contact.create />
@@ -8,60 +11,45 @@
     </div>
 
     <div class="flex items-center justify-between">
-        <flux:input wire:model.live.debounce-250="query" icon="magnifying-glass" placeholder="Search..." class="w-full sm:max-w-xs" />
+        <flux:input wire:model.live.debounce-250="query" icon="magnifying-glass" placeholder="Search contacts..." class="w-full sm:max-w-xs" />
     </div>
 
-    <div class="relative overflow-x-auto border dark:border-zinc-700 rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right text-zinc-500 dark:text-zinc-400">
-            @if ($contacts->count() > 0)
-                <thead class="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-700 dark:text-zinc-400">
-                    <tr>
-                        <th scope="col" class="px-4 py-2">
-                            Name
-                        </th>
-                        <th scope="col" class="px-4 py-2">
-                            Email
-                        </th>
-                        <th scope="col" class="px-4 py-2">
-                            Active Sequences
-                        </th>
-                        {{-- <th scope="col" class="px-4 py-2">
-                            <span class="sr-only">Edit</span>
-                        </th> --}}
-                    </tr>
-                </thead>
-            @endif
-            <tbody>
-                @forelse ($contacts as $contact)
-                    <tr @class([
-                        "bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-700/50",
-                        "border-b dark:border-zinc-700 border-zinc-200" => !$loop->last
-                    ])>
-                        <td>
-                            <a href="{{ route('contact.show', ['contact' => $contact]) }}" class="block px-4 py-2.5">
-                                {{ $contact->full_name }}
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{{ route('contact.show', ['contact' => $contact]) }}" class="block px-4 py-2.5">
-                                {{ $contact->email }}
-                            </a>
-                        </td>
-                        <td class="px-4 py-2.5 space-x-2 space-y-1">
-                            <flux:badge size="sm" variant="pill">{{ $contact->activeSequences->count() }}</flux:badge>
-                        </td>
-                    </tr>
-                @empty
-                    <tr colspan="4">
-                        <div class="text-center space-y-3 p-4 bg-zinc-50 dark:bg-zinc-700">
-                            <flux:icon.sparkles class="size-6 mx-auto" />
-                            <flux:heading size="lg">No contacts available</flux:heading>
-                        </div>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
+    <flux:table :paginate="$contacts" wire:poll.30s>
+        <flux:table.columns>
+            <flux:table.column sortable :sorted="$sortBy === 'name'" :direction="$sortDirection" wire:click="sort('name')">Contact</flux:table.column>
+            <flux:table.column>Email</flux:table.column>
+            <flux:table.column>Active Sequences</flux:table.column>
+            <flux:table.column></flux:table.column>
+        </flux:table.columns>
 
-    <div>{{ $contacts->links() }}</div>
+        <flux:table.rows>
+            @foreach ($contacts as $contact)
+                <flux:table.row :key="$contact->id">
+                    <flux:table.cell>
+                        <a href="{{ route('contact.show', ['contact' => $contact]) }}" class="flex items-center gap-3">
+                            <flux:avatar size="xs" name="{{ $contact->full_name }}" />
+                            <span>{{ $contact->full_name }}</span>
+                        </a>
+                    </flux:table.cell>
+
+                    <flux:table.cell class="whitespace-nowrap">
+                        <a class="flex" href="{{ route('contact.show', ['contact' => $contact]) }}">{{ $contact->email }}</a>
+                    </flux:table.cell>
+                    <flux:table.cell class="whitespace-nowrap">
+                        <a class="flex" href="{{ route('contact.show', ['contact' => $contact]) }}">{{ $contact->activeSequences->count() }}</a>
+                    </flux:table.cell>
+                    <flux:table.cell class="flex justify-end">
+                        <flux:dropdown position="bottom" align="end">
+                            <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button>
+
+                            <flux:navmenu>
+                                <flux:navmenu.item href="{{ route('sequence.index', ['query' => $contact->full_name]) }}" icon="megaphone">View sequences</flux:navmenu.item>
+                                <flux:navmenu.item href="#" icon="trash" variant="danger">Delete</flux:navmenu.item>
+                            </flux:navmenu>
+                        </flux:dropdown>
+                    </flux:table.cell>
+                </flux:table.row>
+            @endforeach
+        </flux:table.rows>
+    </flux:table>
 </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BillingController;
+use App\Http\Controllers\EmailPixelController;
 use App\Http\Controllers\PageController;
 use App\Http\Middleware\EnsureTenantIsSetup;
 use App\Http\Middleware\EnsureTenantIsSubscribed;
@@ -24,6 +25,9 @@ Route::get('/r/{slug}/l/{ulid}', [PageController::class, 'linkRedirect'])->name(
 Route::get('/r/{slug}/thank-you', [PageController::class, 'formCompleted'])->name('review-page.completed');
 // Testimonial Page
 Route::get('/t/{slug}/', \App\Livewire\Page\Testimonial::class)->name('testimonial-page.show');
+
+// Email Pixel
+Route::get('p/e/{token}.gif', [EmailPixelController::class, 'show'])->name('email.pixel')->middleware('signed');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('onboard', \App\Livewire\Onboard\Tenant::class)->name('onboard.tenant');

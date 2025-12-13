@@ -4,15 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SequenceLog extends Model
 {
-    protected $fillable = [
-        'sequence_id',
-        'workflow_step_id',
-        'action',
-        'details',
-        'status',
+    protected $casts = [
+        'first_opened_at' => 'datetime',
     ];
 
     public function sequence(): BelongsTo
@@ -28,5 +25,10 @@ class SequenceLog extends Model
     public function workflowStep(): BelongsTo
     {
         return $this->belongsTo(WorkflowStep::class);
+    }
+
+    public function opens(): HasMany
+    {
+        return $this->hasMany(EmailOpen::class);
     }
 }

@@ -14,6 +14,9 @@ class Index extends Component
     #[Url(except: '')]
     public ?string $query = '';
 
+    #[Url(except: '')]
+    public ?string $status_filter = '';
+
     public $user;
 
     public function mount()
@@ -23,11 +26,19 @@ class Index extends Component
 
     public function render()
     {
+        $isActive = match ($this->status_filter) {
+            'active' => true,
+            'draft' => false,
+            default => null,
+        };
+
         return view('livewire.workflow.index', [
             'workflows' => Workflow::search($this->query)
                 ->where('tenant_id', $this->user->current_tenant_id)
+                ->when($isActive !== null, fn ($builder) => $builder->where('is_active', $isActive)
+                )
                 ->query(function ($builder) {
-                    $builder->withCount('instances');
+                    $builder->withCount(['instances', 'steps', 'contacts']);
                 })
                 ->paginate($this->per_page),
         ]);

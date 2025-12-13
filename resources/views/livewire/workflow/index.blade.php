@@ -1,55 +1,54 @@
 <div class="space-y-6">
     <div class="flex items-center justify-between">
-        <flux:heading size="xl">Workflows</flux:heading>
+        <div>
+            <flux:heading size="xl">Workflows</flux:heading>
+            <flux:subheading>Manage workflow templates</flux:subheading>
+        </div>
         <livewire:workflow.create />
     </div>
 
-    <div class="flex items-center justify-between">
-        <flux:input wire:model.live.debounce.250="query" icon="magnifying-glass" placeholder="Search..." class="w-full sm:max-w-xs" />
+    <div class="flex items-center gap-4">
+        <flux:input wire:model.live.debounce.250="query" icon="magnifying-glass" placeholder="Search workflows..." class="w-full sm:max-w-xs" />
+        <flux:select wire:model.live="status_filter" class="max-w-36">
+            <flux:select.option value="" label="All Statuses" />
+            <flux:select.option value="active" label="Active" />
+            <flux:select.option value="draft" label="Draft" />
+        </flux:select>
     </div>
 
-    <div class="relative overflow-x-auto border dark:border-zinc-700 rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right text-zinc-500 dark:text-zinc-400">
-            @if ($workflows->count() > 0)
-                <thead class="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-700 dark:text-zinc-400">
-                    <tr>
-                        <th scope="col" class="px-4 py-2">
-                            Name
-                        </th>
-                        <th scope="col" class="px-4 py-2">
-                            Runs
-                        </th>
-                    </tr>
-                </thead>
-            @endif
-            <tbody>
-                @forelse ($workflows as $workflow)
-                    <tr @class([
-                        "bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-700/50",
-                        "border-b dark:border-zinc-700 border-zinc-200" => !$loop->last
-                    ])>
-                        <td>
-                            <a href="{{ route('workflow.show', ['workflow' => $workflow]) }}" class="block px-4 py-2.5">
-                                {{ $workflow->name }}
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{{ route('workflow.show', ['workflow' => $workflow]) }}" class="block px-4 py-2.5">
-                                {{ $workflow->instances_count }}
-                            </a>
-                        </td>
-                    </tr>
-                @empty
-                    <tr colspan="4">
-                        <div class="text-center space-y-3 p-4 bg-zinc-50 dark:bg-zinc-700">
-                            <flux:icon.sparkles class="size-6 mx-auto" />
-                            <flux:heading size="lg">No workflows available</flux:heading>
+    @forelse ($workflows as $workflow)
+        <flux:card size="sm">
+            <div class="sm:flex items-start justify-between">
+                <div class="flex-1">
+                    <div class="flex items-center space-x-3">
+                        <flux:badge :color="$workflow->is_active->color()" size="sm">{{ $workflow->is_active->label() }}</flux:badge>
+                        <flux:heading size="lg">{{ $workflow->name }}</flux:heading>
+                    </div>
+
+                    <div class="mt-3 grid grid-cols-4 justify-even">
+                        <div class="grid-cols-4 sm:col-span-2 md:col-span-1 space-y-1">
+                            <flux:text>Steps</flux:text>
+                            <flux:heading>{{ $workflow->steps_count }}</flux:heading>
                         </div>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
+                        <div class="grid-cols-4 sm:col-span-2 md:col-span-1 space-y-1">
+                            <flux:text>Contacts Using</flux:text>
+                            <flux:heading>{{ $workflow->contacts_count }}</flux:heading>
+                        </div>
+                        <div class="grid-cols-4 sm:col-span-2 md:col-span-1 space-y-1">
+                            <flux:text>Avg. Open Rate</flux:text>
+                            <flux:heading></flux:heading>
+                        </div>
+                        <div class="grid-cols-4 sm:col-span-2 md:col-span-1 space-y-1">
+                            <flux:text>Avg Completion</flux:text>
+                            <flux:heading></flux:heading>
+                        </div>
+                    </div>
+                </div>
+                <div class="sm:ml-6 mt-3 sm:mt-0 flex flex-col gap-2"></div>
+            </div>
+        </flux:card>
+    @empty
+    @endforelse
 
-    <div>{{ $workflows->links() }}</div>
+    <flux:pagination :paginator="$workflows" />
 </div>

@@ -56,7 +56,7 @@ class Create extends Component
         try {
             DB::transaction(function () {
                 $contacts = Contact::whereIn('id', $this->selected_contacts)->get();
-                foreach ($contacts as $contact) {
+                foreach ($contacts as $index => $contact) {
                     $contact->sequences()->updateOrCreate([
                         'tenant_id' => $contact->tenant_id,
                         'workflow_id' => $this->workflow_id,
@@ -64,7 +64,7 @@ class Create extends Component
                         'contact_id' => $contact->id,
                         'current_step' => 1,
                         'status' => SequenceStatus::Queued->value,
-                        'next_run_at' => now()->addSeconds(90),
+                        'next_run_at' => now()->addMinute(),
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]);

@@ -30,5 +30,6 @@ return Application::configure(basePath: dirname(__DIR__))
     ->booting(function () {
         //
         Model::automaticallyEagerLoadRelationships();
+        Model::unguard();
     })
     ->create();

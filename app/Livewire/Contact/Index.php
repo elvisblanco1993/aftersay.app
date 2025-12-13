@@ -17,6 +17,20 @@ class Index extends Component
 
     public $user;
 
+    public $sortBy = 'name';
+
+    public $sortDirection = 'desc';
+
+    public function sort($column)
+    {
+        if ($this->sortBy === $column) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortBy = $column;
+            $this->sortDirection = 'asc';
+        }
+    }
+
     public function mount()
     {
         $this->user = Auth::user();
@@ -25,7 +39,12 @@ class Index extends Component
     public function render()
     {
         return view('livewire.contact.index', [
-            'contacts' => Contact::search($this->query)->where('tenant_id', $this->user->current_tenant_id)->paginate($this->per_page),
+            'contacts' => Contact::search($this->query)
+                ->where('tenant_id', $this->user->current_tenant_id)
+                ->options([
+                    'sort_by' => $this->sortBy.':'.$this->sortDirection,
+                ])
+                ->paginate($this->per_page),
         ]);
     }
 

@@ -13,6 +13,7 @@ class Index extends Component
 {
     use WithPagination;
 
+    #[Url(except: '')]
     public string $query = '';
 
     public int $perPage = 5;
@@ -41,7 +42,7 @@ class Index extends Component
                     'contact',
                     'workflow:id,name',
                     'workflow.steps',
-                    'latestLog:id,workflow_step_id,created_at',
+                    'latestLog:id,sequence_logs.sequence_id,workflow_step_id,created_at',
                     'latestLog.workflowStep.template:id,name',
                 ])->withCount(['logs', 'workflowSteps']);
             })

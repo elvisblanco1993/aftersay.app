@@ -1,6 +1,9 @@
 <div class="space-y-6">
     <div class="flex items-center justify-between">
-        <flux:heading size="xl">Concerns</flux:heading>
+        <div>
+            <flux:heading size="xl">Concerns</flux:heading>
+            <flux:subheading>Track issues, complaints, and client concerns</flux:subheading>
+        </div>
         {{-- <livewire:concern.create /> --}}
     </div>
 

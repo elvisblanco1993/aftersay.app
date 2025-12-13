@@ -69,9 +69,9 @@
                                 </div>
                             </div>
             
-                            @if ($sequence->status->is(\App\Enums\SequenceStatus::Running))
+                            @if ($sequence->status->is(\App\Enums\SequenceStatus::Running) || $sequence->status->is(\App\Enums\SequenceStatus::Paused))
                                 @php
-                                    $log = $sequence->logs()->latest()->first();
+                                    $log = $sequence->latestLog;
                                 @endphp
                                 <flux:callout class="mt-3">
                                     <div class="flex items-center justify-between">
@@ -95,7 +95,7 @@
                                         <span class="font-black">&middot;</span>
                                         <span>Took {{ $sequence->created_at->diffForHumans(['syntax' => \Carbon\CarbonInterface::DIFF_ABSOLUTE,]) }}</span>
                                         <span class="font-black">&middot;</span>
-                                        <span>{{ $sequence->logs->count() }} emails sent</span>
+                                        <span>{{ $sequence->logs_count }} emails sent</span>
                                     </flux:text>
                                 </flux:callout>
                             @endif
@@ -103,11 +103,11 @@
                     </div>
                     <div class="sm:ml-6 mt-3 sm:mt-0 flex flex-col gap-2">
                         <flux:button wire:key="update-{{ $sequence->id }}">View Details</flux:button>
-                        @if ($sequence->status === \App\Enums\SequenceStatus::Running)
-                            <flux:button wire:key="pause-{{ $sequence->id }}">Pause</flux:button>
-                        @endif
                         @if ($sequence->status === \App\Enums\SequenceStatus::Failed)
-                            <flux:button wire:key="update-{{ $sequence->id }}">Restart</flux:button>
+                            {{-- <livewire:sequence.restart :sequence="$sequence" wire:key="restart-{{ $sequence->id }}" /> --}}
+                            <livewire:sequence.retry :sequence="$sequence" wire:key="retry-{{ $sequence->id }}" />
+                        @else
+                            <livewire:sequence.toggle-pause :sequence="$sequence" wire:key="toggle-pause-{{ $sequence->id }}" />
                         @endif
                     </div>
                 </div>
@@ -115,6 +115,6 @@
         @empty
         @endforelse
     
-        <div>{{ $sequences->links() }}</div>
+        <flux:pagination :paginator="$sequences" />
     </div>
 </div>

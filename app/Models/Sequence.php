@@ -57,7 +57,7 @@ class Sequence extends Model
 
     public function latestLog(): HasOne
     {
-        return $this->hasOne(SequenceLog::class)->latestOfMany();
+        return $this->hasOne(SequenceLog::class)->latestOfMany('created_at');
     }
 
     public function workflowSteps()
