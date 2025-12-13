@@ -54,4 +54,21 @@ class Workflow extends Model
     {
         return $this->hasManyThrough(Contact::class, Sequence::class, 'workflow_id', 'id', 'id', 'contact_id');
     }
+
+    public function logs()
+    {
+        return $this->hasManyThrough(
+            SequenceLog::class,
+            WorkflowStep::class,
+            'workflow_id',
+            'workflow_step_id',
+            'id',
+            'id'
+        );
+    }
+
+    public function averageOpenRate(): float
+    {
+        return (float) $this->logs()->avg('open_count');
+    }
 }

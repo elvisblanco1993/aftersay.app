@@ -38,7 +38,9 @@ class Index extends Component
                 ->when($isActive !== null, fn ($builder) => $builder->where('is_active', $isActive)
                 )
                 ->query(function ($builder) {
+                    $builder->with(['steps']);
                     $builder->withCount(['instances', 'steps', 'contacts']);
+                    $builder->withAvg('logs', 'open_count');
                 })
                 ->paginate($this->per_page),
         ]);

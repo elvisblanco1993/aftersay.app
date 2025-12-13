@@ -17,7 +17,7 @@
     </div>
 
     @forelse ($workflows as $workflow)
-        <flux:card size="sm">
+        <flux:card size="sm" wire:key="workflow-{{ $workflow->id }}">
             <div class="sm:flex items-start justify-between">
                 <div class="flex-1">
                     <div class="flex items-center space-x-3">
@@ -36,7 +36,12 @@
                         </div>
                         <div class="grid-cols-4 sm:col-span-2 md:col-span-1 space-y-1">
                             <flux:text>Avg. Open Rate</flux:text>
-                            <flux:heading></flux:heading>
+                            <flux:heading>
+                                <flux:tooltip>
+                                    {{ number_format(($workflow->logs_avg_open_count ?? 0) * 100, 1) }}%
+
+                                </flux:tooltip>
+                            </flux:heading>
                         </div>
                         <div class="grid-cols-4 sm:col-span-2 md:col-span-1 space-y-1">
                             <flux:text>Avg Completion</flux:text>
