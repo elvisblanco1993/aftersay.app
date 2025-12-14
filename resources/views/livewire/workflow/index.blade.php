@@ -21,7 +21,7 @@
             <div class="sm:flex items-start justify-between">
                 <div class="flex-1">
                     <div class="flex items-center space-x-3">
-                        <flux:badge :color="$workflow->is_active->color()" size="sm">{{ $workflow->is_active->label() }}</flux:badge>
+                        <flux:badge variant="pill" :color="$workflow->is_active->color()" size="sm">{{ $workflow->is_active->label() }}</flux:badge>
                         <flux:heading size="lg">{{ $workflow->name }}</flux:heading>
                     </div>
 
@@ -39,7 +39,6 @@
                             <flux:heading>
                                 <flux:tooltip>
                                     {{ number_format(($workflow->logs_avg_open_count ?? 0) * 100, 1) }}%
-
                                 </flux:tooltip>
                             </flux:heading>
                         </div>
@@ -49,7 +48,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="sm:ml-6 mt-3 sm:mt-0 flex flex-col gap-2"></div>
+                <div class="sm:ml-6 mt-3 sm:mt-0 flex flex-col gap-2">
+                    <flux:button>{{__('Edit')}}</flux:button>
+                    @if ($workflow->is_active->toBool())
+                        <flux:button>Duplicate</flux:button>
+                        <flux:button>Analytics</flux:button>
+                    @else
+                        <flux:button variant="danger">Delete</flux:button>
+                    @endif
+                </div>
             </div>
         </flux:card>
     @empty

@@ -6,60 +6,36 @@ return [
     'initial_request' => [
         'name' => 'Initial Feedback Request',
         'type' => 'email',
-        'subject' => 'Quick favor — how did we do?',
-        'body' => 'Hi [first_name],</br>Thanks again for choosing [company_name]. We hope everything went smoothly with your visit.</br>Could you take a moment to let us know how we did? Your feedback helps us improve and better serve great clients like you.',
+        'subject' => 'How was your experience with [company_name]?',
+        'body' => 'Hi [first_name],<br><br>Thanks again for choosing <strong>[company_name]</strong>. We hope everything went smoothly during your recent visit.<br><br>Would you mind taking a quick moment to share your experience? It only takes about a minute, and your feedback helps us improve and better serve clients like you.<br><br>👉 [feedback_url]<br><br>We truly appreciate your time.<br><br>- The [company_name] Team',
     ],
 
     'reminder' => [
         'name' => 'Reminder to Provide Feedback',
         'type' => 'email',
-        'subject' => "Got a minute? We'd love your feedback",
-        'body' => 'Hey [first_name],</br>Just a quick follow-up — we’d still love to hear your thoughts about your recent experience with us.</br>Your feedback makes a big difference, and it only takes a minute.',
+        'subject' => 'Quick reminder — we’d still love your feedback',
+        'body' => 'Hi [first_name],<br><br>Just a quick follow-up to see if you had a chance to share your thoughts about your recent experience with <strong>[company_name]</strong>.<br><br>Your feedback really does make a difference, and it only takes a moment to complete.<br><br>👉 [feedback_url]<br><br>Thanks again — we appreciate you!<br><br>- The [company_name] Team',
     ],
 
     'social_proof' => [
         'name' => 'Social Proof Request',
         'type' => 'email',
-        'subject' => 'Your voice can help others',
-        'body' => 'Hi [first_name],</br>We’d love if you could take a moment to leave a quick review of your experience. Many people rely on reviews when choosing a [business_type] like ours.</br>If we did a good job, would you mind sharing your thoughts?',
+        'subject' => 'Your review could help someone else today',
+        'body' => 'Hi [first_name],<br><br>Many people rely on reviews when choosing a <strong>[business_type]</strong>, and your experience could help others make a confident decision.<br><br>If we met or exceeded your expectations, we’d truly appreciate you sharing a quick review.<br><br>👉 [feedback_url]<br><br>Thank you for supporting our business — it means more than you know.<br><br>- The [company_name] Team',
     ],
 
     'personal_appeal' => [
         'name' => 'Personal Appeal from Owner',
         'type' => 'email',
-        'subject' => 'From me to you — could you help?',
-        'body' => 'Hi [first_name],</br>I wanted to personally ask if you’d be willing to leave a quick review of your experience.</br>It really helps us, and your feedback means a lot.',
+        'subject' => 'A quick personal favor from me',
+        'body' => 'Hi [first_name],<br><br>I wanted to personally reach out and ask if you’d be willing to leave a short review about your experience with <strong>[company_name]</strong>.<br><br>Feedback from clients like you helps us grow, improve, and continue delivering great service.<br><br>👉 [feedback_url]<br><br>Thank you for your time — I truly appreciate it.<br><br>Sincerely,<br>[owner_name]',
     ],
 
     'final_reminder' => [
         'name' => 'Final Feedback Reminder',
         'type' => 'email',
-        'subject' => 'Final call — your feedback still matters',
-        'body' => 'Hi [first_name],</br>Just one last nudge — we’d still love to hear how your experience was.</br>Your feedback helps us improve and helps others know what to expect.',
+        'subject' => 'Last reminder — we’d still love your input',
+        'body' => 'Hi [first_name],<br><br>This is just a final note in case you still wanted to share feedback about your experience with <strong>[company_name]</strong>.<br><br>Your input helps us improve and helps others know what to expect when choosing our services.<br><br>👉 [feedback_url]<br><br>Thanks again for your time and support.<br><br>— The [company_name] Team',
     ],
 
-    // SMS templates
-    // 'initial_request_sms' => [
-    //     'name' => 'SMS: Initial Feedback Request',
-    //     'type' => 'sms',
-    //     'body' => "Hi [first_name], thanks for choosing [company_name]! We'd love to hear how we did.",
-    // ],
-
-    // 'reminder_sms' => [
-    //     'name' => 'SMS: Reminder to Provide Feedback',
-    //     'type' => 'sms',
-    //     'body' => 'Hi [first_name], just a reminder from [company_name] to share your thoughts about your recent experience.',
-    // ],
-
-    // 'social_proof_sms' => [
-    //     'name' => 'SMS: Social Proof Request',
-    //     'type' => 'sms',
-    //     'body' => 'Hi [first_name], your review helps others choose a [business_type] like us! If we earned your trust, we’d love your feedback.',
-    // ],
-
-    // 'final_reminder_sms' => [
-    //     'name' => 'SMS: Final Feedback Reminder',
-    //     'type' => 'sms',
-    //     'body' => 'Hi [first_name], last chance to share your experience with [company_name]! It really helps us out.',
-    // ],
 ];
