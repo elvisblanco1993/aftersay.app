@@ -18,7 +18,7 @@ class Retry extends Component
     public function save()
     {
         $this->sequence->update([
-            'status' => SequenceStatus::Running->value,
+            'status' => SequenceStatus::Queued->value,
             'next_run_at' => now()->addMinutes(rand(1, 5)),
         ]);
 

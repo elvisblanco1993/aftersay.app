@@ -23,11 +23,12 @@ class GoogleController extends Controller
     {
         $googleUser = Socialite::driver('google')->user();
 
-        $user = User::updateOrCreate(
+        $user = User::firstOrCreate(
             ['email' => $googleUser->getEmail()],
             [
                 'name' => $googleUser->getName(),
                 'google_id' => $googleUser->getId(),
+                'email_verified_at' => now(),
             ]
         );
 
@@ -38,7 +39,7 @@ class GoogleController extends Controller
             // Create tenant
             $tenant = Tenant::create([
                 'user_id' => $user->id,
-                'name' => $googleUser->getName(),
+                'name' => 'My Business Name',
                 'email' => $googleUser->getEmail(),
                 'trial_ends_at' => now()->addDays(30)->endOfDay(),
             ]);
@@ -78,7 +79,7 @@ class GoogleController extends Controller
             app(CreateDefaultWorkflow::class)($user);
         }
 
-        event(new Registered($user));
+        // event(new Registered($user));
 
         Auth::login($user);
 
