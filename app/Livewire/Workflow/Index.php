@@ -35,10 +35,9 @@ class Index extends Component
         return view('livewire.workflow.index', [
             'workflows' => Workflow::search($this->query)
                 ->where('tenant_id', $this->user->current_tenant_id)
-                ->when($isActive !== null, fn ($builder) => $builder->where('is_active', $isActive)
-                )
+                ->when($isActive !== null, fn ($builder) => $builder->where('is_active', $isActive))
                 ->query(function ($builder) {
-                    $builder->with(['steps']);
+                    $builder->with(['steps.template']);
                     $builder->withCount(['instances', 'steps', 'contacts']);
                     $builder->withAvg('logs', 'open_count');
                 })

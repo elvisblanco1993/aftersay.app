@@ -27,6 +27,7 @@ class Create extends Component
             'tenant_id' => $user->current_tenant_id,
             'trigger' => WorkflowTriggerType::Manual->value,
             'name' => $this->name,
+            'is_active' => false,
         ]);
 
         $this->redirect(url: route('workflow.show', ['workflow' => $workflow]), navigate: false);
