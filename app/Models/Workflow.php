@@ -30,7 +30,7 @@ class Workflow extends Model
             'id' => (string) $this->id,
             'tenant_id' => (string) $this->tenant_id,
             'name' => (string) $this->name,
-            'is_active' => (bool) $this->is_active,
+            'is_active' => (bool) $this->is_active->toBool(),
             'created_at' => $this->created_at->timestamp,
         ];
     }
