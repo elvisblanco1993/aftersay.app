@@ -6,7 +6,7 @@ return [
     'initial_request' => [
         'name' => 'Initial Feedback Request',
         'type' => 'email',
-        'subject' => 'How was your experience with [company_name]?',
+        'subject' => 'How was your experience?',
         'body' => 'Hi [first_name],<br><br>Thanks again for choosing <strong>[company_name]</strong>. We hope everything went smoothly during your recent visit.<br><br>Would you mind taking a quick moment to share your experience? It only takes about a minute, and your feedback helps us improve and better serve clients like you.<br><br>👉 [feedback_url]<br><br>We truly appreciate your time.<br><br>- The [company_name] Team',
     ],
 
