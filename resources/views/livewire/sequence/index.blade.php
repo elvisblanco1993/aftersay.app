@@ -54,12 +54,12 @@
                                 <flux:heading>{{ $sequence->status->timestamp($sequence)?->diffForHumans() }}</flux:heading>
                             </div>
                         </div>
-                        @if (!$sequence->status->is(\App\Enums\SequenceStatus::Queued))
+                        @if (!$sequence->status->is(\App\Enums\SequenceStatus::Queued) && !$sequence->status->is(\App\Enums\SequenceStatus::Failed))
                             <div class="mt-3">
                                 @php
                                     $percent_completed = $sequence->logs_count / $sequence->workflow_steps_count * 100;
                                 @endphp
-                                <flux:text class="text-xs">{{ $percent_completed }}% complete</flux:text>
+                                <flux:text class="text-xs">{{ $percent_completed > 100 ? 100 : $percent_completed }}% complete</flux:text>
                                 <div class="mt-1 w-full bg-gray-200 dark:bg-zinc-700 rounded-full h-2 overflow-hidden">
                                     <div @class([
                                         'h-full rounded-full transition-all duration-300',
@@ -103,10 +103,13 @@
                     </div>
                     <div class="sm:ml-6 mt-3 sm:mt-0 flex flex-col gap-2">
                         <flux:button wire:key="update-{{ $sequence->id }}">View Details</flux:button>
-                        @if ($sequence->status === \App\Enums\SequenceStatus::Failed)
-                            {{-- <livewire:sequence.restart :sequence="$sequence" wire:key="restart-{{ $sequence->id }}" /> --}}
-                            <livewire:sequence.retry :sequence="$sequence" wire:key="retry-{{ $sequence->id }}" />
-                        @else
+                        @if ($sequence->status->is(\App\Enums\SequenceStatus::Failed))
+                            @if ($sequence->logs_count >= $sequence->workflow_steps_count)
+                                <livewire:sequence.restart :sequence="$sequence" wire:key="restart-{{ $sequence->id }}" />
+                            @else
+                                <livewire:sequence.retry :sequence="$sequence" wire:key="retry-{{ $sequence->id }}" />
+                            @endif
+                        @elseif (!$sequence->status->is(\App\Enums\SequenceStatus::Completed))
                             <livewire:sequence.toggle-pause :sequence="$sequence" wire:key="toggle-pause-{{ $sequence->id }}" />
                         @endif
                     </div>
