@@ -57,7 +57,7 @@
                         @if (!$sequence->status->is(\App\Enums\SequenceStatus::Queued) && !$sequence->status->is(\App\Enums\SequenceStatus::Failed))
                             <div class="mt-3">
                                 @php
-                                    $percent_completed = $sequence->logs_count / $sequence->workflow_steps_count * 100;
+                                    $percent_completed = round($sequence->logs_count / $sequence->workflow_steps_count * 100, 0);
                                 @endphp
                                 <flux:text class="text-xs">{{ $percent_completed > 100 ? 100 : $percent_completed }}% complete</flux:text>
                                 <div class="mt-1 w-full bg-gray-200 dark:bg-zinc-700 rounded-full h-2 overflow-hidden">
@@ -102,7 +102,7 @@
                         @endif
                     </div>
                     <div class="sm:ml-6 mt-3 sm:mt-0 flex flex-col gap-2">
-                        <flux:button wire:key="update-{{ $sequence->id }}">View Details</flux:button>
+                        {{-- <flux:button wire:key="update-{{ $sequence->id }}">View Details</flux:button> --}}
                         @if ($sequence->status->is(\App\Enums\SequenceStatus::Failed))
                             @if ($sequence->logs_count >= $sequence->workflow_steps_count)
                                 <livewire:sequence.restart :sequence="$sequence" wire:key="restart-{{ $sequence->id }}" />
