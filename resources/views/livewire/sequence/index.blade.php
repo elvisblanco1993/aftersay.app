@@ -64,7 +64,7 @@
                                     <div @class([
                                         'h-full rounded-full transition-all duration-300',
                                         'bg-zinc-900 dark:bg-accent' => $percent_completed < 100,
-                                        'bg-emerald-500' => $percent_completed === 100
+                                        'bg-emerald-500' => $percent_completed >= 100 || $sequence->status->is(\App\Enums\SequenceStatus::Completed)
                                     ]) style="width: {{ $percent_completed }}%;"></div>
                                 </div>
                             </div>
