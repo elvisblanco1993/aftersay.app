@@ -48,26 +48,33 @@
             @endif
 
             @if ($rating && $rating > 2)
-                <div class="text-left">
+                <div class="text-center">
                     <flux:heading level="2" size="lg">We're glad you had a {{ strtolower(\App\Enums\ExperienceRating::from($rating)->label()) }} experience!</flux:heading>
-                    <flux:text class="mt-2">Would you mind leaving us a review on one of the following platforms?</flux:text>
+                    <flux:text class="mt-2">A quick review helps other customers feel confident choosing us.</flux:text>
                 </div>
 
-                <div @class(["mt-6 grid grid-cols-1 gap-4", "sm:grid-cols-2" => $links->count() > 1])>
+                <div @class(["mt-6 grid grid-cols-1 gap-3", "sm:grid-cols-1" => $links->count() > 1])>
                     @forelse ($links as $link)
-                        <a href="{{ route('review-page.link', ['slug' => $page->slug, 'ulid' => $link->ulid, 'ref'  => $this->contact ?? null,]) }}" target="_blank" class="block bg-white dark:bg-zinc-800 border dark:border-zinc-600/50 rounded-lg p-4 hover:shadow-md text-center">
-                            @php
-                                $svgPath = public_path('vendor/blade-simple-icons/' . $link->name . '.svg');
-                            @endphp
-        
-                            @if (file_exists($svgPath))
-                                <div class="text-zinc-600 dark:text-zinc-400 size-8 mx-auto">
-                                    {!! file_get_contents($svgPath) !!}
+                        <a href="{{ route('review-page.link', [
+                            'slug' => $page->slug, 
+                            'ulid' => $link->ulid, 
+                            'ref'  => $this->contact ?? null,]) }}" 
+                            target="_blank"
+                        >
+                        <flux:card size="sm" class="hover:drop-shadow transition-all">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="bg-white dark:border rounded size-7 aspect-square! flex items-center justify-center">
+                                        @if ($link->getIcon())
+                                            <img src="{{ $link->getIcon() }}" alt="{{ ucfirst($link->name) }}" class="size-5">
+                                        @else
+                                            <flux:icon.megaphone class="size=-5!" />
+                                        @endif
+                                    </div>
+                                    <flux:heading>Review us on {{ ucfirst($link->name) }}</flux:heading>
                                 </div>
-                            @else
-                                <flux:avatar :name="$link->name" size="sm" :circle="true" class="mx-auto"/>
-                            @endif
-                            <span class="text-sm font-medium text-zinc-700 dark:text-zinc-100">Review us on {{ ucfirst($link->name) }}</span>
+                            </div>
+                        </flux:card>
                         </a>
                     @empty
                     @endforelse
