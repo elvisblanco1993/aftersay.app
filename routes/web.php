@@ -16,6 +16,7 @@ use Laravel\Fortify\Features;
 /**
  * Website routes are located in the "website.php" routes file.
  */
+
 /**
  * Client Public Routes
  * This is where you record the routes for public business pages.

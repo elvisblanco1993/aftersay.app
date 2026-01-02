@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Page;
 use App\Models\Tenant;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -78,8 +77,6 @@ class GoogleController extends Controller
             // Create default sequence workflow
             app(CreateDefaultWorkflow::class)($user);
         }
-
-        // event(new Registered($user));
 
         Auth::login($user);
 
