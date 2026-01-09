@@ -29,7 +29,7 @@ class CreateDefaultWorkflow
                 'action' => WorkflowActionType::SendEmail->value,
                 'delay' => $template['delay'],
                 'delay_unit' => $template['delay_unit'],
-                'template_id' => Template::where('name', $templateName)?->first()?->id ?? null,
+                'template_id' => Template::where('tenant_id', $tenant->id)->where('name', $templateName)?->first()?->id ?? null,
             ]);
             $order++;
         }

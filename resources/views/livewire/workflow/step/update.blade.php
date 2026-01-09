@@ -6,7 +6,7 @@
     <flux:modal :closable="false" name="edit-step-{{ $step->id }}" class="md:w-lg" variant="flyout">
         <div class="space-y-6">
             <div>
-                <flux:heading size="lg">Add step</flux:heading>
+                <flux:heading size="lg">Update step</flux:heading>
             </div>
 
             <form wire:submit="save">
@@ -24,15 +24,17 @@
                     @if ($step->order > 1)
                         <flux:switch wire:model.live="delayed" label="Add a delay before this step?" align="left" />
                         @if ($delayed)
-                            <div class="flex items-center gap-2">
+                            <div class="inline-flex items-center gap-2">
                                 <flux:text>Wait</flux:text>
-                                <flux:input type="number" wire:model="delay" step="1"/>
-                                <flux:select wire:model="delay_unit">
+                                <flux:input.group>
+                                <flux:input size="sm" class="max-w-24" type="number" wire:model="delay" step="1"/>
+                                <flux:select size="sm" class="" wire:model="delay_unit">
                                     @forelse (\App\Enums\DelayUnit::cases() as $case)
                                         <option value="{{ $case->value }}">{{ $case->label() }}</option>
                                     @empty
                                     @endforelse
                                 </flux:select>
+                                </flux:input.group>
                                 <flux:text class="flex-none">before sending</flux:text>
                             </div>
                         @endif
