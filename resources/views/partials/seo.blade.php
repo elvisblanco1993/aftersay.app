@@ -1,6 +1,6 @@
 <link rel="canonical" href="{{ config('app.url') }}">
 <meta name="description" content="Review management software that automates customer feedback collection. Get more Google reviews, protect your reputation, and grow your business. Try free.">
-<meta name="keywords" content="review management software, automated review collection, Google review automation, online reputation management, customer feedback software, local business reviews, review generation, negative review protection, small business reputation, automated review requests">
+<meta name="keywords" content="business reviews, online business reviews, Google business reviews, Facebook business reviews, contractor reviews, best review management software">
 <!-- Essential OG Tags -->
 <meta property="og:title" content="AfterSay - Automated Review Collection for Local Businesses">
 <meta property="og:description" content="Effortlessly grow your business with more 5-star reviews. AfterSay automates feedback collection, manages your online reputation, and turns happy clients into brand advocates.">
