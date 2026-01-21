@@ -1,6 +1,6 @@
 <div>
     <flux:modal.trigger name="add-step">
-        <flux:button class="w-full" variant="outline" icon="plus">Add another step</flux:button>
+        <flux:button size="sm" variant="primary">Add Step</flux:button>
     </flux:modal.trigger>
 
     <flux:modal name="add-step" class="md:w-lg" flyout variant="floating">

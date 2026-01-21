@@ -7,7 +7,13 @@
                 <flux:breadcrumbs.item>{{ $workflow->name }}</flux:breadcrumbs.item>
             </flux:breadcrumbs>
         </div>
-        <livewire:workflow.update :workflow="$workflow" />
+
+        <div class="flex items-center gap-4">
+            @unless ($workflow_in_use)
+                <livewire:workflow.step.create :workflow="$workflow" />
+            @endunless
+            <livewire:workflow.update :workflow="$workflow" />
+        </div>
     </div>
 
     @if ($workflow_in_use)
@@ -19,8 +25,5 @@
 
     <div class="space-y-6">
         <livewire:workflow.step.index :workflow="$workflow" :readonly="$workflow_in_use" />
-        @unless ($workflow_in_use)
-            <livewire:workflow.step.create :workflow="$workflow" />
-        @endunless
     </div>
 </div>

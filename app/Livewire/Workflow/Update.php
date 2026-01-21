@@ -14,9 +14,12 @@ class Update extends Component
     #[Rule('required')]
     public $name;
 
+    public bool $is_active = false;
+
     public function mount()
     {
         $this->name = $this->workflow->name;
+        $this->is_active = $this->workflow->is_active->toBool();
     }
 
     public function render()
@@ -30,6 +33,7 @@ class Update extends Component
 
         $this->workflow->update([
             'name' => $this->name,
+            'is_active' => $this->is_active,
         ]);
 
         Flux::toast(text: 'Workflow updated!', variant: 'success');

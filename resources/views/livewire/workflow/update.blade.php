@@ -13,6 +13,7 @@
                     </div>
 
                     <flux:input label="Name" placeholder="Client Feedback Flow" wire:model="name" />
+                    <flux:switch label="Activate" wire:model="is_active" align="left" />
 
                     <div class="flex">
                         <flux:spacer />
