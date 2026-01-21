@@ -4,11 +4,11 @@
     </flux:modal.trigger>
 
     <flux:modal name="duplicate-workflow" class="md:w-96" >
-        <form wire:submit="save">
+        <form wire:submit="duplicate">
             @csrf
             <div class="space-y-6">
                 <div>
-                    <flux:heading size="lg">Create Workflow</flux:heading>
+                    <flux:heading size="lg">Duplicate Workflow</flux:heading>
                 </div>
 
                 <flux:input label="Name" placeholder="Client Feedback Flow" wire:model="name" autofocus />
@@ -16,7 +16,7 @@
                 <div class="flex">
                     <flux:spacer />
 
-                    <flux:button type="submit" variant="primary">Create</flux:button>
+                    <flux:button type="submit" variant="primary">Duplicate</flux:button>
                 </div>
             </div>
         </form>

@@ -3,6 +3,7 @@
 namespace App\Livewire\Workflow\Step;
 
 use App\Models\WorkflowStep;
+use Flux\Flux;
 use Livewire\Component;
 
 class Delete extends Component
@@ -17,6 +18,7 @@ class Delete extends Component
     public function delete()
     {
         $this->step->delete();
+        Flux::toast(text: 'Step deleted!', variant: 'success');
         $this->redirect(url: url()->previous(), navigate: true);
     }
 }

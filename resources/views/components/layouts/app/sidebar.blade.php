@@ -27,6 +27,11 @@
                     <flux:navlist.item :href="route('settings.tenant')" icon="settings-2" :current="request()->routeIs('settings.*')" wire:navigate>{{ __('Settings') }}</flux:navlist.item>
                     <flux:navlist.item icon="book-open-text" href="https://aftersay.tawk.help" target="_blank">{{ __('Support') }}</flux:navlist.item>
                 </flux:navlist.group>
+                @can('viewAny', \App\Models\Article::class)
+                    <flux:navlist.group :heading="__('Super')" class="grid">
+                        <flux:navlist.item :href="route('article.index')" icon="newspaper" :current="request()->routeIs('article.*')" wire:navigate>{{ __('Articles') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                @endcan
             </flux:navlist>
 
             <flux:spacer />
@@ -147,6 +152,13 @@
 
         {{ $slot }}
 
+
+        @persist('toast')
+            <flux:toast.group>
+                <flux:toast />
+            </flux:toast.group>
+        @endpersist
+        
         @fluxScripts
     </body>
 </html>

@@ -17,7 +17,7 @@
                 <div class="absolute top-1/3 right-1/3 w-2 h-2 bg-yellow-400 rounded-full animate-pulse" style="animation-delay: 1.5s;"></div>
             </div>
     
-            <div class="max-w-5xl mx-auto relative z-10">
+            <div class="max-w-7xl mx-auto relative z-10">
                 <!-- Star Rating Visual -->
                 <div class="flex justify-center mb-8 space-x-2">
                     <svg class="w-10 h-10 text-yellow-400 animate-bounce" style="animation-delay: 0s;" fill="currentColor" viewBox="0 0 20 20">
@@ -62,7 +62,7 @@
 
         {{-- Features --}}
         <section id="features" class="py-24 px-4 md:px-6 bg-gray-950">
-            <div class="max-w-5xl mx-auto">
+            <div class="max-w-7xl mx-auto">
                 <!-- Feature 1: Automated Feedback Collection -->
                 <div class="flex flex-col md:flex-row items-center justify-between mb-32 md:space-x-16">
                     <!-- Text Content -->
@@ -193,7 +193,7 @@
             <div class="absolute top-0 left-1/4 w-96 h-96 bg-green-500/20 rounded-full opacity-20 blur-3xl"></div>
             <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500/20 rounded-full opacity-20 blur-3xl"></div>
             
-            <div class="max-w-5xl mx-auto relative z-10">
+            <div class="max-w-7xl mx-auto relative z-10">
                 <div class="text-center mb-16">
                     <h2 class="text-4xl sm:text-6xl font-bold text-white mb-4">Simple, <span class="text-green-400">Transparent</span> Pricing</h2>
                     <p class="text-lg text-gray-300 max-w-2xl mx-auto">One straightforward price. Add features as you grow.</p>

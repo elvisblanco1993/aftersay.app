@@ -17,7 +17,7 @@
                             @if ($step->template_id)
                                 <span class="font-medium text-zinc-900 dark:text-zinc-50">{{ $step->template->name }}</span>
                                 <div class="italic text-zinc-600 dark:text-zinc-400 mt-1">
-                                    {{ Str::of($step->template->body)->limit(100, '...') }}
+                                    {!! Str::of($step->template->body)->limit(100, '...') !!}
                                 </div>
                             @else
                                 <div>Custom text:</div>

@@ -2,5 +2,4 @@
     <flux:main container>
         {{ $slot }}
     </flux:main>
-    <x-banner />
 </x-layouts.app.sidebar>

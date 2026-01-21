@@ -3,6 +3,7 @@
 namespace App\Livewire\Template;
 
 use App\Models\Template;
+use Flux\Flux;
 use Livewire\Component;
 
 class Delete extends Component
@@ -21,8 +22,7 @@ class Delete extends Component
         $this->template->steps()->delete();
         $this->template->delete();
 
-        session()->flash('flash.banner', 'Template deleted!');
-        session()->flash('flash.bannerStyle', 'success');
+        Flux::toast(text: 'Template deleted!', variant: 'success');
 
         $this->redirect(url: route('template.index'), navigate: true);
     }

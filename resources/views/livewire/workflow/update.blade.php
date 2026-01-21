@@ -3,7 +3,7 @@
         <flux:button icon="settings" size="sm"/>
     </flux:modal.trigger>
 
-    <flux:modal name="update-workflow" class="md:w-96" variant="flyout">
+    <flux:modal name="update-workflow" class="md:w-96" flyout variant="floating">
         <div class="space-y-6">
             <form wire:submit="save">
                 @csrf

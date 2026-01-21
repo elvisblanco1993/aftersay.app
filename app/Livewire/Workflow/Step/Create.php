@@ -6,6 +6,7 @@ use App\Enums\DelayUnit;
 use App\Enums\TemplateStatus;
 use App\Enums\WorkflowActionType;
 use App\Models\Workflow;
+use Flux\Flux;
 use Livewire\Component;
 
 class Create extends Component
@@ -54,6 +55,8 @@ class Create extends Component
             'template_id' => $this->content_type === 'template' ? $this->template_id : null,
             'custom_message' => $this->content_type === 'custom' ? $this->custom_message : null,
         ]);
+
+        Flux::toast(text: 'Step added!', variant: 'success');
 
         $this->redirect(url: url()->previous(), navigate: true);
     }

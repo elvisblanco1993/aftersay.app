@@ -2,7 +2,7 @@
     <flux:modal.trigger name="add-platform">
         <flux:button variant="primary" icon-trailing="plus">Add</flux:button>
     </flux:modal.trigger>
-    <flux:modal name="add-platform" class="md:w-xl"  variant="flyout">   
+    <flux:modal name="add-platform" class="md:w-xl"  flyout variant="floating">   
         <form wire:submit="savePlatform">
             @csrf
             <div class="space-y-6">
@@ -21,7 +21,7 @@
                             <div class="font-medium">Instructions</div>
                             <ol class="list-decimal text-sm px-4">
                                 @forelse (config("internal.platforms.{$provider}.instructions") as $item)
-                                    <li>{{ $item }}</li>
+                                    <li>{!! $item !!}</li>
                                 @empty
                                 @endforelse    
                             </ol>

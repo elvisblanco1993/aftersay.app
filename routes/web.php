@@ -14,10 +14,6 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
 /**
- * Website routes are located in the "website.php" routes file.
- */
-
-/**
  * Client Public Routes
  * This is where you record the routes for public business pages.
  */
@@ -76,6 +72,12 @@ Route::middleware(['auth'])->group(function () {
          */
         Route::get('templates', \App\Livewire\Template\Index::class)->name('template.index');
         Route::get('templates/{template}/update', \App\Livewire\Template\Update::class)->name('template.update');
+
+        /**
+         * Articles Management Routes
+         */
+        Route::get('articles', \App\Livewire\Article\Index::class)->name('article.index');
+        Route::get('articles/{article}', \App\Livewire\Article\Manage::class)->name('article.manage');
 
         /**
          * Settings

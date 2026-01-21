@@ -13,19 +13,15 @@
             
                     <div class="grid grid-cols-2 gap-6">
                         <flux:input wire:model="business_name" label="Business Name" required />
-                        <flux:select wire:model="industry" label="Industry">
-                            <option value="">Select an option</option>
-                            @forelse (config('internal.industries') as $opt)
-                                <option value="{{ $opt }}">{{ $opt }}</option>
-                            @empty
-                            @endforelse
+                        <flux:select wire:model="industry" variant="listbox" label="Business Industry" searchable placeholder="Choose industry...">
+                             @foreach (config('internal.industries') as $opt)
+                                <flux:select.option :wire:key="$loop->index">{{ $opt }}</flux:select.option>
+                            @endforeach
                         </flux:select>
-                        <flux:select wire:model.live="country" label="Country">
-                            <option value="">Select an option</option>
-                            @forelse (config('internal.countries') as $opt)
-                                <option value="{{ $opt }}">{{ $opt }}</option>
-                            @empty
-                            @endforelse
+                        <flux:select wire:model="country" variant="listbox" label="Country" searchable placeholder="Choose country...">
+                             @foreach (config('internal.countries') as $opt)
+                                <flux:select.option :wire:key="$loop->index">{{ $opt }}</flux:select.option>
+                            @endforeach
                         </flux:select>
                         <flux:input wire:model="website" type="url" label="Website" />
                         <flux:input wire:model="phone" type="tel" label="Business Phone" />

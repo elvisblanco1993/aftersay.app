@@ -44,7 +44,7 @@
         </div>
 
         {{-- Review Page Update Modal --}}
-        <flux:modal name="edit-profile" class="md:w-128" variant="flyout">
+        <flux:modal name="edit-profile" class="md:w-128" flyout variant="floating">
             <form wire:submit="save">
                 @csrf
                 <div class="space-y-6">

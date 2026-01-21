@@ -98,6 +98,7 @@ class Tenant extends Component
                 $url = $this->logo ? $this->logo->store("tenant/{$this->page->slug}/logo") : null;
 
                 $this->page->update([
+                    'heading' => 'Thank you for choosing '.$this->business_name,
                     'logo' => $url,
                 ]);
             }

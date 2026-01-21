@@ -4,6 +4,7 @@ namespace App\Livewire\Workflow\Step;
 
 use App\Enums\DelayUnit;
 use App\Models\WorkflowStep;
+use Flux\Flux;
 use Livewire\Component;
 
 class Update extends Component
@@ -60,6 +61,8 @@ class Update extends Component
             'template_id' => $this->content_type === 'template' ? $this->template_id : null,
             'custom_message' => $this->content_type === 'custom' ? $this->custom_message : null,
         ]);
+
+        Flux::toast(text: 'Step updated!', variant: 'success');
 
         $this->redirect(url: url()->previous(), navigate: true);
     }

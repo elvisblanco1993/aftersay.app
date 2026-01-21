@@ -3,6 +3,7 @@
 namespace App\Livewire\Workflow;
 
 use App\Models\Workflow;
+use Flux\Flux;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 
@@ -30,6 +31,8 @@ class Update extends Component
         $this->workflow->update([
             'name' => $this->name,
         ]);
+
+        Flux::toast(text: 'Workflow updated!', variant: 'success');
 
         $this->redirect(url: url()->previous(), navigate: true);
     }

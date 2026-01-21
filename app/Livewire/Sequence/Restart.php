@@ -4,6 +4,7 @@ namespace App\Livewire\Sequence;
 
 use App\Enums\SequenceStatus;
 use App\Models\Sequence;
+use Flux\Flux;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -27,6 +28,8 @@ class Restart extends Component
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
+
+            Flux::toast(text: 'Sequence successfully restarted!', variant: 'success');
         });
 
         $this->redirect(url: url()->previous(), navigate: true);

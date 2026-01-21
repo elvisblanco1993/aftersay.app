@@ -23,7 +23,7 @@
 
         {{-- The Story --}}
         <section class="py-24 px-4 md:px-6 bg-gray-950">
-            <div class="max-w-5xl mx-auto">
+            <div class="max-w-7xl mx-auto">
                 <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
                     <!-- Story Content -->
                     <div class="space-y-6">
@@ -72,7 +72,7 @@
                 </div>
 
                 <!-- Founder Quote -->
-                <div class="max-w-5xl mx-auto mb-20">
+                <div class="max-w-7xl mx-auto mb-20">
                     <div class="bg-gradient-to-br from-gray-900 to-gray-950 rounded-2xl p-8 md:p-12 border border-gray-800 relative hover:border-green-400/30 transition-all">
                         <svg class="absolute top-6 left-6 w-12 h-12 text-green-400/20" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"></path>
@@ -138,7 +138,7 @@
 
         {{-- CTA Section --}}
         <section class="py-20 px-4 sm:px-6 bg-gray-900">
-            <div class="max-w-5xl mx-auto px-8 sm:px-12 py-16 text-center border-2 border-green-400 rounded-3xl shadow-2xl shadow-green-500/30 bg-gradient-to-br from-gray-950 to-gray-900 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-8 sm:px-12 py-16 text-center border-2 border-green-400 rounded-3xl shadow-2xl shadow-green-500/30 bg-gradient-to-br from-gray-950 to-gray-900 relative overflow-hidden">
                 <!-- Background decoration -->
                 <div class="absolute inset-0 opacity-10">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-green-400 rounded-full blur-3xl"></div>

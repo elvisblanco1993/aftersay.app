@@ -5,6 +5,7 @@ namespace App\Livewire\Sequence;
 use App\Enums\SequenceStatus;
 use App\Models\Contact;
 use App\Models\Sequence;
+use Flux\Flux;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -70,12 +71,12 @@ class Create extends Component
                     ]);
                 }
             });
-            session()->flash('flash.banner', 'Sequence queued for selected contacts.');
-            session()->flash('flash.bannerStyle', 'success');
+
+            Flux::toast(text: 'Sequence queued for selected contacts.', variant: 'success');
         } catch (\Throwable $th) {
             Log::error($th);
-            session()->flash('flash.banner', 'There was an error and we could not process your request. Please try again or contact support.');
-            session()->flash('flash.bannerStyle', 'danger');
+
+            Flux::toast(text: 'There was an error and we could not process your request.', variant: 'danger');
         }
 
         $this->redirect(url: url()->previous(), navigate: true);

@@ -4,6 +4,7 @@ namespace App\Livewire\Contact;
 
 use App\Imports\ContactPreviewImport;
 use App\Imports\ContactsImport;
+use Flux\Flux;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -94,10 +95,7 @@ class Import extends Component
                 // Remove file from storage after import is completed.
                 Storage::delete($fileToImportFrom)
             );
-
-        session()->flash('flash.banner', 'Import is processing in the background. You will be notified when it is complete.');
-        session()->flash('flash.bannerStyle', 'success');
-
+        Flux::toast(text: 'Import is processing in the background. You will be notified when it is complete.', variant: 'success');
         $this->redirect(url: url()->previous(), navigate: true);
     }
 

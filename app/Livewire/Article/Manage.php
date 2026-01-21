@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Livewire\Article;
+
+use App\Models\Article;
+use Livewire\Component;
+
+class Manage extends Component
+{
+    public Article $article;
+
+    public $title;
+
+    public $excerpt;
+
+    public $content;
+
+    public $keywords;
+
+    public function mount()
+    {
+        $this->authorize('viewAny', Article::class);
+        $this->title = $this->article->title;
+        $this->excerpt = $this->article->excerpt;
+        $this->content = $this->article->content;
+        $this->keywords = $this->article->keywords;
+    }
+
+    public function render()
+    {
+        return view('livewire.article.manage');
+    }
+}

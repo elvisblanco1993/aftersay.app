@@ -123,4 +123,9 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /**
+     * Comma-separated list of emails authorized to manage articles
+     */
+    'admin_emails' => env('APP_ADMIN_EMAILS'),
+
 ];

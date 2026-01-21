@@ -4,6 +4,7 @@ namespace App\Livewire\Workflow;
 
 use App\Enums\WorkflowTriggerType;
 use App\Models\Workflow;
+use Flux\Flux;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
@@ -29,6 +30,8 @@ class Create extends Component
             'name' => $this->name,
             'is_active' => false,
         ]);
+
+        Flux::toast(text: 'Workflow created!', variant: 'success');
 
         $this->redirect(url: route('workflow.show', ['workflow' => $workflow]), navigate: false);
     }
