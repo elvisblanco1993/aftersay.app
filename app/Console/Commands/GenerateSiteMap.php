@@ -30,6 +30,8 @@ class GenerateSiteMap extends Command
      */
     public function handle()
     {
+        $this->deleteSitemap();
+
         $sitemap = SitemapGenerator::create(config('app.url'))
             ->getSitemap()
             ->add(Url::create(route('home')))
@@ -44,7 +46,6 @@ class GenerateSiteMap extends Command
             );
         }
 
-        $this->deleteSitemap();
         $sitemap->writeToFile(public_path('sitemap.xml'));
     }
 
