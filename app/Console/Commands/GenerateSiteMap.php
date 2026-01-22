@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Enums\ArticleStatus;
 use App\Models\Article;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 use Spatie\Sitemap\SitemapGenerator;
 use Spatie\Sitemap\Tags\Url;
 
@@ -42,6 +43,21 @@ class GenerateSiteMap extends Command
                 )->setLastModificationDate($article->updated_at)
             );
         }
+
+        $this->deleteSitemap();
         $sitemap->writeToFile(public_path('sitemap.xml'));
+    }
+
+    protected function deleteSitemap()
+    {
+        $path = public_path('sitemap.xml');
+
+        if (! File::exists($path)) {
+            $this->warn('sitemap.xml does not exist.');
+
+            return Command::SUCCESS;
+        }
+
+        File::delete($path);
     }
 }
