@@ -18,6 +18,6 @@ class BlogController extends Controller
     {
         $article = Article::where('status', ArticleStatus::Published)->where('slug', $slug)->firstOrFail();
 
-        return view('website.blog.index', compact('article'));
+        return view('website.blog.show', compact('article'));
     }
 }

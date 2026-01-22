@@ -3,6 +3,7 @@
 namespace App\Livewire\Article;
 
 use App\Models\Article;
+use Flux\Flux;
 use Livewire\Component;
 
 class Manage extends Component
@@ -29,5 +30,19 @@ class Manage extends Component
     public function render()
     {
         return view('livewire.article.manage');
+    }
+
+    public function save()
+    {
+        $validated = $this->validate([
+            'title' => 'required',
+            'excerpt' => 'required',
+            'content' => 'required',
+            'keywords' => 'required',
+        ]);
+
+        $this->article->update($validated);
+
+        Flux::toast(text: 'Article saved!', variant: 'success');
     }
 }

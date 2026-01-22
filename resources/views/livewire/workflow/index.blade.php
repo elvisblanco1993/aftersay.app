@@ -17,25 +17,25 @@
     </div>
 
     @forelse ($workflows as $workflow)
-        <flux:card size="sm" wire:key="workflow-{{ $workflow->id }}">
+        <flux:card size="sm" :wire:key="'workflow-'.$workflow->id">
             <div class="sm:flex items-start justify-between">
                 <div class="flex-1">
                     <div class="flex items-center space-x-3">
-                        <flux:badge variant="pill" :color="$workflow->is_active->color()" size="sm">{{ $workflow->is_active->label() }}</flux:badge>
                         <flux:heading size="lg">{{ $workflow->name }}</flux:heading>
+                        <flux:badge variant="pill" :color="$workflow->is_active->color()" size="sm">{{ $workflow->is_active->label() }}</flux:badge>
                     </div>
 
                     <div class="mt-3 grid grid-cols-3 justify-even">
                         <div class="grid-cols-3 sm:col-span-1 space-y-1">
-                            <span class="data-flux-text text-zinc-500 dark:text-white/70">Steps</span>
+                            <span class="text-xs text-zinc-500 dark:text-white/70">Steps</span>
                             <div class="text-sm">{{ $workflow->steps_count }}</div>
                         </div>
                         <div class="grid-cols-3 sm:col-span-1 space-y-1">
-                            <span class="data-flux-text text-zinc-500 dark:text-white/70">Contacts Using</span>
+                            <span class="text-xs text-zinc-500 dark:text-white/70">Contacts Using</span>
                             <div class="text-sm">{{ $workflow->contacts_count }}</div>
                         </div>
                         <div class="grid-cols-3 sm:col-span-1 space-y-1">
-                            <span class="data-flux-text text-zinc-500 dark:text-white/70">Avg. Open Rate</span>
+                            <span class="text-xs text-zinc-500 dark:text-white/70">Avg. Open Rate</span>
                             <div class="text-sm">
                                 <flux:tooltip>
                                     {{ number_format(($workflow->logs_avg_open_count ?? 0) * 100, 1) }}%
@@ -44,8 +44,8 @@
                         </div>
                     </div>
                     @if ($workflow->steps_count > 0)
-                        <flux:callout size="sm" class="mt-3">
-                            <span class="data-flux-text text-zinc-500 dark:text-white/70">WORKFLOW STEPS</span>
+                        <flux:card size="sm" class="mt-3">
+                            <span class="text-xs text-zinc-500 dark:text-white/70">WORKFLOW STEPS</span>
 
                             <div class="flex items-center gap-2">
                                 @forelse ($workflow->steps->take(3) as $index => $step)
@@ -59,16 +59,16 @@
                                     <span class="text-xs">+{{ $workflow->steps_count - 3 }} more</span>
                                 @endif
                             </div>
-                        </flux:callout>
+                        </flux:card>
                     @endif
                 </div>
                 <div class="sm:ml-6 mt-3 sm:mt-0 flex flex-col gap-2">
                     <flux:button :href="route('workflow.show', ['workflow' => $workflow])" wire:navigate >{{__('Edit')}}</flux:button>
                     @if ($workflow->is_active->toBool())
-                        <livewire:workflow.duplicate :workflow="$workflow" wire:key="duplicate-{{ $workflow->id }}"/>
-                        <flux:button>Analytics</flux:button>
+                        <livewire:workflow.duplicate :workflow="$workflow" :wire:key="'duplicate-'.$workflow->id"/>
+                        {{-- <flux:button>Analytics</flux:button> --}}
                     @else
-                        <livewire:workflow.delete :workflow="$workflow" wire:key="delete-{{ $workflow->id }}" />
+                        <livewire:workflow.delete :workflow="$workflow" :wire:key="'delete-'.$workflow->id" />
                     @endif
                 </div>
             </div>
