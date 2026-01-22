@@ -6,6 +6,7 @@
         </div>
 
         <div class="flex items-center gap-3">
+            <flux:button wire:click="regenerate" variant="primary" color="pink" icon="bot" />
             <livewire:article.publish :article="$article" />
             <flux:button wire:click="save">Save</flux:button>
         </div>
