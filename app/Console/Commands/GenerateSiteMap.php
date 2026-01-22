@@ -6,7 +6,7 @@ use App\Enums\ArticleStatus;
 use App\Models\Article;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
-use Spatie\Sitemap\SitemapGenerator;
+use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 
 class GenerateSiteMap extends Command
@@ -32,19 +32,19 @@ class GenerateSiteMap extends Command
     {
         $this->deleteSitemap();
 
-        $sitemap = SitemapGenerator::create(config('app.url'))
-            ->getSitemap()
+        $sitemap = Sitemap::create()
             ->add(Url::create(route('home')))
             ->add(Url::create(route('about')))
             ->add(Url::create(route('blog.index')));
 
-        foreach (Article::where('status', ArticleStatus::Published)->wherePast('published_at')->get() as $article) {
-            $sitemap->add(
-                Url::create(
-                    route('blog.show', ['slug' => $article->slug])
-                )->setLastModificationDate($article->updated_at)
-            );
-        }
+        Article::where('status', ArticleStatus::Published)
+            ->wherePast('published_at')
+            ->each(function ($article) use ($sitemap) {
+                $sitemap->add(
+                    Url::create(route('blog.show', $article->slug))
+                        ->setLastModificationDate($article->updated_at)
+                );
+            });
 
         $sitemap->writeToFile(public_path('sitemap.xml'));
     }
@@ -54,8 +54,6 @@ class GenerateSiteMap extends Command
         $path = public_path('sitemap.xml');
 
         if (! File::exists($path)) {
-            $this->warn('sitemap.xml does not exist.');
-
             return Command::SUCCESS;
         }
 
