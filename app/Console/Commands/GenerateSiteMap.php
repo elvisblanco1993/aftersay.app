@@ -32,21 +32,21 @@ class GenerateSiteMap extends Command
     {
         $this->deleteSitemap();
 
-        // $sitemap = SitemapGenerator::create(config('app.url'))
-        //     ->getSitemap()
-        //     ->add(Url::create(route('home')))
-        //     ->add(Url::create(route('about')))
-        //     ->add(Url::create(route('blog.index')));
+        $sitemap = SitemapGenerator::create(config('app.url'))
+            ->getSitemap()
+            ->add(Url::create(route('home')))
+            ->add(Url::create(route('about')))
+            ->add(Url::create(route('blog.index')));
 
-        // foreach (Article::where('status', ArticleStatus::Published)->wherePast('published_at')->get() as $article) {
-        //     $sitemap->add(
-        //         Url::create(
-        //             route('blog.show', ['slug' => $article->slug])
-        //         )->setLastModificationDate($article->updated_at)
-        //     );
-        // }
+        foreach (Article::where('status', ArticleStatus::Published)->wherePast('published_at')->get() as $article) {
+            $sitemap->add(
+                Url::create(
+                    route('blog.show', ['slug' => $article->slug])
+                )->setLastModificationDate($article->updated_at)
+            );
+        }
 
-        // $sitemap->writeToFile(public_path('sitemap.xml'));
+        $sitemap->writeToFile(public_path('sitemap.xml'));
     }
 
     protected function deleteSitemap()
