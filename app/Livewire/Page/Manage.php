@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Page;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +30,7 @@ class Manage extends Component
 
     public $logo;
 
-    public function mount()
+    public function mount(): void
     {
         $this->tenant = Auth::user()->currentTenant;
         $this->page = $this->tenant->page;
@@ -39,12 +40,12 @@ class Manage extends Component
         $this->subheading = $this->page->subheading;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.page.manage');
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate([
             'heading' => ['required', 'string'],
