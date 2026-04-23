@@ -30,20 +30,20 @@
                 <div class="sm:flex items-start justify-between">
                     <div class="flex-1">
                         <div class="flex items-center gap-3">
-                            <flux:avatar circle :name="$sequence->contact->full_name" color="auto" />
+                            <flux:avatar circle :name="$sequence?->contact?->full_name" color="auto" />
                             <div>
-                                <flux:heading size="lg">{{ $sequence->contact->full_name }}</flux:heading>
-                                <flux:text>{{ $sequence->contact->email }}</flux:text>
+                                <flux:heading size="lg">{{ $sequence?->contact?->full_name }}</flux:heading>
+                                <flux:text>{{ $sequence?->contact?->email }}</flux:text>
                             </div>
                         </div>
                         <div class="mt-3 flex items-start gap-6">
                             <div class="space-y-2">
                                 <flux:text>Workflow</flux:text>
-                                <flux:heading>{{ $sequence->workflow->name }}</flux:heading>
+                                <flux:heading>{{ $sequence?->workflow?->name }}</flux:heading>
                             </div>
                             <div class="space-y-1">
                                 <flux:text>Status</flux:text>
-                                <flux:badge size="sm" :color="$sequence->status->color()">{{ $sequence->status->label() }}</flux:badge>
+                                <flux:badge size="sm" :color="$sequence->status?->color()">{{ $sequence->status?->label() }}</flux:badge>
                             </div>
                             <div class="space-y-2">
                                 <flux:text>Progress</flux:text>
